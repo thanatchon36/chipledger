@@ -21,8 +21,8 @@ Its transistor count grew 11×. Its clock, 2.7×.
 
 Where did the rest come from? I pre-registered a study and did the arithmetic.
 
-"Huang's law" is the claim that AI chips outrun Moore's law. I wanted to know how much of it is Moore's law in
-disguise? I built a dataset of 79 data-centre AI accelerators from 14 vendors (2012–2026): 1,152 values,
+"Huang's law" is the claim that AI chips outrun Moore's law. How much of it is Moore's law in disguise?
+I built a dataset of 79 data-centre AI accelerators from 14 vendors (2012–2026): 1,152 values,
 each with a source URL, an access date and a confidence level. Then I split every vendor's published peak
 into five factors that multiply exactly:
 
