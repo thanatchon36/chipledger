@@ -1,0 +1,4380 @@
+{
+ "population": {
+  "products": 79,
+  "primary": 66,
+  "excluded_not_per_package": [
+   "Cloud AI 100 Ultra"
+  ],
+  "flagships": 44,
+  "flagships_with_headline": 43,
+  "A_flagships": 9,
+  "A_prime_flagships": 15,
+  "clock_free_flagships": 11,
+  "A_primary": 11,
+  "A_prime_primary": 19,
+  "clock_free_primary": 13
+ },
+ "estimator_b": {
+  "n": 9,
+  "products": [
+   "K40",
+   "M40",
+   "P100 SXM2",
+   "V100 SXM2 16GB",
+   "MI60",
+   "A100 SXM4 40GB",
+   "GC200",
+   "WSE-2",
+   "H100 SXM5 80GB"
+  ],
+  "fits": {
+   "headline": {
+    "series": "log2_headline",
+    "n": 9,
+    "slope": 1.208297134975059,
+    "intercept": -2431.80469617308,
+    "doubling_years": 0.8276109998561251,
+    "se_hc3": 0.2022654898810336,
+    "slope_ci": [
+     0.888090189781826,
+     1.619352800600301
+    ],
+    "doubling_ci": [
+     0.6175306576981222,
+     1.126011762663054
+    ],
+    "theil_sen": 1.2296472403730356
+   },
+   "density_mtr_mm2": {
+    "series": "log2_density_mtr_mm2",
+    "n": 9,
+    "slope": 0.36288944686609376,
+    "intercept": -727.3056199622819,
+    "doubling_years": 2.7556601842130726,
+    "se_hc3": 0.04507886258105122,
+    "slope_ci": [
+     0.2912146715427727,
+     0.4542421080130795
+    ],
+    "doubling_ci": [
+     2.2014691776906026,
+     3.4338929240834046
+    ],
+    "theil_sen": 0.3677374581555204
+   },
+   "area_mm2": {
+    "series": "log2_area_mm2",
+    "n": 9,
+    "slope": 0.321170672783321,
+    "intercept": -638.2679024715023,
+    "doubling_years": 3.1136093197234533,
+    "se_hc3": 0.3049359180897277,
+    "slope_ci": [
+     0.005254448056715838,
+     0.9246315314438693
+    ],
+    "doubling_ci": [
+     1.08151189527188,
+     190.31494634757607
+    ],
+    "theil_sen": 0.08850444410899472
+   },
+   "boost_clock_mhz": {
+    "series": "log2_boost_clock_mhz",
+    "n": 9,
+    "slope": 0.07103478091229538,
+    "intercept": -132.97273414616217,
+    "doubling_years": 14.077610814829871,
+    "se_hc3": 0.05730403497489178,
+    "slope_ci": [
+     -0.04777086402309035,
+     0.13436269559654854
+    ],
+    "doubling_ci": [
+     7.44254196122043,
+     null
+    ],
+    "theil_sen": 0.0729288963073666
+   },
+   "spec_ops_per_transistor_cycle": {
+    "series": "log2_spec_ops_per_transistor_cycle",
+    "n": 9,
+    "slope": 0.33230628045639155,
+    "intercept": -689.6728428051853,
+    "doubling_years": 3.009272044532513,
+    "se_hc3": 0.07006030858020763,
+    "slope_ci": [
+     0.19177197215244993,
+     0.4752368078946875
+    ],
+    "doubling_ci": [
+     2.104214116810582,
+     5.214526339673067
+    ],
+    "theil_sen": 0.3421325243837441
+   },
+   "precision_multiplier": {
+    "series": "log2_precision_multiplier",
+    "n": 9,
+    "slope": 0.12089595395695724,
+    "intercept": -243.58559678794808,
+    "doubling_years": 8.271575410671158,
+    "se_hc3": 0.07238167445194402,
+    "slope_ci": [
+     0.0,
+     0.2953288973517502
+    ],
+    "doubling_ci": [
+     3.386055374083337,
+     null
+    ],
+    "theil_sen": 0.0
+   }
+  },
+  "contrast_arch_minus_physical": {
+   "plus": [
+    "log2_spec_ops_per_transistor_cycle",
+    "log2_precision_multiplier"
+   ],
+   "minus": [
+    "log2_density_mtr_mm2",
+    "log2_area_mm2",
+    "log2_boost_clock_mhz"
+   ],
+   "estimate": -0.30189266614836135,
+   "ci": [
+    -0.9512358942823849,
+    0.15624239129963866
+   ],
+   "excludes_zero": false
+  },
+  "contrast_arch_minus_density": {
+   "plus": [
+    "log2_spec_ops_per_transistor_cycle",
+    "log2_precision_multiplier"
+   ],
+   "minus": [
+    "log2_density_mtr_mm2"
+   ],
+   "estimate": 0.09031278754725502,
+   "ci": [
+    -0.10336066151365113,
+    0.30714709340412705
+   ],
+   "excludes_zero": false
+  },
+  "theil_sen_arch_minus_density": -0.025604933771776306
+ },
+ "estimator_b_a_prime": {
+  "n": 15,
+  "products": [
+   "K40",
+   "M40",
+   "P100 SXM2",
+   "V100 SXM2 16GB",
+   "TPU v2",
+   "TPU v3",
+   "MI60",
+   "A100 SXM4 40GB",
+   "GC200",
+   "MI100",
+   "WSE-2",
+   "MI250X",
+   "H100 SXM5 80GB",
+   "MI325X",
+   "MI355X"
+  ],
+  "fits": {
+   "headline": {
+    "series": "log2_headline",
+    "n": 15,
+    "slope": 0.9672276738184723,
+    "intercept": -1945.6287792749322,
+    "doubling_years": 1.0338827424696684,
+    "se_hc3": 0.08698766250333595,
+    "slope_ci": [
+     0.8136044188796225,
+     1.1889288647278282
+    ],
+    "doubling_ci": [
+     0.8410932139568517,
+     1.2290985358425834
+    ],
+    "theil_sen": 0.9637320388701339
+   },
+   "transistors_mtr": {
+    "series": "log2_transistors_mtr",
+    "n": 15,
+    "slope": 0.5133205691768242,
+    "intercept": -1021.5000561507669,
+    "doubling_years": 1.9481003880355487,
+    "se_hc3": 0.08922356251456397,
+    "slope_ci": [
+     0.4035903049895804,
+     0.7775061557480258
+    ],
+    "doubling_ci": [
+     1.2861634504204233,
+     2.477760212861945
+    ],
+    "theil_sen": 0.4520659678910141
+   },
+   "boost_clock_mhz": {
+    "series": "log2_boost_clock_mhz",
+    "n": 15,
+    "slope": 0.11027954526409198,
+    "intercept": -212.28845604387124,
+    "doubling_years": 9.067864739605605,
+    "se_hc3": 0.023767526596519078,
+    "slope_ci": [
+     0.05646251143232175,
+     0.16327118596535894
+    ],
+    "doubling_ci": [
+     6.124779421962237,
+     17.710866460459176
+    ],
+    "theil_sen": 0.11880638978025101
+   },
+   "spec_ops_per_transistor_cycle": {
+    "series": "log2_spec_ops_per_transistor_cycle",
+    "n": 15,
+    "slope": 0.20898835378354957,
+    "intercept": -440.3822540077551,
+    "doubling_years": 4.784955629803686,
+    "se_hc3": 0.08284075062339291,
+    "slope_ci": [
+     0.005399381042794954,
+     0.34694840431530477
+    ],
+    "doubling_ci": [
+     2.8822729476836146,
+     185.20641386005173
+    ],
+    "theil_sen": 0.2416943982573832
+   },
+   "precision_multiplier": {
+    "series": "log2_precision_multiplier",
+    "n": 15,
+    "slope": 0.13463920559400672,
+    "intercept": -271.45801307253925,
+    "doubling_years": 7.427257132037874,
+    "se_hc3": 0.05113867027410933,
+    "slope_ci": [
+     0.04472276959902529,
+     0.20713750449129373
+    ],
+    "doubling_ci": [
+     4.827710956815314,
+     22.359974772711627
+    ],
+    "theil_sen": 0.0
+   }
+  },
+  "contrast_arch_minus_physical": {
+   "plus": [
+    "log2_spec_ops_per_transistor_cycle",
+    "log2_precision_multiplier"
+   ],
+   "minus": [
+    "log2_transistors_mtr",
+    "log2_boost_clock_mhz"
+   ],
+   "estimate": -0.27997255506335994,
+   "ci": [
+    -0.6924122214229954,
+    -0.06872915402497491
+   ],
+   "excludes_zero": true
+  },
+  "theil_sen_arch_minus_density": null
+ },
+ "estimator_b_clock_free": {
+  "n": 11,
+  "products": [
+   "K40",
+   "M40",
+   "P100 SXM2",
+   "V100 SXM2 16GB",
+   "MI25",
+   "MI60",
+   "A100 SXM4 40GB",
+   "GC200",
+   "WSE-2",
+   "H100 SXM5 80GB",
+   "Maia 100"
+  ],
+  "fits": {
+   "headline": {
+    "series": "log2_headline",
+    "n": 11,
+    "slope": 1.013277421329557,
+    "intercept": -2038.5570790616148,
+    "doubling_years": 0.9868965585830036,
+    "se_hc3": 0.24849150612356852,
+    "slope_ci": [
+     0.7249779226881133,
+     1.5015295446717378
+    ],
+    "doubling_ci": [
+     0.6659875615158931,
+     1.3793523481268843
+    ],
+    "theil_sen": 1.0428455825798455
+   },
+   "density_mtr_mm2": {
+    "series": "log2_density_mtr_mm2",
+    "n": 11,
+    "slope": 0.35798992444446476,
+    "intercept": -717.4402047224853,
+    "doubling_years": 2.7933747061507894,
+    "se_hc3": 0.031224053547662476,
+    "slope_ci": [
+     0.31015376675563266,
+     0.42711043412588096
+    ],
+    "doubling_ci": [
+     2.3413148452965986,
+     3.2242071745912115
+    ],
+    "theil_sen": 0.35660984088819575
+   },
+   "area_mm2": {
+    "series": "log2_area_mm2",
+    "n": 11,
+    "slope": 0.22158259688191442,
+    "intercept": -437.46301446158384,
+    "doubling_years": 4.512989801870221,
+    "se_hc3": 0.19844787580823223,
+    "slope_ci": [
+     0.04228191973191515,
+     0.7646735622769185
+    ],
+    "doubling_ci": [
+     1.3077475792707745,
+     23.650770975878423
+    ],
+    "theil_sen": 0.06750539212506775
+   },
+   "spec_ops_per_transistor_us": {
+    "series": "log2_spec_ops_per_transistor_us",
+    "n": 11,
+    "slope": 0.36669116600919327,
+    "intercept": -748.7231292090485,
+    "doubling_years": 2.727090512932971,
+    "se_hc3": 0.07600469044308748,
+    "slope_ci": [
+     0.2159001783073174,
+     0.5047614556060478
+    ],
+    "doubling_ci": [
+     1.9811338383580384,
+     4.631770144147711
+    ],
+    "theil_sen": 0.37485431102707817
+   },
+   "precision_multiplier": {
+    "series": "log2_precision_multiplier",
+    "n": 11,
+    "slope": 0.0670137339939845,
+    "intercept": -134.93073066849675,
+    "doubling_years": 14.922314283961034,
+    "se_hc3": 0.07083027485433854,
+    "slope_ci": [
+     -0.016930916612437494,
+     0.23390850888067788
+    ],
+    "doubling_ci": [
+     4.275175814617856,
+     null
+    ],
+    "theil_sen": 0.0
+   }
+  },
+  "contrast_arch_minus_physical": {
+   "plus": [
+    "log2_spec_ops_per_transistor_us",
+    "log2_precision_multiplier"
+   ],
+   "minus": [
+    "log2_density_mtr_mm2",
+    "log2_area_mm2"
+   ],
+   "estimate": -0.1458676213232014,
+   "ci": [
+    -0.7841068990596032,
+    0.24978691769671862
+   ],
+   "excludes_zero": false
+  },
+  "contrast_arch_minus_density": {
+   "plus": [
+    "log2_spec_ops_per_transistor_us",
+    "log2_precision_multiplier"
+   ],
+   "minus": [
+    "log2_density_mtr_mm2"
+   ],
+   "estimate": 0.07571497555871298,
+   "ci": [
+    -0.11875998688076374,
+    0.31300686998792765
+   ],
+   "excludes_zero": false
+  },
+  "theil_sen_arch_minus_density": 0.018244470138882418
+ },
+ "estimator_a": {
+  "nvidia_a": {
+   "requested": [
+    "K20X",
+    "M40",
+    "P100",
+    "V100",
+    "A100",
+    "H100",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "resolved": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "in_sample": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "steps": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "year_from": 2012.860655737705,
+     "year_to": 2015.8575342465754,
+     "dlog2_headline": 0.7836820930732362,
+     "dlog2_density_mtr_mm2": 0.046868303242652676,
+     "dlog2_area_mm2": 0.12531267214002817,
+     "dlog2_boost_clock_mhz": 0.6058336790559888,
+     "dlog2_spec_ops_per_transistor_cycle": 0.005667438634567645,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0892673380970873,
+     "dlog2_tflops_per_w": 0.6944147549761491,
+     "dlog2_mem_bandwidth_gbs": 0.20414071678022522,
+     "dlog2_transistors_b": 0.17218097538268035
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "year_from": 2015.8575342465754,
+     "year_to": 2016.25956284153,
+     "dlog2_headline": 1.64045761331286,
+     "dlog2_density_mtr_mm2": 0.9140154960662263,
+     "dlog2_area_mm2": 0.02144425173906228,
+     "dlog2_boost_clock_mhz": 0.40984794317628115,
+     "dlog2_spec_ops_per_transistor_cycle": 0.2951499223312908,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.2630344058337938,
+     "dlog2_tflops_per_w": 1.377423207479066,
+     "dlog2_mem_bandwidth_gbs": 1.34577483684173,
+     "dlog2_transistors_b": 0.9354597478052895
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "year_from": 2016.25956284153,
+     "year_to": 2017.3534246575343,
+     "dlog2_headline": 2.55979192498625,
+     "dlog2_density_mtr_mm2": 0.045720529346342076,
+     "dlog2_area_mm2": 0.41799081666819227,
+     "dlog2_boost_clock_mhz": 0.04793447706370202,
+     "dlog2_spec_ops_per_transistor_cycle": 2.0481461019080136,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 2.5597919249862504,
+     "dlog2_mem_bandwidth_gbs": 0.29808135293299465,
+     "dlog2_transistors_b": 0.46371134601453334
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "year_from": 2017.3534246575343,
+     "year_to": 2020.3661202185792,
+     "dlog2_headline": 3.3196179342001617,
+     "dlog2_density_mtr_mm2": 1.3417081303456806,
+     "dlog2_area_mm2": 0.019341722301005504,
+     "dlog2_boost_clock_mhz": -0.11783649029385934,
+     "dlog2_spec_ops_per_transistor_cycle": 0.07640457184733407,
+     "dlog2_precision_multiplier": 2.0,
+     "dlog2_tdp_w": 0.41503749927884376,
+     "dlog2_tflops_per_w": 2.9045804349213173,
+     "dlog2_mem_bandwidth_gbs": 0.7889176738009279,
+     "dlog2_transistors_b": 1.3610498526466865
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "year_from": 2020.3661202185792,
+     "year_to": 2022.2191780821918,
+     "dlog2_headline": 0.6651536781852627,
+     "dlog2_density_mtr_mm2": 0.5828201355740514,
+     "dlog2_area_mm2": -0.02111298715319876,
+     "dlog2_boost_clock_mhz": 0.48980526768081667,
+     "dlog2_spec_ops_per_transistor_cycle": 0.6136412620835934,
+     "dlog2_precision_multiplier": -1.0,
+     "dlog2_tdp_w": 0.8073549220576041,
+     "dlog2_tflops_per_w": -0.14220124387234057,
+     "dlog2_mem_bandwidth_gbs": 1.107246515214532,
+     "dlog2_transistors_b": 0.5617071484208531
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "density_mtr_mm2": 0.05980524967574162,
+     "area_mm2": 0.1599024314165585,
+     "boost_clock_mhz": 0.7730605106468508,
+     "spec_ops_per_transistor_cycle": 0.007231808260850506,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "density_mtr_mm2": 0.5571710531553428,
+     "area_mm2": 0.013072115710296343,
+     "boost_clock_mhz": 0.2498375696209573,
+     "spec_ops_per_transistor_cycle": 0.17991926151340384,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "density_mtr_mm2": 0.017861033508255818,
+     "area_mm2": 0.16329093493426716,
+     "boost_clock_mhz": 0.018725927133299906,
+     "spec_ops_per_transistor_cycle": 0.8001221044241771,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "density_mtr_mm2": 0.40417546746052135,
+     "area_mm2": 0.00582649048305788,
+     "boost_clock_mhz": -0.035497003760540054,
+     "spec_ops_per_transistor_cycle": 0.023016073946396244,
+     "precision_multiplier": 0.6024789718705643
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "density_mtr_mm2": 0.8762187667129171,
+     "area_mm2": -0.031741517555463686,
+     "boost_clock_mhz": 0.7363791011682462,
+     "spec_ops_per_transistor_cycle": 0.9225556171587135,
+     "precision_multiplier": -1.503411967484413
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "K20X",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "A100 SXM4 40GB",
+     "H100 SXM5 80GB"
+    ],
+    "years": 9.3585223444868,
+    "dlog2_headline": 8.968703243757771,
+    "doubling_years": 1.0434643771941439,
+    "dlog2": {
+     "density_mtr_mm2": 2.931132594574953,
+     "area_mm2": 0.5629764756950895,
+     "boost_clock_mhz": 1.4355848766829293,
+     "spec_ops_per_transistor_cycle": 3.0390092968047995,
+     "precision_multiplier": 1.0,
+     "tdp_w": 1.5746941652673287,
+     "tflops_per_w": 7.394009078490441,
+     "mem_bandwidth_gbs": 3.7441610955704094,
+     "transistors_b": 3.494109070270043
+    },
+    "shares": {
+     "density_mtr_mm2": 0.3268178815722357,
+     "area_mm2": 0.06277122348617363,
+     "boost_clock_mhz": 0.16006604719384582,
+     "spec_ops_per_transistor_cycle": 0.3388460086378657,
+     "precision_multiplier": 0.11149883910987926
+    }
+   }
+  },
+  "nvidia_a_prime": {
+   "requested": [
+    "K20X",
+    "M40",
+    "P100",
+    "V100",
+    "A100",
+    "H100",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "resolved": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "in_sample": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "steps": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "year_from": 2012.860655737705,
+     "year_to": 2015.8575342465754,
+     "dlog2_headline": 0.7836820930732362,
+     "dlog2_transistors_mtr": 0.1721809753826804,
+     "dlog2_boost_clock_mhz": 0.6058336790559888,
+     "dlog2_spec_ops_per_transistor_cycle": 0.005667438634567645,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0892673380970873,
+     "dlog2_tflops_per_w": 0.6944147549761491,
+     "dlog2_mem_bandwidth_gbs": 0.20414071678022522,
+     "dlog2_transistors_b": 0.17218097538268035
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "year_from": 2015.8575342465754,
+     "year_to": 2016.25956284153,
+     "dlog2_headline": 1.64045761331286,
+     "dlog2_transistors_mtr": 0.9354597478052895,
+     "dlog2_boost_clock_mhz": 0.40984794317628115,
+     "dlog2_spec_ops_per_transistor_cycle": 0.2951499223312908,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.2630344058337938,
+     "dlog2_tflops_per_w": 1.377423207479066,
+     "dlog2_mem_bandwidth_gbs": 1.34577483684173,
+     "dlog2_transistors_b": 0.9354597478052895
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "year_from": 2016.25956284153,
+     "year_to": 2017.3534246575343,
+     "dlog2_headline": 2.55979192498625,
+     "dlog2_transistors_mtr": 0.46371134601453257,
+     "dlog2_boost_clock_mhz": 0.04793447706370202,
+     "dlog2_spec_ops_per_transistor_cycle": 2.0481461019080136,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 2.5597919249862504,
+     "dlog2_mem_bandwidth_gbs": 0.29808135293299465,
+     "dlog2_transistors_b": 0.46371134601453334
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "year_from": 2017.3534246575343,
+     "year_to": 2020.3661202185792,
+     "dlog2_headline": 3.3196179342001617,
+     "dlog2_transistors_mtr": 1.361049852646687,
+     "dlog2_boost_clock_mhz": -0.11783649029385934,
+     "dlog2_spec_ops_per_transistor_cycle": 0.07640457184733407,
+     "dlog2_precision_multiplier": 2.0,
+     "dlog2_tdp_w": 0.41503749927884376,
+     "dlog2_tflops_per_w": 2.9045804349213173,
+     "dlog2_mem_bandwidth_gbs": 0.7889176738009279,
+     "dlog2_transistors_b": 1.3610498526466865
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "year_from": 2020.3661202185792,
+     "year_to": 2022.2191780821918,
+     "dlog2_headline": 0.6651536781852627,
+     "dlog2_transistors_mtr": 0.5617071484208545,
+     "dlog2_boost_clock_mhz": 0.48980526768081667,
+     "dlog2_spec_ops_per_transistor_cycle": 0.6136412620835934,
+     "dlog2_precision_multiplier": -1.0,
+     "dlog2_tdp_w": 0.8073549220576041,
+     "dlog2_tflops_per_w": -0.14220124387234057,
+     "dlog2_mem_bandwidth_gbs": 1.107246515214532,
+     "dlog2_transistors_b": 0.5617071484208531
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "transistors_mtr": 0.21970768109229954,
+     "boost_clock_mhz": 0.7730605106468508,
+     "spec_ops_per_transistor_cycle": 0.007231808260850506,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "transistors_mtr": 0.5702431688656396,
+     "boost_clock_mhz": 0.2498375696209573,
+     "spec_ops_per_transistor_cycle": 0.17991926151340384,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "transistors_mtr": 0.1811519684425223,
+     "boost_clock_mhz": 0.018725927133299906,
+     "spec_ops_per_transistor_cycle": 0.8001221044241771,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "transistors_mtr": 0.4100019579435795,
+     "boost_clock_mhz": -0.035497003760540054,
+     "spec_ops_per_transistor_cycle": 0.023016073946396244,
+     "precision_multiplier": 0.6024789718705643
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "transistors_mtr": 0.844477249157456,
+     "boost_clock_mhz": 0.7363791011682462,
+     "spec_ops_per_transistor_cycle": 0.9225556171587135,
+     "precision_multiplier": -1.503411967484413
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "K20X",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "A100 SXM4 40GB",
+     "H100 SXM5 80GB"
+    ],
+    "years": 9.3585223444868,
+    "dlog2_headline": 8.968703243757771,
+    "doubling_years": 1.0434643771941439,
+    "dlog2": {
+     "transistors_mtr": 3.494109070270044,
+     "boost_clock_mhz": 1.4355848766829293,
+     "spec_ops_per_transistor_cycle": 3.0390092968047995,
+     "precision_multiplier": 1.0,
+     "tdp_w": 1.5746941652673287,
+     "tflops_per_w": 7.394009078490441,
+     "mem_bandwidth_gbs": 3.7441610955704094,
+     "transistors_b": 3.494109070270043
+    },
+    "shares": {
+     "transistors_mtr": 0.38958910505840944,
+     "boost_clock_mhz": 0.16006604719384582,
+     "spec_ops_per_transistor_cycle": 0.3388460086378657,
+     "precision_multiplier": 0.11149883910987926
+    }
+   }
+  },
+  "nvidia_clock_free": {
+   "requested": [
+    "K20X",
+    "M40",
+    "P100",
+    "V100",
+    "A100",
+    "H100",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "resolved": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "in_sample": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "steps": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "year_from": 2012.860655737705,
+     "year_to": 2015.8575342465754,
+     "dlog2_headline": 0.7836820930732362,
+     "dlog2_density_mtr_mm2": 0.046868303242652676,
+     "dlog2_area_mm2": 0.12531267214002817,
+     "dlog2_spec_ops_per_transistor_us": 0.6115011176905565,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0892673380970873,
+     "dlog2_tflops_per_w": 0.6944147549761491,
+     "dlog2_mem_bandwidth_gbs": 0.20414071678022522,
+     "dlog2_transistors_b": 0.17218097538268035
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "year_from": 2015.8575342465754,
+     "year_to": 2016.25956284153,
+     "dlog2_headline": 1.64045761331286,
+     "dlog2_density_mtr_mm2": 0.9140154960662263,
+     "dlog2_area_mm2": 0.02144425173906228,
+     "dlog2_spec_ops_per_transistor_us": 0.7049978655075702,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.2630344058337938,
+     "dlog2_tflops_per_w": 1.377423207479066,
+     "dlog2_mem_bandwidth_gbs": 1.34577483684173,
+     "dlog2_transistors_b": 0.9354597478052895
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "year_from": 2016.25956284153,
+     "year_to": 2017.3534246575343,
+     "dlog2_headline": 2.55979192498625,
+     "dlog2_density_mtr_mm2": 0.045720529346342076,
+     "dlog2_area_mm2": 0.41799081666819227,
+     "dlog2_spec_ops_per_transistor_us": 2.0960805789717165,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 2.5597919249862504,
+     "dlog2_mem_bandwidth_gbs": 0.29808135293299465,
+     "dlog2_transistors_b": 0.46371134601453334
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "year_from": 2017.3534246575343,
+     "year_to": 2020.3661202185792,
+     "dlog2_headline": 3.3196179342001617,
+     "dlog2_density_mtr_mm2": 1.3417081303456806,
+     "dlog2_area_mm2": 0.019341722301005504,
+     "dlog2_spec_ops_per_transistor_us": -0.04143191844652527,
+     "dlog2_precision_multiplier": 2.0,
+     "dlog2_tdp_w": 0.41503749927884376,
+     "dlog2_tflops_per_w": 2.9045804349213173,
+     "dlog2_mem_bandwidth_gbs": 0.7889176738009279,
+     "dlog2_transistors_b": 1.3610498526466865
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "year_from": 2020.3661202185792,
+     "year_to": 2022.2191780821918,
+     "dlog2_headline": 0.6651536781852627,
+     "dlog2_density_mtr_mm2": 0.5828201355740514,
+     "dlog2_area_mm2": -0.02111298715319876,
+     "dlog2_spec_ops_per_transistor_us": 1.103446529764411,
+     "dlog2_precision_multiplier": -1.0,
+     "dlog2_tdp_w": 0.8073549220576041,
+     "dlog2_tflops_per_w": -0.14220124387234057,
+     "dlog2_mem_bandwidth_gbs": 1.107246515214532,
+     "dlog2_transistors_b": 0.5617071484208531
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "density_mtr_mm2": 0.05980524967574162,
+     "area_mm2": 0.1599024314165585,
+     "spec_ops_per_transistor_us": 0.7802923189077013,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "density_mtr_mm2": 0.5571710531553428,
+     "area_mm2": 0.013072115710296343,
+     "spec_ops_per_transistor_us": 0.4297568311343601,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "density_mtr_mm2": 0.017861033508255818,
+     "area_mm2": 0.16329093493426716,
+     "spec_ops_per_transistor_us": 0.8188480315574773,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "density_mtr_mm2": 0.40417546746052135,
+     "area_mm2": 0.00582649048305788,
+     "spec_ops_per_transistor_us": -0.012480929814143808,
+     "precision_multiplier": 0.6024789718705643
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "density_mtr_mm2": 0.8762187667129171,
+     "area_mm2": -0.031741517555463686,
+     "spec_ops_per_transistor_us": 1.6589347183269612,
+     "precision_multiplier": -1.503411967484413
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "K20X",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "A100 SXM4 40GB",
+     "H100 SXM5 80GB"
+    ],
+    "years": 9.3585223444868,
+    "dlog2_headline": 8.968703243757771,
+    "doubling_years": 1.0434643771941439,
+    "dlog2": {
+     "density_mtr_mm2": 2.931132594574953,
+     "area_mm2": 0.5629764756950895,
+     "spec_ops_per_transistor_us": 4.474594173487729,
+     "precision_multiplier": 1.0,
+     "tdp_w": 1.5746941652673287,
+     "tflops_per_w": 7.394009078490441,
+     "mem_bandwidth_gbs": 3.7441610955704094,
+     "transistors_b": 3.494109070270043
+    },
+    "shares": {
+     "density_mtr_mm2": 0.3268178815722357,
+     "area_mm2": 0.06277122348617363,
+     "spec_ops_per_transistor_us": 0.4989120558317115,
+     "precision_multiplier": 0.11149883910987926
+    }
+   }
+  },
+  "amd_a": {
+   "requested": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI400 series"
+   ],
+   "resolved": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X",
+    "MI455X"
+   ],
+   "in_sample": [],
+   "steps": [],
+   "step_shares": [],
+   "cumulative": {
+    "members": [],
+    "dlog2_headline": null,
+    "shares": {}
+   }
+  },
+  "amd_a_prime": {
+   "requested": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI400 series"
+   ],
+   "resolved": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X",
+    "MI455X"
+   ],
+   "in_sample": [
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X"
+   ],
+   "steps": [
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "year_from": 2018.8465753424657,
+     "year_to": 2020.8743169398906,
+     "dlog2_headline": 1.6456156933965707,
+     "dlog2_transistors_mtr": 0.9556058806415475,
+     "dlog2_boost_clock_mhz": -0.26111209370276534,
+     "dlog2_spec_ops_per_transistor_cycle": 1.9511219064577894,
+     "dlog2_precision_multiplier": -1.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 1.6456156933965704,
+     "dlog2_mem_bandwidth_gbs": 0.2630344058337938,
+     "dlog2_transistors_b": 0.9556058806415467
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "year_from": 2020.8743169398906,
+     "year_to": 2021.8520547945207,
+     "dlog2_headline": 1.0529418391665448,
+     "dlog2_transistors_mtr": 1.1799090900149345,
+     "dlog2_boost_clock_mhz": 0.17864993351079228,
+     "dlog2_spec_ops_per_transistor_cycle": -0.30561718435918195,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.9004643264490856,
+     "dlog2_tflops_per_w": 0.15247751271745974,
+     "dlog2_mem_bandwidth_gbs": 1.415037499278844,
+     "dlog2_transistors_b": 1.1799090900149345
+    },
+    {
+     "from": "MI250X",
+     "to": "MI325X",
+     "year_from": 2021.8520547945207,
+     "year_to": 2024.4180327868853,
+     "dlog2_headline": 2.771339478172001,
+     "dlog2_transistors_mtr": 1.3994068475650803,
+     "dlog2_boost_clock_mhz": 0.3048545815284207,
+     "dlog2_spec_ops_per_transistor_cycle": 0.06702287593124368,
+     "dlog2_precision_multiplier": 1.0000551731472576,
+     "dlog2_tdp_w": 0.8365012677171206,
+     "dlog2_tflops_per_w": 1.9348382104548805,
+     "dlog2_mem_bandwidth_gbs": 0.8726748802706056,
+     "dlog2_transistors_b": 1.3994068475650796
+    },
+    {
+     "from": "MI325X",
+     "to": "MI355X",
+     "year_from": 2024.4180327868853,
+     "year_to": 2025.4438356164383,
+     "dlog2_headline": 1.949527612429561,
+     "dlog2_transistors_mtr": 0.2739936178236597,
+     "dlog2_boost_clock_mhz": 0.19264507794239627,
+     "dlog2_spec_ops_per_transistor_cycle": 0.4685887968336928,
+     "dlog2_precision_multiplier": 1.0143001198298123,
+     "dlog2_tdp_w": 0.48542682717024166,
+     "dlog2_tflops_per_w": 1.4641007852593195,
+     "dlog2_mem_bandwidth_gbs": 0.41503749927884376,
+     "dlog2_transistors_b": 0.2739936178236603
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "transistors_mtr": 0.5806980842952254,
+     "boost_clock_mhz": -0.15867136826085246,
+     "spec_ops_per_transistor_cycle": 1.1856485777858925,
+     "precision_multiplier": -0.6076752938202649
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "transistors_mtr": 1.1205833467011725,
+     "boost_clock_mhz": 0.16966742783457298,
+     "spec_ops_per_transistor_cycle": -0.29025077453574544,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "MI250X",
+     "to": "MI325X",
+     "transistors_mtr": 0.5049568479745185,
+     "boost_clock_mhz": 0.11000261206884167,
+     "spec_ops_per_transistor_cycle": 0.024184289387546465,
+     "precision_multiplier": 0.36085625056909393
+    },
+    {
+     "from": "MI325X",
+     "to": "MI355X",
+     "transistors_mtr": 0.14054359429267096,
+     "boost_clock_mhz": 0.0988162859115989,
+     "spec_ops_per_transistor_cycle": 0.2403601743551214,
+     "precision_multiplier": 0.5202799454406087
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "MI60",
+     "MI100",
+     "MI250X",
+     "MI325X",
+     "MI355X"
+    ],
+    "years": 6.597260273972552,
+    "dlog2_headline": 7.419424623164677,
+    "doubling_years": 0.8891875865110629,
+    "dlog2": {
+     "transistors_mtr": 3.808915436045222,
+     "boost_clock_mhz": 0.4150374992788439,
+     "spec_ops_per_transistor_cycle": 2.181116394863544,
+     "precision_multiplier": 1.0143552929770698,
+     "tdp_w": 2.2223924213364477,
+     "tflops_per_w": 5.197032201828231,
+     "mem_bandwidth_gbs": 2.9657842846620874,
+     "transistors_b": 3.8089154360452206
+    },
+    "shares": {
+     "transistors_mtr": 0.5133707301443773,
+     "boost_clock_mhz": 0.05593931070921967,
+     "spec_ops_per_transistor_cycle": 0.29397379253018296,
+     "precision_multiplier": 0.13671616661622032
+    }
+   }
+  },
+  "amd_clock_free": {
+   "requested": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI400 series"
+   ],
+   "resolved": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X",
+    "MI455X"
+   ],
+   "in_sample": [
+    "MI25",
+    "MI60"
+   ],
+   "steps": [
+    {
+     "from": "MI25",
+     "to": "MI60",
+     "year_from": 2017.468493150685,
+     "year_to": 2018.8465753424657,
+     "dlog2_headline": 1.2620566389099643,
+     "dlog2_density_mtr_mm2": 0.6566205560258256,
+     "dlog2_area_mm2": -0.5780107213294592,
+     "dlog2_spec_ops_per_transistor_us": 0.18344680421359705,
+     "dlog2_precision_multiplier": 1.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 1.2620566389099634,
+     "dlog2_mem_bandwidth_gbs": 1.0811367627254056,
+     "dlog2_transistors_b": 0.07860983469636647
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "MI25",
+     "to": "MI60",
+     "density_mtr_mm2": 0.5202781997113437,
+     "area_mm2": -0.45799111031077483,
+     "spec_ops_per_transistor_us": 0.14535544488085705,
+     "precision_multiplier": 0.7923574657185734
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "MI25",
+     "MI60"
+    ],
+    "years": 1.378082191780777,
+    "dlog2_headline": 1.2620566389099643,
+    "doubling_years": 1.0919337130313136,
+    "dlog2": {
+     "density_mtr_mm2": 0.6566205560258256,
+     "area_mm2": -0.5780107213294592,
+     "spec_ops_per_transistor_us": 0.18344680421359705,
+     "precision_multiplier": 1.0,
+     "tdp_w": 0.0,
+     "tflops_per_w": 1.2620566389099634,
+     "mem_bandwidth_gbs": 1.0811367627254056,
+     "transistors_b": 0.07860983469636647
+    },
+    "shares": {
+     "density_mtr_mm2": 0.5202781997113437,
+     "area_mm2": -0.45799111031077483,
+     "spec_ops_per_transistor_us": 0.14535544488085705,
+     "precision_multiplier": 0.7923574657185734
+    }
+   }
+  },
+  "nvidia_b": {
+   "requested": [
+    "K20X",
+    "M40",
+    "P100",
+    "V100",
+    "A100",
+    "H100",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "resolved": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "in_sample": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300"
+   ],
+   "steps": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "year_from": 2012.860655737705,
+     "year_to": 2015.8575342465754,
+     "dlog2_headline": 0.7836820930732362,
+     "dlog2_tflops_per_w": 0.6944147549761492,
+     "dlog2_tdp_w": 0.08926733809708765,
+     "dlog2_mem_bandwidth_gbs": 0.20414071678022522,
+     "dlog2_transistors_b": 0.17218097538268035
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "year_from": 2015.8575342465754,
+     "year_to": 2016.25956284153,
+     "dlog2_headline": 1.64045761331286,
+     "dlog2_tflops_per_w": 1.3774232074790658,
+     "dlog2_tdp_w": 0.26303440583379434,
+     "dlog2_mem_bandwidth_gbs": 1.34577483684173,
+     "dlog2_transistors_b": 0.9354597478052895
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "year_from": 2016.25956284153,
+     "year_to": 2017.3534246575343,
+     "dlog2_headline": 2.55979192498625,
+     "dlog2_tflops_per_w": 2.55979192498625,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_mem_bandwidth_gbs": 0.29808135293299465,
+     "dlog2_transistors_b": 0.46371134601453334
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "year_from": 2017.3534246575343,
+     "year_to": 2020.3661202185792,
+     "dlog2_headline": 3.3196179342001617,
+     "dlog2_tflops_per_w": 2.9045804349213173,
+     "dlog2_tdp_w": 0.4150374992788439,
+     "dlog2_mem_bandwidth_gbs": 0.7889176738009279,
+     "dlog2_transistors_b": 1.3610498526466865
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "year_from": 2020.3661202185792,
+     "year_to": 2022.2191780821918,
+     "dlog2_headline": 0.6651536781852627,
+     "dlog2_tflops_per_w": -0.14220124387234057,
+     "dlog2_tdp_w": 0.8073549220576037,
+     "dlog2_mem_bandwidth_gbs": 1.107246515214532,
+     "dlog2_transistors_b": 0.5617071484208531
+    },
+    {
+     "from": "H100 SXM5 80GB",
+     "to": "B200",
+     "year_from": 2022.2191780821918,
+     "year_to": 2024.2103825136612,
+     "dlog2_headline": 2.3371564825019373,
+     "dlog2_tflops_per_w": 1.5595489038383856,
+     "dlog2_tdp_w": 0.7776075786635523,
+     "dlog2_mem_bandwidth_gbs": 1.25583890442959,
+     "dlog2_transistors_b": 1.3785116232537298
+    },
+    {
+     "from": "B200",
+     "to": "B300",
+     "year_from": 2024.2103825136612,
+     "year_to": 2025.2082191780821,
+     "dlog2_headline": 0.5849625007211561,
+     "dlog2_tflops_per_w": 0.362570079384708,
+     "dlog2_tdp_w": 0.22239242133644765,
+     "dlog2_mem_bandwidth_gbs": 0.0,
+     "dlog2_transistors_b": 0.0
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "tflops_per_w": 0.8860924105755409,
+     "tdp_w": 0.11390758942446001
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "tflops_per_w": 0.8396579078306062,
+     "tdp_w": 0.16034209216939377
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "tflops_per_w": 1.0,
+     "tdp_w": 0.0
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "tflops_per_w": 0.8749743170733759,
+     "tdp_w": 0.12502568292662397
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "tflops_per_w": -0.2137870518288464,
+     "tdp_w": 1.213787051828847
+    },
+    {
+     "from": "H100 SXM5 80GB",
+     "to": "B200",
+     "tflops_per_w": 0.667284760568912,
+     "tdp_w": 0.3327152394310884
+    },
+    {
+     "from": "B200",
+     "to": "B300",
+     "tflops_per_w": 0.6198176446143517,
+     "tdp_w": 0.38018235538564754
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "K20X",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "A100 SXM4 40GB",
+     "H100 SXM5 80GB",
+     "B200",
+     "B300"
+    ],
+    "years": 12.347563440377144,
+    "dlog2_headline": 11.890822226980864,
+    "doubling_years": 1.0384112389099478,
+    "dlog2": {
+     "tflops_per_w": 9.316128061713535,
+     "tdp_w": 2.5746941652673296,
+     "mem_bandwidth_gbs": 4.999999999999999,
+     "transistors_b": 4.872620693523773
+    },
+    "shares": {
+     "tflops_per_w": 0.7834721505275538,
+     "tdp_w": 0.21652784947244616
+    }
+   }
+  },
+  "nvidia_c": {
+   "requested": [
+    "K20X",
+    "M40",
+    "P100",
+    "V100",
+    "A100",
+    "H100",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "resolved": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB",
+    "B200",
+    "B300",
+    "Rubin"
+   ],
+   "in_sample": [
+    "K20X",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "steps": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "year_from": 2012.860655737705,
+     "year_to": 2015.8575342465754,
+     "dlog2_headline": 0.7836820930732362,
+     "dlog2_tflops_per_mm2": 0.6583694209332078,
+     "dlog2_area_mm2": 0.12531267214002817,
+     "dlog2_tdp_w": 0.0892673380970873,
+     "dlog2_tflops_per_w": 0.6944147549761491,
+     "dlog2_mem_bandwidth_gbs": 0.20414071678022522,
+     "dlog2_transistors_b": 0.17218097538268035
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "year_from": 2015.8575342465754,
+     "year_to": 2016.25956284153,
+     "dlog2_headline": 1.64045761331286,
+     "dlog2_tflops_per_mm2": 1.6190133615737974,
+     "dlog2_area_mm2": 0.02144425173906228,
+     "dlog2_tdp_w": 0.2630344058337938,
+     "dlog2_tflops_per_w": 1.377423207479066,
+     "dlog2_mem_bandwidth_gbs": 1.34577483684173,
+     "dlog2_transistors_b": 0.9354597478052895
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "year_from": 2016.25956284153,
+     "year_to": 2017.3534246575343,
+     "dlog2_headline": 2.55979192498625,
+     "dlog2_tflops_per_mm2": 2.1418011083180586,
+     "dlog2_area_mm2": 0.41799081666819227,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 2.5597919249862504,
+     "dlog2_mem_bandwidth_gbs": 0.29808135293299465,
+     "dlog2_transistors_b": 0.46371134601453334
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "year_from": 2017.3534246575343,
+     "year_to": 2020.3661202185792,
+     "dlog2_headline": 3.3196179342001617,
+     "dlog2_tflops_per_mm2": 3.3002762118991558,
+     "dlog2_area_mm2": 0.019341722301005504,
+     "dlog2_tdp_w": 0.41503749927884376,
+     "dlog2_tflops_per_w": 2.9045804349213173,
+     "dlog2_mem_bandwidth_gbs": 0.7889176738009279,
+     "dlog2_transistors_b": 1.3610498526466865
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "year_from": 2020.3661202185792,
+     "year_to": 2022.2191780821918,
+     "dlog2_headline": 0.6651536781852627,
+     "dlog2_tflops_per_mm2": 0.6862666653384621,
+     "dlog2_area_mm2": -0.02111298715319876,
+     "dlog2_tdp_w": 0.8073549220576041,
+     "dlog2_tflops_per_w": -0.14220124387234057,
+     "dlog2_mem_bandwidth_gbs": 1.107246515214532,
+     "dlog2_transistors_b": 0.5617071484208531
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "K20X",
+     "to": "M40",
+     "tflops_per_mm2": 0.8400975685834412,
+     "area_mm2": 0.1599024314165585
+    },
+    {
+     "from": "M40",
+     "to": "P100 SXM2",
+     "tflops_per_mm2": 0.9869278842897033,
+     "area_mm2": 0.013072115710296343
+    },
+    {
+     "from": "P100 SXM2",
+     "to": "V100 SXM2 16GB",
+     "tflops_per_mm2": 0.8367090650657332,
+     "area_mm2": 0.16329093493426716
+    },
+    {
+     "from": "V100 SXM2 16GB",
+     "to": "A100 SXM4 40GB",
+     "tflops_per_mm2": 0.994173509516942,
+     "area_mm2": 0.00582649048305788
+    },
+    {
+     "from": "A100 SXM4 40GB",
+     "to": "H100 SXM5 80GB",
+     "tflops_per_mm2": 1.0317415175554647,
+     "area_mm2": -0.031741517555463686
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "K20X",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "A100 SXM4 40GB",
+     "H100 SXM5 80GB"
+    ],
+    "years": 9.3585223444868,
+    "dlog2_headline": 8.968703243757771,
+    "doubling_years": 1.0434643771941439,
+    "dlog2": {
+     "tflops_per_mm2": 8.405726768062681,
+     "area_mm2": 0.5629764756950895,
+     "tdp_w": 1.5746941652673287,
+     "tflops_per_w": 7.394009078490441,
+     "mem_bandwidth_gbs": 3.7441610955704094,
+     "transistors_b": 3.494109070270043
+    },
+    "shares": {
+     "tflops_per_mm2": 0.9372287765138264,
+     "area_mm2": 0.06277122348617363
+    }
+   }
+  },
+  "amd_b": {
+   "requested": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI400 series"
+   ],
+   "resolved": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X",
+    "MI455X"
+   ],
+   "in_sample": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI325X",
+    "MI355X"
+   ],
+   "steps": [
+    {
+     "from": "MI25",
+     "to": "MI60",
+     "year_from": 2017.468493150685,
+     "year_to": 2018.8465753424657,
+     "dlog2_headline": 1.2620566389099643,
+     "dlog2_tflops_per_w": 1.2620566389099634,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_mem_bandwidth_gbs": 1.0811367627254056,
+     "dlog2_transistors_b": 0.07860983469636647
+    },
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "year_from": 2018.8465753424657,
+     "year_to": 2020.8743169398906,
+     "dlog2_headline": 1.6456156933965707,
+     "dlog2_tflops_per_w": 1.6456156933965707,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_mem_bandwidth_gbs": 0.2630344058337938,
+     "dlog2_transistors_b": 0.9556058806415467
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "year_from": 2020.8743169398906,
+     "year_to": 2021.8520547945207,
+     "dlog2_headline": 1.0529418391665448,
+     "dlog2_tflops_per_w": 0.1524775127174598,
+     "dlog2_tdp_w": 0.9004643264490859,
+     "dlog2_mem_bandwidth_gbs": 1.415037499278844,
+     "dlog2_transistors_b": 1.1799090900149345
+    },
+    {
+     "from": "MI250X",
+     "to": "MI325X",
+     "year_from": 2021.8520547945207,
+     "year_to": 2024.4180327868853,
+     "dlog2_headline": 2.771339478172001,
+     "dlog2_tflops_per_w": 1.9348382104548805,
+     "dlog2_tdp_w": 0.8365012677171197,
+     "dlog2_mem_bandwidth_gbs": 0.8726748802706056,
+     "dlog2_transistors_b": 1.3994068475650796
+    },
+    {
+     "from": "MI325X",
+     "to": "MI355X",
+     "year_from": 2024.4180327868853,
+     "year_to": 2025.4438356164383,
+     "dlog2_headline": 1.949527612429561,
+     "dlog2_tflops_per_w": 1.4641007852593193,
+     "dlog2_tdp_w": 0.485426827170242,
+     "dlog2_mem_bandwidth_gbs": 0.41503749927884376,
+     "dlog2_transistors_b": 0.2739936178236603
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "MI25",
+     "to": "MI60",
+     "tflops_per_w": 0.9999999999999993,
+     "tdp_w": 0.0
+    },
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "tflops_per_w": 1.0,
+     "tdp_w": 0.0
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "tflops_per_w": 0.14481095445704126,
+     "tdp_w": 0.8551890455429596
+    },
+    {
+     "from": "MI250X",
+     "to": "MI325X",
+     "tflops_per_w": 0.6981599424012522,
+     "tdp_w": 0.30184005759874755
+    },
+    {
+     "from": "MI325X",
+     "to": "MI355X",
+     "tflops_per_w": 0.7510028459841674,
+     "tdp_w": 0.2489971540158327
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "MI25",
+     "MI60",
+     "MI100",
+     "MI250X",
+     "MI325X",
+     "MI355X"
+    ],
+    "years": 7.975342465753329,
+    "dlog2_headline": 8.68148126207464,
+    "doubling_years": 0.9186614847161965,
+    "dlog2": {
+     "tflops_per_w": 6.459088840738193,
+     "tdp_w": 2.2223924213364477,
+     "mem_bandwidth_gbs": 4.046921047387492,
+     "transistors_b": 3.887525270741587
+    },
+    "shares": {
+     "tflops_per_w": 0.7440076924378046,
+     "tdp_w": 0.2559923075621954
+    }
+   }
+  },
+  "amd_a_prime_mi300x": {
+   "requested": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI400 series"
+   ],
+   "resolved": [
+    "MI25",
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X",
+    "MI455X"
+   ],
+   "in_sample": [
+    "MI60",
+    "MI100",
+    "MI250X",
+    "MI300X",
+    "MI355X"
+   ],
+   "steps": [
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "year_from": 2018.8465753424657,
+     "year_to": 2020.8743169398906,
+     "dlog2_headline": 1.6456156933965707,
+     "dlog2_transistors_mtr": 0.9556058806415475,
+     "dlog2_boost_clock_mhz": -0.26111209370276534,
+     "dlog2_spec_ops_per_transistor_cycle": 1.9511219064577894,
+     "dlog2_precision_multiplier": -1.0,
+     "dlog2_tdp_w": 0.0,
+     "dlog2_tflops_per_w": 1.6456156933965704,
+     "dlog2_mem_bandwidth_gbs": 0.2630344058337938,
+     "dlog2_transistors_b": 0.9556058806415467
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "year_from": 2020.8743169398906,
+     "year_to": 2021.8520547945207,
+     "dlog2_headline": 1.0529418391665448,
+     "dlog2_transistors_mtr": 1.1799090900149345,
+     "dlog2_boost_clock_mhz": 0.17864993351079228,
+     "dlog2_spec_ops_per_transistor_cycle": -0.30561718435918195,
+     "dlog2_precision_multiplier": 0.0,
+     "dlog2_tdp_w": 0.9004643264490856,
+     "dlog2_tflops_per_w": 0.15247751271745974,
+     "dlog2_mem_bandwidth_gbs": 1.415037499278844,
+     "dlog2_transistors_b": 1.1799090900149345
+    },
+    {
+     "from": "MI250X",
+     "to": "MI300X",
+     "year_from": 2021.8520547945207,
+     "year_to": 2023.9287671232876,
+     "dlog2_headline": 2.771339478172001,
+     "dlog2_transistors_mtr": 1.3994068475650803,
+     "dlog2_boost_clock_mhz": 0.3048545815284207,
+     "dlog2_spec_ops_per_transistor_cycle": 0.06702287593124368,
+     "dlog2_precision_multiplier": 1.0000551731472576,
+     "dlog2_tdp_w": 0.42146376843827665,
+     "dlog2_tflops_per_w": 2.3498757097337246,
+     "dlog2_mem_bandwidth_gbs": 0.7004939048879253,
+     "dlog2_transistors_b": 1.3994068475650796
+    },
+    {
+     "from": "MI300X",
+     "to": "MI355X",
+     "year_from": 2023.9287671232876,
+     "year_to": 2025.4438356164383,
+     "dlog2_headline": 1.949527612429561,
+     "dlog2_transistors_mtr": 0.2739936178236597,
+     "dlog2_boost_clock_mhz": 0.19264507794239627,
+     "dlog2_spec_ops_per_transistor_cycle": 0.4685887968336928,
+     "dlog2_precision_multiplier": 1.0143001198298123,
+     "dlog2_tdp_w": 0.9004643264490856,
+     "dlog2_tflops_per_w": 1.0490632859804756,
+     "dlog2_mem_bandwidth_gbs": 0.587218474661524,
+     "dlog2_transistors_b": 0.2739936178236603
+    }
+   ],
+   "step_shares": [
+    {
+     "from": "MI60",
+     "to": "MI100",
+     "transistors_mtr": 0.5806980842952254,
+     "boost_clock_mhz": -0.15867136826085246,
+     "spec_ops_per_transistor_cycle": 1.1856485777858925,
+     "precision_multiplier": -0.6076752938202649
+    },
+    {
+     "from": "MI100",
+     "to": "MI250X",
+     "transistors_mtr": 1.1205833467011725,
+     "boost_clock_mhz": 0.16966742783457298,
+     "spec_ops_per_transistor_cycle": -0.29025077453574544,
+     "precision_multiplier": 0.0
+    },
+    {
+     "from": "MI250X",
+     "to": "MI300X",
+     "transistors_mtr": 0.5049568479745185,
+     "boost_clock_mhz": 0.11000261206884167,
+     "spec_ops_per_transistor_cycle": 0.024184289387546465,
+     "precision_multiplier": 0.36085625056909393
+    },
+    {
+     "from": "MI300X",
+     "to": "MI355X",
+     "transistors_mtr": 0.14054359429267096,
+     "boost_clock_mhz": 0.0988162859115989,
+     "spec_ops_per_transistor_cycle": 0.2403601743551214,
+     "precision_multiplier": 0.5202799454406087
+    }
+   ],
+   "cumulative": {
+    "members": [
+     "MI60",
+     "MI100",
+     "MI250X",
+     "MI300X",
+     "MI355X"
+    ],
+    "years": 6.597260273972552,
+    "dlog2_headline": 7.419424623164677,
+    "doubling_years": 0.8891875865110629,
+    "dlog2": {
+     "transistors_mtr": 3.808915436045222,
+     "boost_clock_mhz": 0.4150374992788439,
+     "spec_ops_per_transistor_cycle": 2.181116394863544,
+     "precision_multiplier": 1.0143552929770698,
+     "tdp_w": 2.2223924213364477,
+     "tflops_per_w": 5.197032201828231,
+     "mem_bandwidth_gbs": 2.965784284662087,
+     "transistors_b": 3.8089154360452206
+    },
+    "shares": {
+     "transistors_mtr": 0.5133707301443773,
+     "boost_clock_mhz": 0.05593931070921967,
+     "spec_ops_per_transistor_cycle": 0.29397379253018296,
+     "precision_multiplier": 0.13671616661622032
+    }
+   }
+  }
+ },
+ "estimator_c": {
+  "start": "K20X",
+  "end": "H100 SXM5 80GB",
+  "start_rate": {
+   "tflops": 3.95,
+   "format": "fp32"
+  },
+  "end_rate": {
+   "tflops": 1979.0,
+   "format": "fp8_tensor"
+  },
+  "headline_ratio": 501.0126582278481,
+  "factors": {
+   "density_mtr_mm2": 7.627089317230163,
+   "area_mm2": 1.4773139745916515,
+   "boost_clock_mhz": 2.7049180327868854,
+   "spec_ops_per_transistor_cycle": 8.219264480245492,
+   "precision_multiplier": 2.0
+  },
+  "transistor_ratio": 11.267605633802818,
+  "clock_ratio": 2.7049180327868854,
+  "physical_nf": 30.477949665204346,
+  "architecture_spec_x_precision": 16.438528960490984,
+  "nvidia": {
+   "number_representation": 16.0,
+   "complex_instructions": 12.5,
+   "process": 2.5,
+   "sparsity": 2.0,
+   "total": 1000.0,
+   "total_dense": 500.0,
+   "non_physical": 200.0
+  },
+  "physical_over_nvidia_process": 12.191179866081738,
+  "h7_verdict": "supported"
+ },
+ "estimator_c_fp32_reference": {
+  "start": "K20X",
+  "end": "H100 SXM5 80GB",
+  "start_rate": {
+   "tflops": 3.95,
+   "format": "fp32"
+  },
+  "end_rate": {
+   "tflops": 1979.0,
+   "format": "fp8_tensor"
+  },
+  "headline_ratio": 501.0126582278481,
+  "factors": {
+   "density_mtr_mm2": 7.627089317230163,
+   "area_mm2": 1.4773139745916515,
+   "boost_clock_mhz": 2.7049180327868854,
+   "spec_ops_per_transistor_cycle": 0.5565343306482547,
+   "precision_multiplier": 29.53731343283582
+  },
+  "transistor_ratio": 11.267605633802818,
+  "clock_ratio": 2.7049180327868854,
+  "physical_nf": 30.477949665204346,
+  "architecture_spec_x_precision": 16.438528960490988,
+  "nvidia": {
+   "number_representation": 16.0,
+   "complex_instructions": 12.5,
+   "process": 2.5,
+   "sparsity": 2.0,
+   "total": 1000.0,
+   "total_dense": 500.0,
+   "non_physical": 200.0
+  },
+  "physical_over_nvidia_process": 12.191179866081738,
+  "h7_verdict": "supported"
+ },
+ "hypotheses": {
+  "H1": {
+   "doubling": 0.8276109998561251,
+   "doubling_ci": [
+    0.6175306576981222,
+    1.126011762663054
+   ],
+   "n": 9,
+   "verdict": "supported"
+  },
+  "H2": {
+   "a_density_doubling": 2.7556601842130726,
+   "a_pass": true,
+   "b_chain": "K20X → H100 SXM5 80GB",
+   "b_density_share": 0.3268178815722357,
+   "b_pass": true,
+   "verdict": "supported"
+  },
+  "H3": {
+   "a_arch_share": 0.45034484774774497,
+   "a_density_share": 0.3268178815722357,
+   "a_pass": true,
+   "b_contrast": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.09031278754725502,
+    "ci": [
+     -0.10336066151365113,
+     0.30714709340412705
+    ],
+    "excludes_zero": false
+   },
+   "b_pass": false,
+   "verdict": "falsified"
+  },
+  "H4": {
+   "late_steps": [
+    "A100 SXM4 40GB → H100 SXM5 80GB"
+   ],
+   "early_steps": [
+    "K20X → M40",
+    "M40 → P100 SXM2",
+    "P100 SXM2 → V100 SXM2 16GB",
+    "V100 SXM2 16GB → A100 SXM4 40GB"
+   ],
+   "mean_dlog2_area_mm2_late": -0.02111298715319876,
+   "mean_dlog2_area_mm2_early": 0.14602236571207206,
+   "mean_dlog2_tdp_w_late": 0.8073549220576041,
+   "mean_dlog2_tdp_w_early": 0.1918348108024312,
+   "verdict": "not supported",
+   "supplementary_tdp_full_chain": {
+    "late_steps": [
+     "A100 SXM4 40GB → H100 SXM5 80GB",
+     "H100 SXM5 80GB → B200",
+     "B200 → B300"
+    ],
+    "early_steps": [
+     "K20X → M40",
+     "M40 → P100 SXM2",
+     "P100 SXM2 → V100 SXM2 16GB",
+     "V100 SXM2 16GB → A100 SXM4 40GB"
+    ],
+    "mean_dlog2_tdp_w_late": 0.6024516406858679,
+    "mean_dlog2_tdp_w_early": 0.19183481080243148,
+    "verdict": "supported"
+   }
+  },
+  "H5": {
+   "n": 7,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "fits": {
+    "headline": {
+     "series": "log2_headline",
+     "n": 7,
+     "slope": 1.1322783863214299,
+     "intercept": -2278.5136944394353,
+     "doubling_years": 0.8831750319361136,
+     "se_hc3": 0.15041210546695566,
+     "slope_ci": [
+      0.7938157591652916,
+      1.493659519558168
+     ],
+     "doubling_ci": [
+      0.6694966201506252,
+      1.2597381551753446
+     ],
+     "theil_sen": 1.101876331987829
+    },
+    "mem_bandwidth_gbs": {
+     "series": "log2_mem_bandwidth_gbs",
+     "n": 7,
+     "slope": 0.4234285169938409,
+     "intercept": -844.693350749566,
+     "doubling_years": 2.3616737179148135,
+     "se_hc3": 0.054568265220340924,
+     "slope_ci": [
+      0.32717051886749793,
+      0.5435359568267499
+     ],
+     "doubling_ci": [
+      1.8398046853020733,
+      3.056510114241051
+     ],
+     "theil_sen": 0.39663117193318204
+    }
+   },
+   "contrast": {
+    "plus": [
+     "log2_headline"
+    ],
+    "minus": [
+     "log2_mem_bandwidth_gbs"
+    ],
+    "estimate": 0.708849869327589,
+    "ci": [
+     0.3954673006212834,
+     1.0717446213790567
+    ],
+    "excludes_zero": true
+   },
+   "verdict": "supported",
+   "all_flagships": {
+    "n": 38,
+    "fits": {
+     "headline": {
+      "series": "log2_headline",
+      "n": 38,
+      "slope": 0.8236238847740776,
+      "intercept": -1656.167003067506,
+      "doubling_years": 1.214146430775624,
+      "se_hc3": 0.0680414091617804,
+      "slope_ci": [
+       0.6843123777865888,
+       0.9498549212791696
+      ],
+      "doubling_ci": [
+       1.0527923555455185,
+       1.461320929535871
+      ],
+      "theil_sen": 0.8537353992070984
+     },
+     "mem_bandwidth_gbs": {
+      "series": "log2_mem_bandwidth_gbs",
+      "n": 38,
+      "slope": 0.369998629246586,
+      "intercept": -737.1517991082254,
+      "doubling_years": 2.702712715547789,
+      "se_hc3": 0.04168721073392365,
+      "slope_ci": [
+       0.28834232230688334,
+       0.4464243312716068
+      ],
+      "doubling_ci": [
+       2.2400212756136604,
+       3.4680999722812036
+      ],
+      "theil_sen": 0.38969590596320725
+     }
+    },
+    "contrast": {
+     "plus": [
+      "log2_headline"
+     ],
+     "minus": [
+      "log2_mem_bandwidth_gbs"
+     ],
+     "estimate": 0.45362525552749156,
+     "ci": [
+      0.3486805128207094,
+      0.529991604953426
+     ],
+     "excludes_zero": true
+    }
+   }
+  },
+  "H7": {
+   "nf_growth": 30.477949665204346,
+   "threshold": 10.0,
+   "verdict": "supported"
+  },
+  "H6": {
+   "verdict": "not assessed",
+   "reason": "no MLPerf data collected",
+   "benchmarks": [],
+   "best_rule": {
+    "verdict": "not assessed",
+    "reason": "no MLPerf data collected",
+    "benchmarks": []
+   }
+  }
+ },
+ "rq1_throughput": {
+  "flagships": {
+   "headline": {
+    "n": 43,
+    "fit": {
+     "series": "log2_headline",
+     "n": 43,
+     "slope": 0.8127071388864484,
+     "intercept": -1634.0140369172564,
+     "doubling_years": 1.2304555382276765,
+     "se_hc3": 0.06771243589311667,
+     "slope_ci": [
+      0.6731563199096486,
+      0.9295973957140652
+     ],
+     "doubling_ci": [
+      1.0757345111018253,
+      1.4855390500295986
+     ],
+     "theil_sen": 0.8273417044840607
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Gaudi",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "WSE-2",
+     "TPU v4",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "MI325X",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 910C",
+     "Ascend 950DT",
+     "Rubin",
+     "MTIA 300",
+     "MTIA 400",
+     "TPU 8t",
+     "MI455X"
+    ]
+   },
+   "ref_tflops": {
+    "n": 42,
+    "fit": {
+     "series": "log2_ref_tflops",
+     "n": 42,
+     "slope": 0.6211752622554951,
+     "intercept": -1247.5830171228001,
+     "doubling_years": 1.6098516163843801,
+     "se_hc3": 0.06494540449105828,
+     "slope_ci": [
+      0.47569326601257134,
+      0.7254341307557413
+     ],
+     "doubling_ci": [
+      1.378484906628562,
+      2.102194988763143
+     ],
+     "theil_sen": 0.6372628832100948
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Gaudi",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "WSE-2",
+     "TPU v4",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "MI325X",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 950DT",
+     "Ascend 910C",
+     "Rubin",
+     "MTIA 300",
+     "MTIA 400",
+     "MI455X"
+    ]
+   },
+   "transistors_b": {
+    "n": 26,
+    "fit": {
+     "series": "log2_transistors_b",
+     "n": 26,
+     "slope": 0.5347336385038098,
+     "intercept": -1074.7768109303097,
+     "doubling_years": 1.8700899438419663,
+     "se_hc3": 0.061166312869487774,
+     "slope_ci": [
+      0.4429723762406294,
+      0.678653839776382
+     ],
+     "doubling_ci": [
+      1.473505256125129,
+      2.2574771106196128
+     ],
+     "theil_sen": 0.48666725542796185
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "MI60",
+     "GC2",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "WSE-2",
+     "TPU v4",
+     "MI250X",
+     "H100 SXM5 80GB",
+     "SN30",
+     "SN40L",
+     "Maia 100",
+     "WSE-3",
+     "B200",
+     "MI325X",
+     "B300",
+     "MI355X",
+     "Rubin",
+     "MI455X"
+    ]
+   }
+  },
+  "flagships_density": {
+   "density_mtr_mm2": {
+    "n": 12,
+    "fit": {
+     "series": "log2_density_mtr_mm2",
+     "n": 12,
+     "slope": 0.32643613283492134,
+     "intercept": -653.7860676608443,
+     "doubling_years": 3.06338636999385,
+     "se_hc3": 0.04010884413152007,
+     "slope_ci": [
+      0.26319361540867103,
+      0.4011939414287963
+     ],
+     "doubling_ci": [
+      2.4925600731622204,
+      3.799484263504116
+     ],
+     "theil_sen": 0.33107900154295905
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "MI25",
+     "MI60",
+     "A100 SXM4 40GB",
+     "GC200",
+     "WSE-2",
+     "H100 SXM5 80GB",
+     "Maia 100",
+     "WSE-3"
+    ]
+   }
+  },
+  "all_primary": {
+   "headline": {
+    "n": 65,
+    "fit": {
+     "series": "log2_headline",
+     "n": 65,
+     "slope": 0.8020053590637117,
+     "intercept": -1612.4419144623228,
+     "doubling_years": 1.2468744612472837,
+     "se_hc3": 0.04847720833801805,
+     "slope_ci": [
+      0.6977749384899238,
+      0.8911360114222694
+     ],
+     "doubling_ci": [
+      1.1221631571189472,
+      1.433126850563207
+     ],
+     "theil_sen": 0.81894236403193
+    },
+    "products": [
+     "K20X",
+     "K40",
+     "K80",
+     "M40",
+     "P100 SXM2",
+     "TPU v1",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "T4",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Inferentia",
+     "Cloud AI 100",
+     "Gaudi",
+     "GroqChip 1",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "A30",
+     "WSE-2",
+     "TPU v4",
+     "TPU v4i",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "MI210",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "Inferentia2",
+     "MTIA v1",
+     "L40S",
+     "TPU v5e",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "MTIA v2",
+     "TPU v6e",
+     "MI325X",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 910C",
+     "Ascend 950DT",
+     "Rubin",
+     "Maia 200",
+     "SN50",
+     "MTIA 400",
+     "MTIA 300",
+     "MTIA 450",
+     "MTIA 500",
+     "TPU 8i",
+     "TPU 8t",
+     "MI455X",
+     "Maia 300"
+    ]
+   },
+   "ref_tflops": {
+    "n": 61,
+    "fit": {
+     "series": "log2_ref_tflops",
+     "n": 61,
+     "slope": 0.6338148736644008,
+     "intercept": -1273.3721354930406,
+     "doubling_years": 1.5777477644513134,
+     "se_hc3": 0.04510184333433927,
+     "slope_ci": [
+      0.5320187763734221,
+      0.7133669051382941
+     ],
+     "doubling_ci": [
+      1.4018031854255124,
+      1.8796329084785977
+     ],
+     "theil_sen": 0.6472674002699003
+    },
+    "products": [
+     "K20X",
+     "K40",
+     "K80",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "T4",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Inferentia",
+     "Cloud AI 100",
+     "Gaudi",
+     "GroqChip 1",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "A30",
+     "WSE-2",
+     "TPU v4",
+     "TPU v4i",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "MI210",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "Inferentia2",
+     "MTIA v1",
+     "L40S",
+     "TPU v5e",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "MTIA v2",
+     "TPU v6e",
+     "MI325X",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 910C",
+     "Ascend 950DT",
+     "Rubin",
+     "Maia 200",
+     "SN50",
+     "MTIA 500",
+     "MTIA 300",
+     "MTIA 400",
+     "MTIA 450",
+     "MI455X"
+    ]
+   },
+   "transistors_b": {
+    "n": 31,
+    "fit": {
+     "series": "log2_transistors_b",
+     "n": 31,
+     "slope": 0.5307896532322137,
+     "intercept": -1066.959976983224,
+     "doubling_years": 1.8839854807088954,
+     "se_hc3": 0.06673137652354412,
+     "slope_ci": [
+      0.43185319731393607,
+      0.6816465643183822
+     ],
+     "doubling_ci": [
+      1.4670359279224972,
+      2.3156017049771873
+     ],
+     "theil_sen": 0.4952197307474539
+    },
+    "products": [
+     "K20X",
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "TPU v1",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "T4",
+     "MI60",
+     "GC2",
+     "GroqChip 1",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "WSE-2",
+     "TPU v4",
+     "TPU v4i",
+     "MI250X",
+     "H100 SXM5 80GB",
+     "SN30",
+     "SN40L",
+     "Maia 100",
+     "WSE-3",
+     "B200",
+     "MI325X",
+     "B300",
+     "MI355X",
+     "Rubin",
+     "MI455X"
+    ]
+   }
+  },
+  "frontier": {
+   "headline": {
+    "n": 15,
+    "fit": {
+     "series": "log2_headline",
+     "n": 15,
+     "slope": 1.0462140933028092,
+     "intercept": -2104.14842596976,
+     "doubling_years": 0.9558273076240875,
+     "se_hc3": 0.05705956860154111,
+     "slope_ci": [
+      0.9527352421886565,
+      1.2149286272509257
+     ],
+     "doubling_ci": [
+      0.8230936184809025,
+      1.0496095407395294
+     ],
+     "theil_sen": 1.0577515609212476
+    },
+    "products": [
+     "K20X",
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "TPU v1",
+     "V100 SXM2 16GB",
+     "T4",
+     "Ascend 910",
+     "GroqChip 1",
+     "A100 SXM4 40GB",
+     "WSE-2",
+     "B200",
+     "B300",
+     "Rubin",
+     "MI455X"
+    ]
+   }
+  },
+  "frontier_products": [
+   "K20X",
+   "K40",
+   "M40",
+   "P100 SXM2",
+   "TPU v1",
+   "V100 SXM2 16GB",
+   "T4",
+   "Ascend 910",
+   "GroqChip 1",
+   "A100 SXM4 40GB",
+   "WSE-2",
+   "B200",
+   "B300",
+   "Rubin",
+   "MI455X"
+  ],
+  "flagships_no_wafer": {
+   "headline": {
+    "n": 42,
+    "fit": {
+     "series": "log2_headline",
+     "n": 42,
+     "slope": 0.8209579097437982,
+     "intercept": -1650.7979276960368,
+     "doubling_years": 1.2180892444438187,
+     "se_hc3": 0.06668469980836311,
+     "slope_ci": [
+      0.6900267555357374,
+      0.9371135320114513
+     ],
+     "doubling_ci": [
+      1.0671065626953087,
+      1.4492191671953343
+     ],
+     "theil_sen": 0.8419874120085019
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Gaudi",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "TPU v4",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "MI325X",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 950DT",
+     "Ascend 910C",
+     "Rubin",
+     "MTIA 300",
+     "MTIA 400",
+     "TPU 8t",
+     "MI455X"
+    ]
+   }
+  },
+  "flagships_mi300x_primary": {
+   "headline": {
+    "n": 43,
+    "fit": {
+     "series": "log2_headline",
+     "n": 43,
+     "slope": 0.8141154951044683,
+     "intercept": -1636.8527330553056,
+     "doubling_years": 1.2283269462543256,
+     "se_hc3": 0.06805913633277905,
+     "slope_ci": [
+      0.6759406414704667,
+      0.9306102546379454
+     ],
+     "doubling_ci": [
+      1.0745637016315177,
+      1.4794198464299504
+     ],
+     "theil_sen": 0.8281005992973587
+    },
+    "products": [
+     "K40",
+     "M40",
+     "P100 SXM2",
+     "V100 SXM2 16GB",
+     "TPU v2",
+     "MI25",
+     "TPU v3",
+     "Ascend 910",
+     "MI60",
+     "GC2",
+     "Gaudi",
+     "A100 SXM4 40GB",
+     "GC200",
+     "MI100",
+     "WSE-2",
+     "TPU v4",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "H100 SXM5 80GB",
+     "Gaudi 2",
+     "SN30",
+     "Data Center GPU Max 1550",
+     "SN40L",
+     "Maia 100",
+     "Trainium2",
+     "MI300X",
+     "TPU v5p",
+     "B200",
+     "Gaudi 3",
+     "Wormhole n150",
+     "Blackhole p150",
+     "Trainium3",
+     "B300",
+     "TPU v7",
+     "MI355X",
+     "Ascend 910C",
+     "Ascend 950DT",
+     "Rubin",
+     "MTIA 300",
+     "MTIA 400",
+     "TPU 8t",
+     "MI455X"
+    ]
+   }
+  },
+  "flagships_ship_date": {
+   "headline": {
+    "n": 15,
+    "fit": {
+     "series": "log2_headline",
+     "n": 15,
+     "slope": 0.5974244677185206,
+     "intercept": -1199.5190242008732,
+     "doubling_years": 1.6738517654271146,
+     "se_hc3": 0.1447621225055448,
+     "slope_ci": [
+      0.2512065249359851,
+      0.7262277363498768
+     ],
+     "doubling_ci": [
+      1.3769785288374432,
+      3.980788318515332
+     ],
+     "theil_sen": 0.6107463399965114
+    },
+    "products": [
+     "K40",
+     "TPU v2",
+     "TPU v3",
+     "Ascend 910",
+     "A100 SXM4 40GB",
+     "MI250X",
+     "Bow IPU",
+     "TPU v4",
+     "Trainium",
+     "TPU v5p",
+     "Wormhole n150",
+     "Trainium2",
+     "Trainium3",
+     "MTIA 300",
+     "TPU v7"
+    ]
+   }
+  },
+  "flagships_ship_date_products_by_announce": {
+   "headline": {
+    "n": 15,
+    "fit": {
+     "series": "log2_headline",
+     "n": 15,
+     "slope": 0.5891590368442268,
+     "intercept": -1182.4950623419916,
+     "doubling_years": 1.697334569213099,
+     "se_hc3": 0.167153409465008,
+     "slope_ci": [
+      0.24687719408427858,
+      0.7573704559001231
+     ],
+     "doubling_ci": [
+      1.320357814606744,
+      4.050596911995935
+     ],
+     "theil_sen": 0.5344953368446598
+    },
+    "products": [
+     "K40",
+     "TPU v2",
+     "TPU v3",
+     "Ascend 910",
+     "A100 SXM4 40GB",
+     "TPU v4",
+     "MI250X",
+     "Trainium",
+     "Bow IPU",
+     "Trainium2",
+     "TPU v5p",
+     "Wormhole n150",
+     "Trainium3",
+     "TPU v7",
+     "MTIA 300"
+    ]
+   }
+  }
+ },
+ "rq3_efficiency": {
+  "tflops_per_w": {
+   "n": 29,
+   "fit": {
+    "series": "log2_tflops_per_w",
+    "n": 29,
+    "slope": 0.6150279532095667,
+    "intercept": -1243.3603930266602,
+    "doubling_years": 1.6259423572236507,
+    "se_hc3": 0.07037659433070556,
+    "slope_ci": [
+     0.46960725592075914,
+     0.7270677607288715
+    ],
+    "doubling_ci": [
+     1.3753876241156935,
+     2.1294389884144773
+    ],
+    "theil_sen": 0.6265219704138101
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "GC2",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "GC200",
+    "MI100",
+    "WSE-2",
+    "MI250X",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "Data Center GPU Max 1550",
+    "Maia 100",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "B300",
+    "MI355X",
+    "MTIA 400",
+    "MTIA 300"
+   ]
+  },
+  "ref_tflops_per_w": {
+   "n": 29,
+   "fit": {
+    "series": "log2_ref_tflops_per_w",
+    "n": 29,
+    "slope": 0.4496006398915176,
+    "intercept": -909.7428600618146,
+    "doubling_years": 2.224196122677419,
+    "se_hc3": 0.06897663600297958,
+    "slope_ci": [
+     0.30082068180036076,
+     0.5548687876529844
+    ],
+    "doubling_ci": [
+     1.802227882072547,
+     3.3242395237427482
+    ],
+    "theil_sen": 0.4154640742122309
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "GC2",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "GC200",
+    "MI100",
+    "WSE-2",
+    "MI250X",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "Data Center GPU Max 1550",
+    "Maia 100",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "B300",
+    "MI355X",
+    "MTIA 400",
+    "MTIA 300"
+   ]
+  },
+  "tflops_per_mm2": {
+   "n": 12,
+   "fit": {
+    "series": "log2_tflops_per_mm2",
+    "n": 12,
+    "slope": 0.7877316961673401,
+    "intercept": -1592.8421491478628,
+    "doubling_years": 1.26946777039116,
+    "se_hc3": 0.167622666170717,
+    "slope_ci": [
+     0.4989439608234588,
+     1.1395230792608058
+    ],
+    "doubling_ci": [
+     0.877560111067419,
+     2.004233097339422
+    ],
+    "theil_sen": 0.7808095371976835
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI25",
+    "Ascend 910",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB",
+    "Maia 100"
+   ]
+  },
+  "tflops_per_btransistor": {
+   "n": 25,
+   "fit": {
+    "series": "log2_tflops_per_btransistor",
+    "n": 25,
+    "slope": 0.4944209929642644,
+    "intercept": -996.036267195763,
+    "doubling_years": 2.0225678404239558,
+    "se_hc3": 0.05742976071064451,
+    "slope_ci": [
+     0.36368987807143693,
+     0.5854458321843818
+    ],
+    "doubling_ci": [
+     1.70809995566773,
+     2.7495953566339764
+    ],
+    "theil_sen": 0.5033601890176542
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "MI60",
+    "GC2",
+    "A100 SXM4 40GB",
+    "GC200",
+    "MI100",
+    "WSE-2",
+    "TPU v4",
+    "MI250X",
+    "H100 SXM5 80GB",
+    "SN30",
+    "SN40L",
+    "Maia 100",
+    "B200",
+    "MI325X",
+    "B300",
+    "MI355X",
+    "Rubin",
+    "MI455X"
+   ]
+  },
+  "price": {
+   "n": 0,
+   "fit": null
+  }
+ },
+ "rq4_memory": {
+  "mem_bandwidth_gbs": {
+   "n": 38,
+   "fit": {
+    "series": "log2_mem_bandwidth_gbs",
+    "n": 38,
+    "slope": 0.369998629246586,
+    "intercept": -737.1517991082254,
+    "doubling_years": 2.702712715547789,
+    "se_hc3": 0.04168721073392365,
+    "slope_ci": [
+     0.28834232230688334,
+     0.4464243312716068
+    ],
+    "doubling_ci": [
+     2.2400212756136604,
+     3.4680999722812036
+    ],
+    "theil_sen": 0.38969590596320725
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "MI100",
+    "TPU v4",
+    "MI250X",
+    "Trainium",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "Data Center GPU Max 1550",
+    "SN40L",
+    "Maia 100",
+    "Trainium2",
+    "TPU v5p",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "Trainium3",
+    "B300",
+    "TPU v7",
+    "MI355X",
+    "Ascend 950DT",
+    "Ascend 910C",
+    "Rubin",
+    "MTIA 300",
+    "MTIA 400",
+    "TPU 8t",
+    "MI455X"
+   ]
+  },
+  "mem_capacity_gb": {
+   "n": 39,
+   "fit": {
+    "series": "log2_mem_capacity_gb",
+    "n": 39,
+    "slope": 0.3834590849927437,
+    "intercept": -769.2629260855889,
+    "doubling_years": 2.607840155929343,
+    "se_hc3": 0.03177364487566261,
+    "slope_ci": [
+     0.320711444561869,
+     0.4406387012479564
+    ],
+    "doubling_ci": [
+     2.269432978010889,
+     3.1180677115097097
+    ],
+    "theil_sen": 0.4078285337208603
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "MI100",
+    "TPU v4",
+    "MI250X",
+    "Trainium",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "SN30",
+    "Data Center GPU Max 1550",
+    "SN40L",
+    "Maia 100",
+    "Trainium2",
+    "TPU v5p",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "Trainium3",
+    "B300",
+    "TPU v7",
+    "MI355X",
+    "Ascend 950DT",
+    "Ascend 910C",
+    "Rubin",
+    "MTIA 300",
+    "MTIA 400",
+    "TPU 8t",
+    "MI455X"
+   ]
+  },
+  "ops_per_byte": {
+   "n": 38,
+   "fit": {
+    "series": "log2_ops_per_byte",
+    "n": 38,
+    "slope": 0.45362525552749144,
+    "intercept": -909.0494196746183,
+    "doubling_years": 2.204462797903888,
+    "se_hc3": 0.046154054668607475,
+    "slope_ci": [
+     0.3486805128207092,
+     0.529991604953426
+    ],
+    "doubling_ci": [
+     1.886822339549844,
+     2.867954942220123
+    ],
+    "theil_sen": 0.4681589340357281
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "MI100",
+    "TPU v4",
+    "MI250X",
+    "Trainium",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "Data Center GPU Max 1550",
+    "SN40L",
+    "Maia 100",
+    "Trainium2",
+    "TPU v5p",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "Trainium3",
+    "B300",
+    "TPU v7",
+    "MI355X",
+    "Ascend 950DT",
+    "Ascend 910C",
+    "Rubin",
+    "MTIA 300",
+    "MTIA 400",
+    "TPU 8t",
+    "MI455X"
+   ]
+  },
+  "headline": {
+   "n": 43,
+   "fit": {
+    "series": "log2_headline",
+    "n": 43,
+    "slope": 0.8127071388864484,
+    "intercept": -1634.0140369172564,
+    "doubling_years": 1.2304555382276765,
+    "se_hc3": 0.06771243589311667,
+    "slope_ci": [
+     0.6731563199096486,
+     0.9295973957140652
+    ],
+    "doubling_ci": [
+     1.0757345111018253,
+     1.4855390500295986
+    ],
+    "theil_sen": 0.8273417044840607
+   },
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "MI25",
+    "TPU v3",
+    "Ascend 910",
+    "MI60",
+    "GC2",
+    "Gaudi",
+    "A100 SXM4 40GB",
+    "GC200",
+    "MI100",
+    "WSE-2",
+    "TPU v4",
+    "MI250X",
+    "Trainium",
+    "Bow IPU",
+    "H100 SXM5 80GB",
+    "Gaudi 2",
+    "SN30",
+    "Data Center GPU Max 1550",
+    "SN40L",
+    "Maia 100",
+    "Trainium2",
+    "TPU v5p",
+    "B200",
+    "Gaudi 3",
+    "MI325X",
+    "Wormhole n150",
+    "Blackhole p150",
+    "Trainium3",
+    "B300",
+    "TPU v7",
+    "MI355X",
+    "Ascend 910C",
+    "Ascend 950DT",
+    "Rubin",
+    "MTIA 300",
+    "MTIA 400",
+    "TPU 8t",
+    "MI455X"
+   ]
+  }
+ },
+ "nodes": {
+  "n": 28,
+  "products": [
+   {
+    "product": "MI250X",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 6nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N6",
+    "hvm_year": 2020.0,
+    "year": 2021.8520547945207,
+    "lag_years": 1.3520547945206545
+   },
+   {
+    "product": "MI355X",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 3nm | 6nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N3",
+    "hvm_year": 2022.0,
+    "year": 2025.4438356164383,
+    "lag_years": 2.943835616438264
+   },
+   {
+    "product": "MI100",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 7nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2020.8743169398906,
+    "lag_years": 2.3743169398906048
+   },
+   {
+    "product": "P100 SXM2",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "16 nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC 16FF+",
+    "hvm_year": 2015.0,
+    "year": 2016.25956284153,
+    "lag_years": 0.7595628415299416
+   },
+   {
+    "product": "V100 SXM2 16GB",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "12 nm FFN",
+    "foundry": "TSMC",
+    "node": "TSMC 12FFC",
+    "hvm_year": 2017.0,
+    "year": 2017.3534246575343,
+    "lag_years": -0.14657534246566684
+   },
+   {
+    "product": "A100 SXM4 40GB",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "7 nm N7",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2020.3661202185792,
+    "lag_years": 1.8661202185792263
+   },
+   {
+    "product": "H100 SXM5 80GB",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "TSMC 4N",
+    "foundry": "TSMC",
+    "node": "TSMC N4",
+    "hvm_year": 2022.0,
+    "year": 2022.2191780821918,
+    "lag_years": -0.2808219178082254
+   },
+   {
+    "product": "B200",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "TSMC 4NP",
+    "foundry": "TSMC",
+    "node": "TSMC N4",
+    "hvm_year": 2022.0,
+    "year": 2024.2103825136612,
+    "lag_years": 1.7103825136612159
+   },
+   {
+    "product": "B300",
+    "vendor": "NVIDIA",
+    "flagship": true,
+    "process_node": "TSMC 4NP",
+    "foundry": "TSMC",
+    "node": "TSMC N4",
+    "hvm_year": 2022.0,
+    "year": 2025.2082191780821,
+    "lag_years": 2.7082191780821177
+   },
+   {
+    "product": "MI60",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 7nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2018.8465753424657,
+    "lag_years": 0.3465753424657123
+   },
+   {
+    "product": "MI325X",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 5nm | 6nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2024.4180327868853,
+    "lag_years": 3.9180327868853055
+   },
+   {
+    "product": "MI455X",
+    "vendor": "AMD",
+    "flagship": true,
+    "process_node": "TSMC 2nm | 3nm FinFET",
+    "foundry": "TSMC",
+    "node": "TSMC N2",
+    "hvm_year": 2025.0,
+    "year": 2026.5561643835617,
+    "lag_years": 1.056164383561736
+   },
+   {
+    "product": "Gaudi",
+    "vendor": "Intel",
+    "flagship": true,
+    "process_node": "TSMC 16nm",
+    "foundry": "TSMC",
+    "node": "TSMC 16FF+",
+    "hvm_year": 2015.0,
+    "year": 2019.4575342465753,
+    "lag_years": 3.9575342465752783
+   },
+   {
+    "product": "Gaudi 3",
+    "vendor": "Intel",
+    "flagship": true,
+    "process_node": "TSMC 5nm",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2024.2704918032787,
+    "lag_years": 3.7704918032786736
+   },
+   {
+    "product": "Data Center GPU Max 1550",
+    "vendor": "Intel",
+    "flagship": true,
+    "process_node": "TSMC N5 | Intel 7 | TSMC N7",
+    "foundry": "TSMC | Intel",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2022.854794520548,
+    "lag_years": 2.354794520548012
+   },
+   {
+    "product": "WSE-2",
+    "vendor": "Cerebras",
+    "flagship": true,
+    "process_node": "TSMC 7nm",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2021.2986301369863,
+    "lag_years": 2.798630136986276
+   },
+   {
+    "product": "WSE-3",
+    "vendor": "Cerebras",
+    "flagship": true,
+    "process_node": "TSMC 5nm",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2024.1967213114754,
+    "lag_years": 3.6967213114753577
+   },
+   {
+    "product": "GC2",
+    "vendor": "Graphcore",
+    "flagship": true,
+    "process_node": "TSMC N16",
+    "foundry": "TSMC",
+    "node": "TSMC 16FF+",
+    "hvm_year": 2015.0,
+    "year": 2018.8739726027397,
+    "lag_years": 3.373972602739741
+   },
+   {
+    "product": "GC200",
+    "vendor": "Graphcore",
+    "flagship": true,
+    "process_node": "TSMC 7nm",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2020.535519125683,
+    "lag_years": 2.035519125683095
+   },
+   {
+    "product": "Maia 100",
+    "vendor": "Microsoft",
+    "flagship": true,
+    "process_node": "TSMC N5",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2023.8712328767124,
+    "lag_years": 3.3712328767123836
+   },
+   {
+    "product": "Maia 200",
+    "vendor": "Microsoft",
+    "flagship": false,
+    "process_node": "TSMC N3P",
+    "foundry": "TSMC",
+    "node": "TSMC N3P",
+    "hvm_year": 2024.0,
+    "year": 2026.0684931506848,
+    "lag_years": 1.5684931506848443
+   },
+   {
+    "product": "Maia 300",
+    "vendor": "Microsoft",
+    "flagship": false,
+    "process_node": "TSMC N2P",
+    "foundry": "TSMC",
+    "node": "TSMC N2",
+    "hvm_year": 2025.0,
+    "year": 2026.7780821917809,
+    "lag_years": 1.278082191780868
+   },
+   {
+    "product": "MTIA v1",
+    "vendor": "Meta",
+    "flagship": false,
+    "process_node": "TSMC 7nm",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2023.3753424657534,
+    "lag_years": 4.87534246575342
+   },
+   {
+    "product": "MTIA v2",
+    "vendor": "Meta",
+    "flagship": false,
+    "process_node": "TSMC 5nm",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2024.2732240437158,
+    "lag_years": 3.7732240437158
+   },
+   {
+    "product": "SN30",
+    "vendor": "SambaNova",
+    "flagship": true,
+    "process_node": "TSMC 7nm",
+    "foundry": "TSMC",
+    "node": "TSMC N7",
+    "hvm_year": 2018.0,
+    "year": 2022.7013698630137,
+    "lag_years": 4.201369863013724
+   },
+   {
+    "product": "SN40L",
+    "vendor": "SambaNova",
+    "flagship": true,
+    "process_node": "TSMC 5nm",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2023.7150684931507,
+    "lag_years": 3.2150684931507385
+   },
+   {
+    "product": "SN50",
+    "vendor": "SambaNova",
+    "flagship": false,
+    "process_node": "TSMC 5nm",
+    "foundry": "TSMC",
+    "node": "TSMC N5",
+    "hvm_year": 2020.0,
+    "year": 2026.1479452054793,
+    "lag_years": 5.6479452054793455
+   },
+   {
+    "product": "T4",
+    "vendor": "NVIDIA",
+    "flagship": false,
+    "process_node": "12 nm FFN",
+    "foundry": "TSMC",
+    "node": "TSMC 12FFC",
+    "hvm_year": 2017.0,
+    "year": 2018.695890410959,
+    "lag_years": 1.1958904109590094
+   }
+  ],
+  "median_lag": 2.541268058986361,
+  "median_lag_by_vendor": {
+   "AMD": 1.8631858672056296,
+   "Cerebras": 3.2476757242308167,
+   "Graphcore": 2.704745864211418,
+   "Intel": 3.7704918032786736,
+   "Meta": 4.32428325473461,
+   "Microsoft": 1.5684931506848443,
+   "NVIDIA": 1.1958904109590094,
+   "SambaNova": 4.201369863013724
+  },
+  "median_lag_flagships": 2.541268058986361,
+  "trend": {
+   "slope_years_per_year": 0.19795930007516938,
+   "ci": [
+    -0.007141774766619948,
+    0.4020205814922399
+   ],
+   "n": 28
+  },
+  "unmapped": [
+   "TPU v4 (7 nm)",
+   "TPU v5p ()",
+   "TPU v6e ()",
+   "TPU v7 ()",
+   "K20X (28 nm)",
+   "M40 (28 nm)",
+   "MI25 (14nm FinFET)",
+   "MI210 (6nm FinFET)",
+   "Gaudi 2 (7nm)",
+   "Inferentia ()",
+   "Inferentia2 ()",
+   "Trainium ()",
+   "Trainium2 ()",
+   "Trainium3 (3 nm)",
+   "Ascend 910 (7+ nm EUV)",
+   "Ascend 910C ()",
+   "Ascend 950DT ()",
+   "Cloud AI 100 (7 nm)",
+   "TPU v1 (28 nm)",
+   "TPU v2 (16 nm)",
+   "TPU v3 (16 nm)",
+   "TPU v4i (7 nm)",
+   "TPU v5e ()",
+   "TPU 8t ()",
+   "TPU 8i ()",
+   "Bow IPU ()",
+   "GroqChip 1 (14nm)",
+   "MTIA 300 ()",
+   "MTIA 400 ()",
+   "MTIA 450 ()",
+   "MTIA 500 ()",
+   "Wormhole n150 (12nm)",
+   "Blackhole p150 (6nm)",
+   "K40 (28 nm)",
+   "K80 ()",
+   "A30 ()",
+   "L40S ()",
+   "Rubin ()"
+  ]
+ },
+ "sensitivity": [
+  {
+   "label": "primary",
+   "identity": "A",
+   "n": 9,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8276109998561251,
+   "headline_doubling_ci": [
+    0.6175306576981222,
+    1.126011762663054
+   ],
+   "headline_slope": 1.208297134975059,
+   "headline_theil_sen": 1.2296472403730356,
+   "density_doubling": 2.7556601842130726,
+   "density_theil_sen": 0.3677374581555204,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.09031278754725502,
+    "ci": [
+     -0.10336066151365113,
+     0.30714709340412705
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.025604933771776306,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.3268178815722357,
+   "chain_arch_share": 0.45034484774774497,
+   "chain_spec_share": 0.3388460086378657,
+   "chain_precision_share": 0.11149883910987926
+  },
+  {
+   "label": "ship date",
+   "identity": "A",
+   "n": 9,
+   "error": "too few rows for a trend: 2"
+  },
+  {
+   "label": "FP32 reference",
+   "identity": "A",
+   "n": 7,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8831750319361136,
+   "headline_doubling_ci": [
+    0.6694966201506252,
+    1.2597381551753446
+   ],
+   "headline_slope": 1.1322783863214299,
+   "headline_theil_sen": 1.101876331987829,
+   "density_doubling": 2.654359309701271,
+   "density_theil_sen": 0.3864279772883744,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.21124281866523942,
+    "ci": [
+     0.03025535762127768,
+     0.5163736015323236
+    ],
+    "excludes_zero": true
+   },
+   "h3b_theil_sen": 0.24758140179523525,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.3268178815722357,
+   "chain_arch_share": 0.45034484774774475,
+   "chain_spec_share": -0.09426751970786648,
+   "chain_precision_share": 0.5446123674556113
+  },
+  {
+   "label": "floating-point headline",
+   "identity": "A",
+   "n": 9,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8731764205054876,
+   "headline_doubling_ci": [
+    0.6354835430118084,
+    1.270473936639714
+   ],
+   "headline_slope": 1.1452439352646437,
+   "headline_theil_sen": 1.167972170505652,
+   "density_doubling": 2.7556601842130726,
+   "density_theil_sen": 0.3677374581555204,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.027259587836839516,
+    "ci": [
+     -0.15754766677657406,
+     0.21803576690736443
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.025604933771776306,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.3268178815722357,
+   "chain_arch_share": 0.45034484774774497,
+   "chain_spec_share": 0.3388460086378657,
+   "chain_precision_share": 0.11149883910987926
+  },
+  {
+   "label": "headline with sparsity",
+   "identity": "A",
+   "n": 9,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.6946919005024452,
+   "headline_doubling_ci": [
+    0.4698571927794738,
+    1.0923626994761237
+   ],
+   "headline_slope": 1.4394870578982375,
+   "headline_theil_sen": 1.3567528322926363,
+   "density_doubling": 2.7556601842130726,
+   "density_theil_sen": 0.3677374581555204,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.3215027104704337,
+    "ci": [
+     0.015361797413325643,
+     0.6332851748526794
+    ],
+    "excludes_zero": true
+   },
+   "h3b_theil_sen": 0.29886486888105057,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.29403348890041214,
+   "chain_arch_share": 0.5054829272764378,
+   "chain_spec_share": 0.3048550270274897,
+   "chain_precision_share": 0.20062790024894817
+  },
+  {
+   "label": "area including I/O dies",
+   "identity": "A",
+   "n": 9,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8276109998561251,
+   "headline_doubling_ci": [
+    0.6175306576981222,
+    1.126011762663054
+   ],
+   "headline_slope": 1.208297134975059,
+   "headline_theil_sen": 1.2296472403730356,
+   "density_doubling": 2.7556601842130726,
+   "density_theil_sen": 0.3677374581555204,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.09031278754725502,
+    "ci": [
+     -0.10336066151365113,
+     0.30714709340412705
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.025604933771776306,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.3268178815722357,
+   "chain_arch_share": 0.45034484774774497,
+   "chain_spec_share": 0.3388460086378657,
+   "chain_precision_share": 0.11149883910987926
+  },
+  {
+   "label": "clock-free identity",
+   "identity": "clock_free",
+   "n": 11,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI25",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB",
+    "Maia 100"
+   ],
+   "headline_doubling": 0.9868965585830036,
+   "headline_doubling_ci": [
+    0.6659875615158931,
+    1.3793523481268843
+   ],
+   "headline_slope": 1.013277421329557,
+   "headline_theil_sen": 1.0428455825798455,
+   "density_doubling": 2.7933747061507894,
+   "density_theil_sen": 0.35660984088819575,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_us",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.07571497555871298,
+    "ci": [
+     -0.11875998688076374,
+     0.31300686998792765
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.018244470138882418,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": 0.3268178815722357,
+   "chain_arch_share": 0.6104108949415907,
+   "chain_spec_share": 0.4989120558317115,
+   "chain_precision_share": 0.11149883910987926
+  },
+  {
+   "label": "all products in the sample",
+   "identity": "A",
+   "n": 11,
+   "products": [
+    "K20X",
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "T4",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8915067355833648,
+   "headline_doubling_ci": [
+    0.6780660004016892,
+    1.127251115780886
+   ],
+   "headline_slope": 1.1216965167914763,
+   "headline_theil_sen": 1.106333870039885,
+   "density_doubling": 3.0472803642810335,
+   "density_theil_sen": 0.330599999446822,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.10133398691072365,
+    "ci": [
+     -0.06227666129420189,
+     0.31354676179100227
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.03107263490148804
+  },
+  {
+   "label": "all products, vendor fixed effects",
+   "identity": "A",
+   "n": 11,
+   "products": [
+    "K20X",
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "T4",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.9088900472190207,
+   "headline_doubling_ci": [
+    0.6991566441121084,
+    1.0456168734845228
+   ],
+   "headline_slope": 1.1002430965767018,
+   "headline_theil_sen": 1.2035236620854417,
+   "density_doubling": 3.061244995181849,
+   "density_theil_sen": 0.3123074783531252,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.24754891267636342,
+    "ci": [
+     0.10282488471411565,
+     0.6033990355249818
+    ],
+    "excludes_zero": true
+   },
+   "h3b_theil_sen": 0.22797049489116517
+  },
+  {
+   "label": "NVIDIA only",
+   "identity": "A",
+   "n": 6,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8549074146215023,
+   "headline_doubling_ci": [
+    0.5976529938619853,
+    1.1816714818912035
+   ],
+   "headline_slope": 1.1697173084441375,
+   "headline_theil_sen": 1.2258956808571078,
+   "density_doubling": 2.648891424710226,
+   "density_theil_sen": 0.3620213643903643,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.22888586002552025,
+    "ci": [
+     -0.04584466231632096,
+     0.5974359333847792
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.21734448972277937
+  },
+  {
+   "label": "without wafer-scale",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.9299404400710313,
+   "headline_doubling_ci": [
+    0.7356877615918423,
+    1.2367537860716278
+   ],
+   "headline_slope": 1.0753376849850915,
+   "headline_theil_sen": 1.1000141778745811,
+   "density_doubling": 2.5981052989987865,
+   "density_theil_sen": 0.39097660605992923,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.14414611358233775,
+    "ci": [
+     -0.07320793581223117,
+     0.40361310321235794
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.05476204607705598
+  },
+  {
+   "label": "frontier envelope",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K20X",
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "T4",
+    "A100 SXM4 40GB",
+    "WSE-2"
+   ],
+   "headline_doubling": 0.763221316908517,
+   "headline_doubling_ci": [
+    0.5823131580191431,
+    0.9880298323322447
+   ],
+   "headline_slope": 1.3102359405402513,
+   "headline_theil_sen": 1.344185803686848,
+   "density_doubling": 3.470361868594951,
+   "density_theil_sen": 0.2851451209633824,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.17880752755631735,
+    "ci": [
+     -0.07226885727497916,
+     0.6426064003560376
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.023870328787779282
+  },
+  {
+   "label": "without AMD",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.8209140690626071,
+   "headline_doubling_ci": [
+    0.6186196711632598,
+    1.0852483878636585
+   ],
+   "headline_slope": 1.2181542961517144,
+   "headline_theil_sen": 1.2562580729866655,
+   "density_doubling": 2.755796695087394,
+   "density_theil_sen": 0.35931560263928003,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.09213130915427326,
+    "ci": [
+     -0.1346742419745235,
+     0.3266157450822425
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.017183078255535944
+  },
+  {
+   "label": "without Cerebras",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.9299404400710313,
+   "headline_doubling_ci": [
+    0.7356877615918423,
+    1.2367537860716278
+   ],
+   "headline_slope": 1.0753376849850915,
+   "headline_theil_sen": 1.1000141778745811,
+   "density_doubling": 2.5981052989987865,
+   "density_theil_sen": 0.39097660605992923,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.14414611358233775,
+    "ci": [
+     -0.07320793581223117,
+     0.40361310321235794
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.05476204607705598
+  },
+  {
+   "label": "without Graphcore",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "WSE-2",
+    "H100 SXM5 80GB"
+   ],
+   "headline_doubling": 0.7868304588748231,
+   "headline_doubling_ci": [
+    0.5823524321529595,
+    1.0177411542301127
+   ],
+   "headline_slope": 1.2709218214938094,
+   "headline_theil_sen": 1.310034050023369,
+   "density_doubling": 2.8296570975770843,
+   "density_theil_sen": 0.3567438288804401,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.12723299139977035,
+    "ci": [
+     -0.07703072735235134,
+     0.3867512649765114
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": 0.04534270338766627
+  },
+  {
+   "label": "without NVIDIA",
+   "identity": "A",
+   "n": 3,
+   "products": [
+    "MI60",
+    "GC200",
+    "WSE-2"
+   ],
+   "headline_doubling": 0.3871465944140272,
+   "headline_doubling_ci": [
+    0.15551824448381557,
+    0.8107677744538303
+   ],
+   "headline_slope": 2.583000895341901,
+   "headline_theil_sen": 2.850683372381768,
+   "density_doubling": 3.94328766999944,
+   "density_theil_sen": 0.20315009033994744,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": -0.1920027873314657,
+    "ci": [
+     -0.2976100057549954,
+     0.1090362280905815
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.17105646402910488
+  },
+  {
+   "label": "high-confidence values only",
+   "identity": "A",
+   "n": 8,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "WSE-2"
+   ],
+   "headline_doubling": 0.7891671445514612,
+   "headline_doubling_ci": [
+    0.5713245448933536,
+    1.2252355012935154
+   ],
+   "headline_slope": 1.2671586835617312,
+   "headline_theil_sen": 1.283423217409739,
+   "density_doubling": 2.8104173787854765,
+   "density_theil_sen": 0.3677374581555204,
+   "h3b": {
+    "plus": [
+     "log2_spec_ops_per_transistor_cycle",
+     "log2_precision_multiplier"
+    ],
+    "minus": [
+     "log2_density_mtr_mm2"
+    ],
+    "estimate": 0.05486998844086505,
+    "ci": [
+     -0.2280546731762537,
+     0.38974249155955654
+    ],
+    "excludes_zero": false
+   },
+   "h3b_theil_sen": -0.07237396904442983,
+   "chain": "K20X → A100 SXM4 40GB",
+   "chain_density_share": 0.28280826656798447,
+   "chain_arch_share": 0.532948951502536,
+   "chain_spec_share": 0.29208810227099347,
+   "chain_precision_share": 0.2408608492315425
+  },
+  {
+   "label": "identity A′ (no area)",
+   "identity": "A_prime",
+   "n": 15,
+   "products": [
+    "K40",
+    "M40",
+    "P100 SXM2",
+    "V100 SXM2 16GB",
+    "TPU v2",
+    "TPU v3",
+    "MI60",
+    "A100 SXM4 40GB",
+    "GC200",
+    "MI100",
+    "WSE-2",
+    "MI250X",
+    "H100 SXM5 80GB",
+    "MI325X",
+    "MI355X"
+   ],
+   "headline_doubling": 1.0338827424696684,
+   "headline_doubling_ci": [
+    0.8410932139568517,
+    1.2290985358425834
+   ],
+   "headline_slope": 0.9672276738184723,
+   "headline_theil_sen": 0.9637320388701339,
+   "chain": "K20X → H100 SXM5 80GB",
+   "chain_density_share": null,
+   "chain_arch_share": 0.45034484774774497,
+   "chain_spec_share": 0.3388460086378657,
+   "chain_precision_share": 0.11149883910987926
+  }
+ ]
+}

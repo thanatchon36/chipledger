@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pandas as pd
 import typer
+import yaml
 
 from chipledger import __version__, identity, schema
 
@@ -81,9 +83,34 @@ def _not_yet(phase: str) -> None:
 
 
 @app.command()
-def analyze() -> None:
-    """Estimators (a)–(c), secondary analyses, results/numbers.json and the tables. Phase 3."""
-    _not_yet("Phase 3")
+def analyze(
+    products: Path = PRODUCTS,
+    sources: Path = SOURCES,
+    nodes: Path = Path("data/nodes.csv"),
+    seed: Path = Path("configs/seed.yaml"),
+    mlperf: Path = Path("data/mlperf.csv"),
+    out: Path = RESULTS,
+) -> None:
+    """Estimators (a)–(c), H1–H7, sensitivities and secondary analyses: results/numbers.json and tables."""
+    from chipledger.analysis import run, tables
+
+    ml = pd.read_csv(mlperf) if mlperf.exists() else None
+    numbers = run.run(
+        schema.read_raw(products),
+        schema.read_raw(sources),
+        pd.read_csv(nodes),
+        yaml.safe_load(seed.read_text()),
+        ml,
+    )
+    (out / "tables").mkdir(parents=True, exist_ok=True)
+    (out / "numbers.json").write_text(
+        json.dumps(numbers, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    for name, md in tables.all_tables(numbers).items():
+        (out / "tables" / name).write_text(md, encoding="utf-8")
+    for k, v in numbers["hypotheses"].items():
+        typer.echo(f"{k}: {v['verdict']}")
+    typer.echo(f"wrote {out / 'numbers.json'} and {out / 'tables'}/")
 
 
 @app.command()

@@ -103,6 +103,6 @@ def test_empty_dataset_is_valid(tmp_path: Path) -> None:
 
 
 def test_stubs_say_so() -> None:
-    for cmd in ("analyze", "figures", "paper"):
+    for cmd in ("figures", "paper"):
         r = runner.invoke(app, [cmd])
         assert r.exit_code == 0 and "not built yet" in r.output

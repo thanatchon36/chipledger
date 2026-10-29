@@ -1,0 +1,36 @@
+# Estimator (b): flagship decomposition sample, identity A
+
+Products: K40, M40, P100 SXM2, V100 SXM2 16GB, MI60, A100 SXM4 40GB, GC200, WSE-2, H100 SXM5 80GB.
+
+| series | n | slope (doublings/yr) | 95% CI | doubling (yr) | 95% CI | HC3 se | Theil–Sen |
+|---|---|---|---|---|---|---|---|
+| headline P | 9 | 1.208 | [0.888, 1.619] | 0.83 | [0.62, 1.13] | 0.202 | 1.230 |
+| density N/A | 9 | 0.363 | [0.291, 0.454] | 2.76 | [2.20, 3.43] | 0.045 | 0.368 |
+| area A | 9 | 0.321 | [0.005, 0.925] | 3.11 | [1.08, 190.31] | 0.305 | 0.089 |
+| clock f | 9 | 0.071 | [-0.048, 0.134] | 14.08 | [7.44, ∞] | 0.057 | 0.073 |
+| specialization R/(N f) | 9 | 0.332 | [0.192, 0.475] | 3.01 | [2.10, 5.21] | 0.070 | 0.342 |
+| precision P/R | 9 | 0.121 | [0.000, 0.295] | 8.27 | [3.39, ∞] | 0.072 | 0.000 |
+
+## Identity A′ (no area), flagships
+
+Products: K40, M40, P100 SXM2, V100 SXM2 16GB, TPU v2, TPU v3, MI60, A100 SXM4 40GB, GC200, MI100, WSE-2, MI250X, H100 SXM5 80GB, MI325X, MI355X.
+
+| series | n | slope (doublings/yr) | 95% CI | doubling (yr) | 95% CI | HC3 se | Theil–Sen |
+|---|---|---|---|---|---|---|---|
+| headline P | 15 | 0.967 | [0.814, 1.189] | 1.03 | [0.84, 1.23] | 0.087 | 0.964 |
+| transistors N | 15 | 0.513 | [0.404, 0.778] | 1.95 | [1.29, 2.48] | 0.089 | 0.452 |
+| clock f | 15 | 0.110 | [0.056, 0.163] | 9.07 | [6.12, 17.71] | 0.024 | 0.119 |
+| specialization R/(N f) | 15 | 0.209 | [0.005, 0.347] | 4.78 | [2.88, 185.21] | 0.083 | 0.242 |
+| precision P/R | 15 | 0.135 | [0.045, 0.207] | 7.43 | [4.83, 22.36] | 0.051 | 0.000 |
+
+## Clock-free identity, flagships
+
+Products: K40, M40, P100 SXM2, V100 SXM2 16GB, MI25, MI60, A100 SXM4 40GB, GC200, WSE-2, H100 SXM5 80GB, Maia 100.
+
+| series | n | slope (doublings/yr) | 95% CI | doubling (yr) | 95% CI | HC3 se | Theil–Sen |
+|---|---|---|---|---|---|---|---|
+| headline P | 11 | 1.013 | [0.725, 1.502] | 0.99 | [0.67, 1.38] | 0.248 | 1.043 |
+| density N/A | 11 | 0.358 | [0.310, 0.427] | 2.79 | [2.34, 3.22] | 0.031 | 0.357 |
+| area A | 11 | 0.222 | [0.042, 0.765] | 4.51 | [1.31, 23.65] | 0.198 | 0.068 |
+| specialization R/N (clock-free) | 11 | 0.367 | [0.216, 0.505] | 2.73 | [1.98, 4.63] | 0.076 | 0.375 |
+| precision P/R | 11 | 0.067 | [-0.017, 0.234] | 14.92 | [4.28, ∞] | 0.071 | 0.000 |

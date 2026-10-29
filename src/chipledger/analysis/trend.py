@@ -49,35 +49,68 @@ def _doubling(slope: float) -> float:
     return float("inf") if slope <= 0 else 1.0 / slope
 
 
+def _demean(v: np.ndarray, groups: np.ndarray) -> np.ndarray:
+    """v minus its group mean: OLS on demeaned data gives the fixed-effects (within) slope."""
+    out = v.astype(float).copy()
+    for g in np.unique(groups):
+        m = groups == g
+        out[m] -= out[m].mean()
+    return out
+
+
 def bootstrap(
-    x: np.ndarray, ys: dict[str, np.ndarray], draws: int = DRAWS, seed: int = SEED
+    x: np.ndarray,
+    ys: dict[str, np.ndarray],
+    draws: int = DRAWS,
+    seed: int = SEED,
+    groups: np.ndarray | None = None,
 ) -> dict[str, np.ndarray]:
-    """Slope draws per series from the same resampled chips."""
+    """Slope draws per series from the same resampled chips; within-group slopes if ``groups`` is given."""
     rng = np.random.default_rng(seed)
     n = len(x)
     out = {k: np.empty(draws) for k in ys}
     for i in range(draws):
-        idx = rng.integers(0, n, n)
-        while np.ptp(x[idx]) == 0:  # a draw with one distinct year has no slope
+        while True:
             idx = rng.integers(0, n, n)
+            xi = x[idx] if groups is None else _demean(x[idx], groups[idx])
+            if np.ptp(xi) > 0:  # a draw with no variation in year has no slope
+                break
         for k, y in ys.items():
-            out[k][i] = _ols(x[idx], y[idx])[0]
+            yi = y[idx] if groups is None else _demean(y[idx], groups[idx])
+            out[k][i] = _ols(xi, yi)[0]
     return out
 
 
 def fit_all(
-    frame: pd.DataFrame, series: list[str] = SERIES, draws: int = DRAWS, seed: int = SEED
+    frame: pd.DataFrame,
+    series: list[str] = SERIES,
+    draws: int = DRAWS,
+    seed: int = SEED,
+    groups: str | None = None,
 ) -> tuple[list[Fit], dict[str, np.ndarray]]:
-    """Fits for every series on the rows where all of them are finite; returns the slope draws too."""
+    """Fits for every series on the rows where all of them are finite; returns the slope draws too.
+
+    With ``groups`` (a column, e.g. vendor) the slope is the fixed-effects slope: OLS on data demeaned within
+    each group, HC3 from OLS with group dummies, Theil–Sen on the demeaned data.
+    """
     cols = ["year", *series]
-    sub = frame[cols].dropna()
-    x = sub["year"].to_numpy(dtype=float)
-    ys = {s: sub[s].to_numpy(dtype=float) for s in series}
-    draws_by = bootstrap(x, ys, draws, seed)
+    sub = frame[[*cols, groups] if groups else cols].dropna(subset=cols)
+    if len(sub) < 3:
+        raise ValueError(f"too few rows for a trend: {len(sub)}")
+    x0 = sub["year"].to_numpy(dtype=float)
+    g = sub[groups].astype(str).to_numpy() if groups else None
+    ys0 = {s: sub[s].to_numpy(dtype=float) for s in series}
+    draws_by = bootstrap(x0, ys0, draws, seed, g)
+    x = x0 if g is None else _demean(x0, g)
+    design = sm.add_constant(x0)
+    if g is not None:
+        dummies = pd.get_dummies(pd.Series(g), drop_first=True, dtype=float).to_numpy()
+        design = np.column_stack([design, dummies])
     fits = []
-    for s, y in ys.items():
+    for s, y0 in ys0.items():
+        y = y0 if g is None else _demean(y0, g)
         b, a = _ols(x, y)
-        hc3 = sm.OLS(y, sm.add_constant(x)).fit(cov_type="HC3")
+        hc3 = sm.OLS(y0, design).fit(cov_type="HC3")
         lo, hi = (float(v) for v in np.percentile(draws_by[s], [2.5, 97.5]))
         fits.append(
             Fit(

@@ -32,18 +32,6 @@ def md_table(df: pd.DataFrame, fmt: str = "{:.3f}") -> str:
     return "\n".join(lines)
 
 
-def resolve(products: list[str], names: list[str]) -> list[str]:
-    """Seed names are short ("P100"); products carry the variant ("P100 SXM2"). Exact match first, else the
-    unique product that starts with the name and a space."""
-    out = []
-    for n in names:
-        hits = [n] if n in products else [p for p in products if p.startswith(n + " ")]
-        if len(hits) > 1:
-            raise SystemExit(f"ambiguous chain member {n}: {hits}")
-        out += hits
-    return out
-
-
 def main() -> None:
     d = pd.read_csv("results/derived.csv")
     seed = yaml.safe_load(Path("configs/seed.yaml").read_text())
@@ -52,7 +40,7 @@ def main() -> None:
     # estimator (a) on the NVIDIA chain, AMD chain secondary
     for vendor in ["NVIDIA", "AMD"]:
         members = seed["vendors"][vendor]["chain"] + seed["vendors"][vendor].get("chain_candidates", [])
-        st = chain.steps(d, resolve(d["product"].tolist(), members))
+        st = chain.steps(d, chain.resolve(d.fillna({"variant_of": ""}), members))
         out[f"chain_{vendor}"] = {"steps": st.to_dict("records"), "cumulative": chain.cumulative(st)}
         if not st.empty:
             sh = chain.shares(st)

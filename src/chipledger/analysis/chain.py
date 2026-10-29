@@ -16,13 +16,42 @@ import pandas as pd
 from chipledger.identity import TERMS
 
 EXTRA = ["tdp_w", "tflops_per_w", "mem_bandwidth_gbs", "transistors_b"]  # identity B and context, no shares
+ALIASES = {"MI400 series": "MI455X"}  # seed names that are a family, mapped to the family's flagship row
+
+
+def resolve(derived: pd.DataFrame, names: list[str]) -> list[str]:
+    """Map the seed's chain names to primary rows (PREREGISTRATION §2: only primary variants enter).
+
+    A name that is a product is replaced by its primary variant ("MI300X" -> "MI325X"); otherwise the unique
+    primary row that starts with the name and a space ("P100" -> "P100 SXM2"). Names with no row are skipped.
+    """
+    variant_of = {
+        str(p): (str(v) if isinstance(v, str) and v else str(p))
+        for p, v in zip(derived["product"], derived["variant_of"], strict=True)
+    }
+    primaries = [p for p, v in variant_of.items() if p == v]
+    out: list[str] = []
+    for raw in names:
+        n = ALIASES.get(raw, raw)
+        if n in variant_of:
+            hit = variant_of[n]
+        else:
+            hits = [p for p in primaries if p.startswith(n + " ")]
+            if len(hits) > 1:
+                raise ValueError(f"ambiguous chain member {n}: {hits}")
+            if not hits:
+                continue
+            hit = hits[0]
+        if hit not in out:
+            out.append(hit)
+    return out
 
 
 def _values(
     derived: pd.DataFrame, members: list[str], terms: list[str], sample: str
 ) -> dict[str, dict[str, float]]:
     """Plain floats per product, for the members present in the sample, in chain order."""
-    cols = ["year", "log2_headline", *[f"log2_{t}" for t in terms], *EXTRA]
+    cols = ["year", "log2_headline", *[f"log2_{t}" for t in terms], *[c for c in EXTRA if c not in terms]]
     inside = set(derived.loc[derived[sample].astype(bool), "product"])
     out: dict[str, dict[str, float]] = {}
     for rec in derived[["product", *cols]].to_dict("records"):
@@ -48,12 +77,17 @@ def steps(
         for t in terms:
             row[f"dlog2_{t}"] = v[b][f"log2_{t}"] - v[a][f"log2_{t}"]
         for c in EXTRA:
-            row[f"dlog2_{c}"] = float(np.log2(v[b][c] / v[a][c]))  # nan propagates
+            if c not in terms:
+                row[f"dlog2_{c}"] = float(np.log2(v[b][c] / v[a][c]))  # nan propagates
         rows.append(row)
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    out.attrs["terms"] = list(terms)
+    return out
 
 
 def _terms(step_table: pd.DataFrame) -> list[str]:
+    if "terms" in step_table.attrs:
+        return list(step_table.attrs["terms"])
     return [
         c.removeprefix("dlog2_")
         for c in step_table.columns
@@ -75,6 +109,8 @@ def cumulative(step_table: pd.DataFrame) -> dict[str, Any]:
         "shares": {t: float(step_table[f"dlog2_{t}"].sum()) / total for t in _terms(step_table)},
     }
     for c in EXTRA:
+        if c in out["dlog2"] or f"dlog2_{c}" not in step_table:
+            continue
         col = step_table[f"dlog2_{c}"]
         out["dlog2"][c] = None if col.isna().any() else float(col.sum())
     return out
