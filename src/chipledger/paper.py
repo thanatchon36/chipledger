@@ -26,6 +26,7 @@ import os
 import re
 import shutil
 import subprocess
+import time
 from pathlib import Path
 from typing import Any
 
@@ -292,6 +293,14 @@ def _table(path: Path) -> str:
     return "\n".join(x for x in lines if not x.startswith("#")).strip()
 
 
+def _commit_time(root: Path) -> str:
+    """Time of the last commit that changed the paper source, so rebuilds give the same PDF bytes."""
+    out = subprocess.run(
+        ["git", "log", "-1", "--format=%ct", "--", "paper/paper.md"], capture_output=True, text=True, cwd=root
+    )
+    return out.stdout.strip() if out.returncode == 0 and out.stdout.strip() else str(int(time.time()))
+
+
 def build(root: Path = Path(".")) -> Path:
     src, numbers = root / "paper" / "paper.md", root / "results" / "numbers.json"
     text = src.read_text(encoding="utf-8")
@@ -308,7 +317,11 @@ def build(root: Path = Path(".")) -> Path:
     out_md.write_text(filled, encoding="utf-8")
     if shutil.which("pandoc") is None or shutil.which("typst") is None:
         raise SystemExit(f"pandoc and typst are needed for the PDF; wrote {out_md}")
-    env = {**os.environ, "TYPST_FONT_PATHS": str((root / "paper" / "fonts").resolve())}
+    env = {
+        **os.environ,
+        "TYPST_FONT_PATHS": str((root / "paper" / "fonts").resolve()),
+        "SOURCE_DATE_EPOCH": os.environ.get("SOURCE_DATE_EPOCH") or _commit_time(root),
+    }
     subprocess.run(
         [
             "pandoc",
