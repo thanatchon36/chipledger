@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+dist/
+build/
+*.egg-info/
+.env
+.env.*
+.DS_Store
+
+# downloads never enter git and are never executed (MLPerf result repositories, vendor PDFs)
+data/raw/*
+!data/raw/.gitkeep
+cache/
+work/
+
+# planning notes stay private (lesson from the sandbank/cpilens history rewrites)
+notes/
+MISSION.md
+PROGRESS.md
+DECISIONS.md
+
+# paper build intermediates (`chipledger paper`)
+paper/paper.filled.md
+paper/*.typ
+paper/*.aux
+paper/*.log
+
+# site build output
+site/

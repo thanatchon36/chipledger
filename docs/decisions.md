@@ -1,0 +1,16 @@
+# Decisions
+
+Modelling and engineering choices that are not obvious from the code, with the reason. Pre-registered rules
+live in `PREREGISTRATION.md`; changes to them after freezing go to `DEVIATIONS.md`, not here.
+
+| # | Date | Decision | Why |
+|---|---|---|---|
+| D1 | 2026-10-29 | Repository layout, tooling and paper pipeline follow `coauthored`: src layout, uv, typer, ruff/mypy/pytest with CI, pandoc → Typst with vendored Libertinus and the IEEE CSL, `reader.html` for the web paper, figures in the shared Okabe–Ito/SVG house style. | Same author, same conventions; nothing to invent. |
+| D2 | 2026-10-29 | Code MIT, data CC BY 4.0 (`LICENSE-DATA`). | Two of the three sibling repositories use MIT; the data are facts transcribed from public documents and need an attribution licence, not a software one. |
+| D3 | 2026-10-29 | The pre-registration is `PREREGISTRATION.md` at the top level, frozen at tag `prereg-v1`, with `DEVIATIONS.md` for later changes, instead of the brief's `docs/analysis-plan.md`. | Sibling convention; the README badge and the paper cite the tag. |
+| D4 | 2026-10-29 | The dataset is two hand-curated CSVs, `data/accelerators.csv` and `data/sources.csv`; derived columns are written by code to `results/derived.csv`. Downloads (MLPerf result repositories) go to git-ignored `data/raw/` and are processed into `data/processed/`. | The brief's `data/processed/accelerators.csv` implied a raw → processed step that a hand-curated table does not have; keeping the typed table and its provenance side by side keeps `chipledger validate` simple. |
+| D5 | 2026-10-29 | Vector (`fp16`) and matrix-unit (`fp16_tensor`) rates are separate columns; the reference rate prefers the matrix unit. | The specialization term is meant to capture matrix units; a single FP16 column would hide whether a figure came from one. |
+| D6 | 2026-10-29 | H3 is stated as "specialization + precision outweigh density", not the brief's "more than half of total growth"; H7 is a numeric reconciliation with NVIDIA's account (physical factor ≥ 10×), not an ordering replication. Decided before freezing. | A back-of-envelope identity from remembered figures put specialization + precision at roughly 45–55% of the growth depending on whether the chain starts at K20X or P100, so a one-half threshold would turn on the window; "outweighs density" is the claim that matters and is stable across windows. NVIDIA's categories credit the transistors added by a new node to architecture, so its ordering cannot be replicated one-to-one; the quantitative reconciliation can. |
+| D7 | 2026-10-29 | pandas rather than polars. | statsmodels and the bootstrap work on numpy arrays; pandas is the shorter path for a few hundred rows. |
+| D8 | 2026-10-29 | Announce date is the primary date; ship date a sensitivity. | Announce dates are published for every product; ship dates are often vague. |
+| D9 | 2026-10-29 | `chipledger validate` requires the value in `sources.csv` to equal the value in the table. | A source row that merely exists proves nothing; the match is what makes the provenance checkable. |

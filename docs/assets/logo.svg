@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="chipledger logo">
+  <rect width="120" height="120" rx="22" fill="#1d2b4f"/>
+  <g stroke="#9fb3d9" stroke-width="5" stroke-linecap="round" fill="none">
+    <rect x="28" y="28" width="64" height="64" rx="8"/>
+    <path d="M42 28V16M60 28V16M78 28V16M42 92v12M60 92v12M78 92v12M28 42H16M28 60H16M28 78H16M92 42h12M92 60h12M92 78h12"/>
+  </g>
+  <rect x="38" y="68" width="11" height="14" fill="#9fb3d9"/>
+  <rect x="38" y="62" width="11" height="6" fill="#f4a259"/>
+  <rect x="54.5" y="58" width="11" height="24" fill="#9fb3d9"/>
+  <rect x="54.5" y="46" width="11" height="12" fill="#f4a259"/>
+  <rect x="71" y="52" width="11" height="30" fill="#9fb3d9"/>
+  <rect x="71" y="36" width="11" height="16" fill="#f4a259"/>
+</svg>

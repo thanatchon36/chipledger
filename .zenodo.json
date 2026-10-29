@@ -1,0 +1,21 @@
+{
+  "title": "chipledger: an accounting identity for AI-accelerator performance growth, 2012–2026",
+  "upload_type": "software",
+  "description": "Is Huang's Law Moore's Law? chipledger is a sourced dataset of data-centre AI accelerators (2012–2026) and an exact per-chip accounting identity that splits the growth of headline throughput into transistor density (Moore's law proper), total die area including multi-die packaging, clock, architectural specialization at fixed precision and the gain from narrower arithmetic, with a source for every value and an uncertainty for every share. Pre-registered design. Independent personal research; public data only; does not represent the views of any employer or institution. Code: MIT. Data: CC-BY-4.0.",
+  "creators": [
+    {
+      "name": "Chongmankhong, Thanatchon"
+    }
+  ],
+  "license": "mit",
+  "keywords": [
+    "Moore's law",
+    "Huang's law",
+    "AI accelerators",
+    "GPU",
+    "hardware trends",
+    "growth accounting",
+    "pre-registration"
+  ],
+  "version": "0.0.0"
+}

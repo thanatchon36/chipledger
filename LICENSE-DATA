@@ -1,0 +1,11 @@
+The dataset in this repository (data/accelerators.csv, data/sources.csv, data/nodes.csv, data/processed/
+and the derived tables under results/) is licensed under the Creative Commons Attribution 4.0 International
+License (CC BY 4.0).
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution: Chongmankhong, Thanatchon. chipledger. https://github.com/thanatchon36/chipledger
+
+The values are facts transcribed from public vendor documents, vendor-authored papers and public databases;
+every value carries its source URL, access date and a confidence level in data/sources.csv. Product names
+are trademarks of their vendors. The underlying documents remain subject to their own terms.

@@ -1,0 +1,65 @@
+# Seed list for the sample search (PREREGISTRATION.md §3). Names only: no specification is assumed here.
+# Products found during collection that meet the inclusion rule are added to data/accelerators.csv and
+# logged in DEVIATIONS.md. `chain` is the first flagship of each architecture, used by estimator (a);
+# `chain_candidates` join the chain if N, A, f, W and R are all public at the time of collection.
+window:
+  start: "2012-01-01"
+  end: "2026-10-31"
+vendors:
+  NVIDIA:
+    chain: [K20X, M40, P100, V100, A100, H100, B200]
+    chain_candidates: [B300, Rubin]
+    products:
+      - K20X
+      - K40
+      - K80
+      - M40
+      - P100
+      - V100
+      - T4
+      - A100 40GB
+      - A100 80GB
+      - A30
+      - H100 SXM
+      - H100 PCIe
+      - H200
+      - L40S
+      - B100
+      - B200
+      - GB200 (accounted per B200 die)
+      - B300
+      - Rubin
+  AMD:
+    chain: [MI25, MI60, MI100, MI250X, MI300X, MI355X]
+    chain_candidates: [MI400 series]
+    products: [MI25, MI50, MI60, MI100, MI210, MI250X, MI300X, MI325X, MI350X, MI355X, MI400 series]
+  Google:
+    products: [TPU v1, TPU v2, TPU v3, TPU v4, TPU v4i, TPU v5e, TPU v5p, TPU v6e (Trillium), TPU v7 (Ironwood)]
+  Intel:
+    products: [Gaudi, Gaudi 2, Gaudi 3, Data Center GPU Max 1550]
+  Cerebras:
+    products: [WSE-1, WSE-2, WSE-3]
+  Graphcore:
+    products: [GC2 (Colossus Mk1), GC200 (Mk2), Bow]
+  Groq:
+    products: [LPU (GroqChip 1)]
+  AWS:
+    products: [Inferentia, Inferentia2, Trainium, Trainium2, Trainium3]
+  Huawei:
+    products: [Ascend 910, Ascend 910B, Ascend 910C]
+  Qualcomm:
+    products: [Cloud AI 100]
+  Microsoft:
+    products: [Maia 100]
+  Meta:
+    products: [MTIA v1, MTIA v2]
+  SambaNova:
+    products: [SN40L]
+  Tenstorrent:
+    products: [Wormhole, Blackhole]
+excluded:
+  - consumer and workstation GPUs
+  - CPUs
+  - FPGAs
+  - mobile and edge NPUs
+  - products whose only published numbers come from leaks

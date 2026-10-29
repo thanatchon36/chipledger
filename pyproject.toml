@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chipledger"
+version = "0.0.0"
+description = "Is Huang's law Moore's law? An accounting identity for AI-accelerator performance growth, 2012–2026, with a sourced dataset."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Thanatchon Chongmankhong" }]
+keywords = ["moore's law", "ai accelerators", "gpu", "hardware trends", "growth accounting"]
+dependencies = [
+  "typer>=0.12",
+  "pandas>=2.2",
+  "numpy>=1.26",
+  "scipy>=1.13",
+  "statsmodels>=0.14",
+  "matplotlib>=3.9",
+  "pyyaml>=6",
+]
+
+[project.urls]
+Homepage = "https://github.com/thanatchon36/chipledger"
+Issues = "https://github.com/thanatchon36/chipledger/issues"
+
+[project.scripts]
+chipledger = "chipledger.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11", "pandas-stubs>=2.2", "types-PyYAML"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chipledger"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+files = ["src/chipledger"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
