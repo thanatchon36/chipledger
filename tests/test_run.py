@@ -238,3 +238,12 @@ def test_cli_analyze(tmp_path: Path) -> None:
     assert (tmp_path / "r" / "numbers.json").exists()
     assert (tmp_path / "r" / "tables" / "t5_sensitivity.md").exists()
     assert "H6: not assessed" in res.output
+
+
+def test_h6_skips_excluded_rows() -> None:
+    raw, _ = dataset()
+    d = run.prepare(raw)
+    ml = MLPERF.assign(excluded=["", "", "", "not comparable"], scenario=[None] * 4)
+    out = run.h6(ml, d)
+    assert out["verdict"] == "supported" and out["benchmarks"][0]["n"] == 3
+    assert run.h6(None, d)["verdict"] == "not assessed"

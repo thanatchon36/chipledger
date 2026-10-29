@@ -7,5 +7,5 @@
 | H3 | (a) chain: spec + precision share > density share; (b) regression: spec + precision − density slope > 0, CI excludes 0 | (a) 0.450 vs 0.327; (b) 0.090 doublings/yr, CI [-0.103, 0.307] | falsified ((a) passes, (b) fails) |
 | H4 | NVIDIA chain: mean Δlog2 area and TDP larger on steps ending after 2020 | area -0.02 vs 0.15; TDP 0.81 vs 0.19 (late steps: A100 SXM4 40GB → H100 SXM5 80GB) | not supported |
 | H5 | slope of P − slope of bandwidth > 0, CI excludes 0 (flagship decomposition sample) | 0.709 doublings/yr, CI [0.395, 1.072], n = 7 | supported |
-| H6 | MLPerf per-accelerator slope < headline slope on every benchmark | no MLPerf data collected | not assessed |
+| H6 | MLPerf per-accelerator slope < headline slope on every benchmark | bert (NVIDIA, n = 3): 0.651 vs 0.786; llama2-70b-99.9 (NVIDIA, n = 3): 0.827 vs 1.006; llama2_70b_lora (NVIDIA, n = 3): 0.577 vs 1.006; resnet (NVIDIA, n = 3): 0.450 vs 0.846 | supported |
 | H7 | K20X → H100: growth of N·f ≥ 10× | 30.5× | supported |

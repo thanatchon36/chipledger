@@ -446,7 +446,14 @@ def h6(mlperf: pd.DataFrame | None, d: pd.DataFrame, rule: str = "first") -> dic
     if mlperf is None or mlperf.empty:
         return {"verdict": "not assessed", "reason": "no MLPerf data collected", "benchmarks": []}
     flag = flagships(d).set_index("product")
-    m = mlperf[(mlperf["rule"] == rule) & mlperf["product"].isin(flag.index)].copy()
+    ml = (
+        mlperf.fillna({"scenario": "", "excluded": ""})
+        if "excluded" in mlperf
+        else mlperf.fillna({"scenario": ""})
+    )
+    if "excluded" in ml:
+        ml = ml[ml["excluded"].astype(str).eq("")]  # rows kept for the record, not comparable across rounds
+    m = ml[(ml["rule"] == rule) & ml["product"].isin(flag.index)].copy()
     m["per_accelerator"] = m["per_accelerator"].astype(float)
     m["vendor"] = [flag.loc[p, "vendor"] for p in m["product"]]
     out: list[dict[str, Any]] = []

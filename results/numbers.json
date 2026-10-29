@@ -2126,13 +2126,137 @@
    "verdict": "supported"
   },
   "H6": {
-   "verdict": "not assessed",
-   "reason": "no MLPerf data collected",
-   "benchmarks": [],
+   "verdict": "supported",
+   "rule": "first",
+   "benchmarks": [
+    {
+     "benchmark": "bert",
+     "suite": "training",
+     "scenario": "",
+     "vendor": "NVIDIA",
+     "n": 3,
+     "products": [
+      "A100 SXM4 40GB",
+      "B200",
+      "H100 SXM5 80GB"
+     ],
+     "slope_realized": 0.65074781178286,
+     "slope_headline": 0.785856358027918,
+     "realized_below_headline": true
+    },
+    {
+     "benchmark": "llama2-70b-99.9",
+     "suite": "inference",
+     "scenario": "Offline",
+     "vendor": "NVIDIA",
+     "n": 3,
+     "products": [
+      "B200",
+      "B300",
+      "H100 SXM5 80GB"
+     ],
+     "slope_realized": 0.8272178712050423,
+     "slope_headline": 1.0055305985522556,
+     "realized_below_headline": true
+    },
+    {
+     "benchmark": "llama2_70b_lora",
+     "suite": "training",
+     "scenario": "",
+     "vendor": "NVIDIA",
+     "n": 3,
+     "products": [
+      "B200",
+      "B300",
+      "H100 SXM5 80GB"
+     ],
+     "slope_realized": 0.5769599943887388,
+     "slope_headline": 1.0055305985522556,
+     "realized_below_headline": true
+    },
+    {
+     "benchmark": "resnet",
+     "suite": "training",
+     "scenario": "",
+     "vendor": "NVIDIA",
+     "n": 3,
+     "products": [
+      "A100 SXM4 40GB",
+      "H100 SXM5 80GB",
+      "V100 SXM2 16GB"
+     ],
+     "slope_realized": 0.4501642951530626,
+     "slope_headline": 0.8462588928688979,
+     "realized_below_headline": true
+    }
+   ],
+   "n_below": 4,
    "best_rule": {
-    "verdict": "not assessed",
-    "reason": "no MLPerf data collected",
-    "benchmarks": []
+    "verdict": "supported",
+    "rule": "best",
+    "benchmarks": [
+     {
+      "benchmark": "bert",
+      "suite": "training",
+      "scenario": "",
+      "vendor": "NVIDIA",
+      "n": 3,
+      "products": [
+       "A100 SXM4 40GB",
+       "B200",
+       "H100 SXM5 80GB"
+      ],
+      "slope_realized": 0.5564431005340827,
+      "slope_headline": 0.785856358027918,
+      "realized_below_headline": true
+     },
+     {
+      "benchmark": "llama2-70b-99.9",
+      "suite": "inference",
+      "scenario": "Offline",
+      "vendor": "NVIDIA",
+      "n": 3,
+      "products": [
+       "B200",
+       "B300",
+       "H100 SXM5 80GB"
+      ],
+      "slope_realized": 0.6525036448309779,
+      "slope_headline": 1.0055305985522556,
+      "realized_below_headline": true
+     },
+     {
+      "benchmark": "llama2_70b_lora",
+      "suite": "training",
+      "scenario": "",
+      "vendor": "NVIDIA",
+      "n": 3,
+      "products": [
+       "B200",
+       "B300",
+       "H100 SXM5 80GB"
+      ],
+      "slope_realized": 0.7170080524097049,
+      "slope_headline": 1.0055305985522556,
+      "realized_below_headline": true
+     },
+     {
+      "benchmark": "resnet",
+      "suite": "training",
+      "scenario": "",
+      "vendor": "NVIDIA",
+      "n": 3,
+      "products": [
+       "A100 SXM4 40GB",
+       "H100 SXM5 80GB",
+       "V100 SXM2 16GB"
+      ],
+      "slope_realized": 0.4923945228982232,
+      "slope_headline": 0.8462588928688979,
+      "realized_below_headline": true
+     }
+    ],
+    "n_below": 4
    }
   }
  },
