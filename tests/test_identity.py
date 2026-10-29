@@ -75,7 +75,7 @@ def test_reference_and_headline_rules() -> None:
 def test_identities_hold_exactly() -> None:
     d = identity.derive(frame(V, A, K))
     assert identity.check(d) < identity.TOL
-    for col in ("residual_a", "residual_b", "residual_c"):
+    for col in ("residual_a", "residual_an", "residual_cf", "residual_b", "residual_c"):
         assert (d[col].abs() < identity.TOL).all()
 
 
@@ -113,3 +113,27 @@ def test_check_raises_on_a_broken_identity() -> None:
 def test_decimal_year() -> None:
     assert identity.decimal_year("2020-01-01") == 2020.0
     assert identity.decimal_year("2021-07-02") == pytest.approx(2021.5, abs=0.01)
+
+
+@pytest.mark.parametrize("terms", [identity.TERMS_N, identity.TERMS_CF])
+def test_coarser_identities_multiply_back_to_headline(terms: list[str]) -> None:
+    d = identity.derive(frame(A)).iloc[0]
+    prod = 1.0
+    for t in terms:
+        prod *= float(d[t])
+    assert prod == pytest.approx(624.0)
+
+
+def test_identity_a_prime_needs_no_area() -> None:
+    row = dict(A, product="noarea", die_area_compute_total_mm2=None)
+    d = identity.derive(frame(row)).set_index("product")
+    assert not bool(d.loc["noarea", "sample_a"]) and bool(d.loc["noarea", "sample_an"])
+    assert math.isnan(float(d.loc["noarea", "residual_a"]))
+    assert abs(float(d.loc["noarea", "residual_an"])) < identity.TOL
+
+
+def test_samples_require_power() -> None:
+    row = dict(A, product="nopower", tdp_w=None)
+    d = identity.derive(frame(row)).set_index("product")
+    assert abs(float(d.loc["nopower", "residual_a"])) < identity.TOL  # the identity itself needs no W
+    assert not d.loc["nopower", ["sample_a", "sample_an", "sample_cf"]].any()

@@ -42,9 +42,10 @@ def derive(products: Path = PRODUCTS, out: Path = RESULTS / "derived.csv") -> No
     worst = identity.check(d)
     out.parent.mkdir(parents=True, exist_ok=True)
     d.to_csv(out, index=False)
-    complete = int(d["residual_a"].notna().sum())
+    complete = int(d["sample_a"].sum())
     typer.echo(
-        f"{len(d)} products, {complete} in the decomposition sample, max |residual| {worst:.1e}; wrote {out}"
+        f"{len(d)} products, {complete} in the decomposition sample ({int(d['sample_an'].sum())} in A′), "
+        f"max |residual| {worst:.1e}; wrote {out}"
     )
 
 

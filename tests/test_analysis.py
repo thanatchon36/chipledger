@@ -87,7 +87,7 @@ def test_chain_steps_add_up_and_recover_rates() -> None:
 
 def test_chain_skips_members_outside_the_decomposition_sample() -> None:
     d = ladder()
-    d.loc[d["product"] == "chip3", "residual_a"] = np.nan
+    d.loc[d["product"] == "chip3", "sample_a"] = False
     st = chain.steps(d, ["chip2", "chip3", "chip4", "ghost"])
     assert st[["from", "to"]].values.tolist() == [["chip2", "chip4"]]
     assert chain.cumulative(chain.steps(d, ["ghost"]))["members"] == []
@@ -140,3 +140,17 @@ def test_figures_render(tmp_path) -> None:  # type: ignore[no-untyped-def]
     for name in ["f1_ladder", "f2_chain"]:
         assert (tmp_path / f"{name}.svg").stat().st_size > 1000
         assert (tmp_path / f"{name}.png").stat().st_size > 1000
+
+
+def test_chain_on_identity_a_prime() -> None:
+    from chipledger.identity import TERMS_N
+
+    d = ladder()
+    st = chain.steps(d, [f"chip{i}" for i in range(8)], TERMS_N, "sample_an")
+    cum = chain.cumulative(st)
+    assert set(cum["shares"]) == set(TERMS_N)
+    assert cum["shares"]["transistors_mtr"] == pytest.approx(
+        (RATES["density_mtr_mm2"] + RATES["area_mm2"]) / sum(RATES.values())
+    )
+    fits, _ = trend.fit_all(d, ["log2_headline", *[f"log2_{t}" for t in TERMS_N]], draws=20)
+    assert trend.check_additivity(fits, TERMS_N) < 1e-9

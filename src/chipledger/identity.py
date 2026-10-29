@@ -7,8 +7,10 @@ Identity A holds for every product by construction::
 P is the headline dense rate (TFLOP/s, or TOPS for integer formats); density = N / A in millions of
 transistors per mm²; area = A, the package's compute-die area in mm²; clock = f in MHz; spec = R / (N f),
 reference operations per transistor per cycle; precision_multiplier = P / R with R the reference rate.
-Identity B splits P into P/W and W (TDP); identity C into P/A and A. The residual of each identity is
-computed for every complete row and must be zero to ``TOL``; rows with a missing term get NaN, not a pass.
+Identity B splits P into P/W and W (TDP); identity C into P/A and A. Identity A′ (DEVIATIONS.md #3) merges
+density and area into N, for products without a published die area; the clock-free identity (§6) folds the
+clock into specialization, R / N. The residual of each identity is computed for every complete row and must be
+zero to ``TOL``; rows with a missing term get NaN, not a pass.
 """
 
 from __future__ import annotations
@@ -29,6 +31,14 @@ TERMS = [
     "spec_ops_per_transistor_cycle",
     "precision_multiplier",
 ]
+TERMS_N = ["transistors_mtr", "boost_clock_mhz", "spec_ops_per_transistor_cycle", "precision_multiplier"]
+TERMS_CF = ["density_mtr_mm2", "area_mm2", "spec_ops_per_transistor_us", "precision_multiplier"]
+# sample membership: the identity's terms plus W (§3)
+SAMPLES = {
+    "sample_a": ["transistors_b", "area_mm2", "boost_clock_mhz", "tdp_w", "ref_tflops"],
+    "sample_an": ["transistors_b", "boost_clock_mhz", "tdp_w", "ref_tflops"],
+    "sample_cf": ["transistors_b", "area_mm2", "tdp_w", "ref_tflops"],
+}
 # §2: the first group with a published value gives the reference rate; FP32 is flagged
 REFERENCE_RULE = (("fp16_tensor", "bf16_tensor"), ("fp16", "bf16"), ("fp32",))
 
@@ -95,6 +105,10 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
     out["spec_ops_per_transistor_cycle"] = out["ref_tflops"] / (
         out["transistors_b"] * out["boost_clock_mhz"] * 1e3
     )
+    # A′ and clock-free (§6) need N in millions to close: MTr · MHz · spec = R, MTr · (R / MTr) = R
+    out["transistors_mtr"] = out["transistors_b"] * 1e3
+    # R·1e12 operations per second over N·1e9 transistors, per µs: R / (N·1e3)
+    out["spec_ops_per_transistor_us"] = out["ref_tflops"] / out["transistors_mtr"]
     out["tflops_per_w"] = out["headline_tflops"] / out["tdp_w"]
     out["ref_tflops_per_w"] = out["ref_tflops"] / out["tdp_w"]
     out["tflops_per_mm2"] = out["headline_tflops"] / out["area_mm2"]
@@ -106,6 +120,14 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
         out[f"log2_{t}"] = np.log2(out[t])
         residual = residual - out[f"log2_{t}"]
     out["residual_a"] = residual
+    for name, terms in (("residual_an", TERMS_N), ("residual_cf", TERMS_CF)):
+        r = out["log2_headline"].copy()
+        for t in terms:
+            out[f"log2_{t}"] = np.log2(out[t])
+            r = r - out[f"log2_{t}"]
+        out[name] = r
+    for flag, cols in SAMPLES.items():
+        out[flag] = out[cols].notna().all(axis=1)
     out["residual_b"] = out["log2_headline"] - np.log2(out["tflops_per_w"]) - np.log2(out["tdp_w"])
     out["residual_c"] = out["log2_headline"] - np.log2(out["tflops_per_mm2"]) - np.log2(out["area_mm2"])
     return out
@@ -114,7 +136,7 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
 def check(derived: pd.DataFrame) -> float:
     """The largest |residual| over complete rows; raises if any identity fails."""
     worst = 0.0
-    for col in ("residual_a", "residual_b", "residual_c"):
+    for col in ("residual_a", "residual_an", "residual_cf", "residual_b", "residual_c"):
         r = derived[col].dropna()
         if len(r):
             worst = max(worst, float(r.abs().max()))

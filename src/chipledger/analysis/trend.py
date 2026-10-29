@@ -95,10 +95,10 @@ def fit_all(
     return fits, draws_by
 
 
-def check_additivity(fits: list[Fit]) -> float:
+def check_additivity(fits: list[Fit], terms: list[str] = TERMS) -> float:
     """The term slopes must sum to the headline slope on the same sample; returns the gap."""
     by = {f.series: f.slope for f in fits}
-    gap = abs(sum(by[f"log2_{t}"] for t in TERMS) - by["log2_headline"])
+    gap = abs(sum(by[f"log2_{t}"] for t in terms) - by["log2_headline"])
     if gap > 1e-9:
         raise ValueError(f"term slopes do not add up to the headline slope: gap {gap:.3g}")
     return gap
