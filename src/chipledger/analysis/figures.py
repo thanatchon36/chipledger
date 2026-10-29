@@ -54,7 +54,7 @@ SERIES_COLOUR = {
     "fp32": "#E69F00",
     "transistors_b": "#2F5D8A",
     "density_mtr_mm2": "#0072B2",
-    "area_mm2": "#CC79A7",
+    "area_mm2": "#56B4E9",  # the same slot as the die-area term in the decomposition figures
     "mem_bandwidth_gbs": "#0072B2",
     "ops_per_byte": "#CC79A7",
 }
@@ -432,15 +432,16 @@ def f4_efficiency(d: pd.DataFrame, numbers: dict[str, Any], out: Path) -> None:
     setup()
     eff = numbers["rq3_efficiency"]
     spec = [
-        ("tflops_per_w", "headline rate per watt of TDP (TFLOP/s per W)", "#D55E00"),
-        ("tflops_per_mm2", "headline rate per mm² of compute die", "#56B4E9"),
-        ("tflops_per_btransistor", "headline rate per 10⁹ transistors", "#009E73"),
+        ("tflops_per_w", "headline rate per watt of TDP (TFLOP/s per W)"),
+        ("tflops_per_mm2", "headline rate per mm² of compute die"),
+        ("tflops_per_btransistor", "headline rate per 10⁹ transistors"),
     ]
     flag = run.flagships(d)
     fig = figure(6.0, wspace=0.1)
     axes = fig.subplots(1, 3)
-    for ax, letter, (col, name, colour) in zip(axes, "abc", spec, strict=True):
-        _trend(ax, flag, col, colour, eff[col])
+    for ax, letter, (col, name) in zip(axes, "abc", spec, strict=True):
+        # one series per panel, so every panel takes the headline colour and the axis label names it
+        _trend(ax, flag, col, SERIES_COLOUR["headline"], eff[col])
         _stat(ax, eff[col])
         _log_axis(ax)
         _year_ticks(ax, 2014, 2026, 4)

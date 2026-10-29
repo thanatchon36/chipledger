@@ -397,8 +397,9 @@ this section asks where the difference comes from.
 ![Flagships against announce year, log scale, with least-squares trends and 95% bootstrap intervals for the
 doubling time. (a) Peak rates: headline dense (largest dense rate over all formats), 16-bit reference and vector
 FP32; the legend gives each series' sample and doubling time. (b) Transistors per package, (c) transistor
-density and (d) compute die area, with the sample and doubling time in each panel. Hollow markers: wafer-scale
-parts, which are included in every fit. Each series is fitted on the flagships that publish
+density and (d) compute die area, with the sample and doubling time in each panel; these three panels use the
+colours their terms carry in Figures @fig:f2, @fig:f3 and @fig:f7. Hollow markers: wafer-scale parts, which are
+included in every fit. Each series is fitted on the flagships that publish
 it.](results/figures/f1_ladder.svg){#fig:f1 width=100%}
 
 ## Where it comes from {#sec:decomp}
@@ -552,9 +553,12 @@ the two architectural terms and never between architecture and physics.
 ![NVIDIA's account of K20X → H100 against identity A, as segments of $\log_2$ of the gain, each labelled with its
 factor. Top: Dally's four factors [@dally2023hotchips]; sparsity (hatched) is outside the dense comparison.
 Middle: identity A with the 16-bit reference. Bottom: identity A with FP32 as every chip's reference, where
-specialization falls below one and is drawn left of zero. The dashed line marks the dense total. The physical
-factors (density, area, clock) multiply to {{estimator_c.physical_nf|x1}}, against
-{{estimator_c.nvidia.process|x1}} for process.](results/figures/f7_dally.svg){#fig:f7 width=100%}
+specialization falls below one and is drawn left of zero. The dashed line marks the dense total. Colours pair
+each of NVIDIA's factors with its nearest counterpart in the identity (process with density, complex
+instructions with specialization, number representation with precision); die area and clock have no
+counterpart in NVIDIA's account. The physical factors (density, area, clock) multiply to
+{{estimator_c.physical_nf|x1}}, against {{estimator_c.nvidia.process|x1}} for
+process.](results/figures/f7_dally.svg){#fig:f7 width=100%}
 
 : Estimator (c): identity A from K20X to H100 SXM against NVIDIA's account. The FP32-reference column applies the FP32 sensitivity of Section @sec:robust. {#tbl:recon}
 
