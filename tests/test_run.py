@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -182,7 +183,7 @@ def test_numbers_are_json_safe(numbers: dict) -> None:
 def test_tables_render(numbers: dict) -> None:
     t = tables.all_tables(numbers)
     assert len(t) == 9
-    assert all("|---|" in md for md in t.values())
+    assert all(re.search(r"\|-{3,}\|", md) for md in t.values())
     assert "H7" in t["t1_hypotheses.md"]
 
 

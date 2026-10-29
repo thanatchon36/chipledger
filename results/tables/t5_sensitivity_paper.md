@@ -1,7 +1,7 @@
 # Sensitivity analyses, short form
 
 | variant | n | P doubling, yr [95% CI] | density doubling, yr | H3b contrast, dbl/yr [95% CI] |
-|---|---|---|---|---|
+|----------------------------------|---|-----------------------|--------------------|-----------------------------|
 | primary | 9 | 0.83 [0.62, 1.13] | 2.76 | 0.090 [−0.103, 0.307] |
 | ship date | 9 | not computable | — | — |
 | FP32 reference | 7 | 0.88 [0.67, 1.26] | 2.65 | 0.211 [0.030, 0.516] |

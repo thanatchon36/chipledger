@@ -57,6 +57,10 @@ NOT_PROSE = [
     re.compile(r"\b95% (?=CI|confidence|cluster|interval|Wilson|band)"),  # the confidence level
     re.compile(r"\b(?:Apache|CC BY|CC-BY) ?-?\d+\.\d+"),  # licence names
     re.compile(r"\b(?:19|20)\d\d–(?:19|20)?\d\d\b"),  # year ranges
+    re.compile(r"\b(?:19|20)\d0s\b"),  # decades
+    re.compile(r"\b\d+-bit\b"),  # operand widths
+    re.compile(r"\bLlama \d+ \d+B\b"),  # model names
+    re.compile(r"\b95% (?=bootstrap)"),
 ]
 NUMBER = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)*")
 LABEL = re.compile(r"\{#(fig|tbl|sec):([\w-]+)[^}]*\}")
@@ -211,6 +215,7 @@ def reader(root: Path, filled: str, data: dict[str, Any], pdf: Path) -> Path:
             "--number-sections",
             "--toc",
             "--toc-depth=1",
+            "--mathml",
             "--wrap=none",
             "--metadata=pagetitle:chipledger — paper",
             "-o",

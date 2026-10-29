@@ -1,7 +1,7 @@
 # Sensitivity analyses (PREREGISTRATION §6)
 
 | variant | n | P doubling (yr) [95% CI] | density doubling (yr) | H3b: spec + prec − density (dbl/yr) [95% CI] | chain: density share | chain: spec share | chain: precision share | chain |
-|---|---|---|---|---|---|---|---|---|
+|----------------------------------|---|----------------------------------------|---------------------|----------------------------------------|--------------------|-----------------|----------------------|---------------------|
 | primary | 9 | 0.83 [0.62, 1.13] | 2.76 | 0.090 [-0.103, 0.307] | 0.327 | 0.339 | 0.111 | K20X → H100 SXM5 80GB |
 | ship date | 9 | not computable (too few rows for a trend: 2) | — | — | — | — | — | — |
 | FP32 reference | 7 | 0.88 [0.67, 1.26] | 2.65 | 0.211 [0.030, 0.516] | 0.327 | -0.094 | 0.545 | K20X → H100 SXM5 80GB |

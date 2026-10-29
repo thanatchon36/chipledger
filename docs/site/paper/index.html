@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>chipledger — paper</title>
+<meta name="description" content="chipledger — paper">
+<meta name="author" content="Thanatchon Chongmankhong">
+<style>
+/* One reading column (~46rem) with a results strip up top. System font stacks only: the page is a
+   single self-contained file with no third-party requests. Colour tokens on :root, redefined for dark. */
+:root {
+  --paper: #fbfbf9; --ink: #17191c; --ink-2: #4c5058; --rule: #dcdcd6;
+  --accent: #1f5fae; --accent-soft: #e6eef8;
+  --pos: #1d6b52; --pos-soft: #e3f1ea; --null: #6b6f78; --null-soft: #eeeeea;
+  --find: #8a5a12; --find-soft: #f6eedd; --plate: #ffffff; --quote: #f3f3ef;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #15171a; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #30343a;
+    --accent: #7fb0ec; --accent-soft: #1b2a3d; --pos: #7dcfac; --pos-soft: #16302a;
+    --null: #a6abb4; --null-soft: #23262b; --find: #e7bd73; --find-soft: #33291a;
+    --plate: #f4f4f2; --quote: #1d2024; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #15171a; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #30343a;
+  --accent: #7fb0ec; --accent-soft: #1b2a3d; --pos: #7dcfac; --pos-soft: #16302a;
+  --null: #a6abb4; --null-soft: #23262b; --find: #e7bd73; --find-soft: #33291a;
+  --plate: #f4f4f2; --quote: #1d2024; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.62 var(--font-body); }
+.page { max-width: 46rem; margin: 0 auto; padding-inline: 16px; padding-block: 48px 72px;
+  display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 650; text-wrap: balance; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 4.2vw, 2.35rem); margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 1.4rem; margin: 2.2em 0 0.5em; }
+h3 { font-size: 1.12rem; margin: 1.8em 0 0.4em; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+code { font: 500 0.84em var(--font-mono); overflow-wrap: anywhere; }
+pre { background: var(--quote); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px;
+  overflow-x: auto; font-size: 0.84rem; line-height: 1.5; }
+pre code { font-weight: 400; font-size: inherit; overflow-wrap: normal; }
+.masthead { display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.kicker { margin: 0; font: 500 0.78rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.09em; color: var(--accent); }
+.subtitle { margin: 0; font-style: italic; color: var(--ink-2); font-size: 1.05rem; }
+.byline { margin: 0; color: var(--ink-2); }
+.meta { margin: 0; font: 400 0.8rem/1.6 var(--font-mono); color: var(--ink-2); }
+.meta b { font-weight: 500; color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.actions a { display: inline-block; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px;
+  font: 500 0.78rem var(--font-mono); text-decoration: none; color: var(--ink); }
+.actions a:hover { border-color: var(--accent); color: var(--accent); }
+.abstract h2, .results h2, .toc h2, .cite h2 { margin: 0 0 10px; font-size: 0.82rem; font-family: var(--font-mono);
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-2); }
+.abstract-body p { margin: 0 0 0.8em; font-size: 1.04rem; }
+.abstract-body p:last-child { margin-bottom: 0; }
+.results .note { margin: 0 0 14px; color: var(--ink-2); font-size: 0.95rem; }
+.result-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 8px; }
+.r { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "id tag" "text text"; gap: 2px 10px;
+  padding: 10px 12px; border-radius: 6px; border-left: 3px solid; font-size: 0.9rem; line-height: 1.4; }
+.r-pos { background: var(--pos-soft); border-color: var(--pos); }
+.r-ref { background: var(--find-soft); border-color: var(--find); }
+.r-null, .r-nf { background: var(--null-soft); border-color: var(--null); }
+.r-id { grid-area: id; font: 500 0.85rem var(--font-mono); }
+.r-tag { grid-area: tag; justify-self: end; font: 500 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.r-pos .r-tag { color: var(--pos); } .r-ref .r-tag { color: var(--find); } .r-null .r-tag, .r-nf .r-tag { color: var(--null); }
+.r-text { grid-area: text; }
+.r-text small { display: block; color: var(--ink-2); font-size: 0.8rem; margin-top: 2px; }
+.toc ul { margin: 0; padding-left: 1.2em; columns: 2 14rem; column-gap: 32px; }
+.toc li { break-inside: avoid; }
+.toc ul ul { columns: 1; padding-left: 1em; font-size: 0.92em; color: var(--ink-2); }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.paper h1 { font-size: 1.55rem; margin: 2em 0 0.5em; padding-top: 0.6em; border-top: 1px solid var(--rule); }
+.paper p, .paper li { hyphens: auto; }
+.paper p { margin: 0 0 1em; }
+.paper .header-section-number { color: var(--accent); margin-right: 0.5em; font-family: var(--font-mono); font-size: 0.85em; font-weight: 500; }
+.paper blockquote { margin: 1.2em 0; padding: 10px 16px; border-left: 3px solid var(--rule); background: var(--quote);
+  border-radius: 0 6px 6px 0; font-size: 0.93rem; color: var(--ink-2); }
+figure { margin: 1.6em 0; display: flex; flex-direction: column; gap: 10px; }
+figure img { background: var(--plate); padding: 12px; border-radius: 6px; border: 1px solid var(--rule); max-width: 100%; height: auto; }
+figcaption, caption { font-size: 0.88rem; color: var(--ink-2); line-height: 1.45; text-align: left; }
+.paper table { display: block; overflow-x: auto; border-collapse: collapse; width: 100%; margin: 1.4em 0;
+  font: 400 0.78rem/1.45 var(--font-mono); font-variant-numeric: tabular-nums; }
+th, td { padding: 6px 10px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+th { font-weight: 500; color: var(--ink-2); border-bottom-color: var(--ink-2); }
+#refs { font-size: 0.88rem; line-height: 1.5; display: flex; flex-direction: column; gap: 6px; }
+.csl-entry { display: grid; grid-template-columns: 2.6em 1fr; overflow-wrap: anywhere; }
+.csl-left-margin { color: var(--ink-2); font-family: var(--font-mono); font-size: 0.85em; }
+.cite { min-width: 0; }
+.cite pre, .cite pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.colophon { border-top: 1px solid var(--rule); padding-top: 20px; color: var(--ink-2); font-size: 0.85rem; }
+.colophon p { margin: 0 0 0.7em; }
+@media (max-width: 480px) { body { font-size: 16px; } .page { padding-block: 28px 48px; gap: 28px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <p class="kicker">Research paper · chipledger</p>
+  <h1>Is Huang’s Law Moore’s Law? Decomposing a Decade of AI Accelerator Performance Growth, 2012–2026</h1>
+  <p class="byline">Thanatchon Chongmankhong · October 2026 · <a href="https://github.com/thanatchon36/chipledger">github.com/thanatchon36/chipledger</a></p>
+  <p class="meta"><b>chipledger</b> · 79 accelerators, every value sourced · pre-registered at tag <code>prereg-v1</code></p>
+  <ul class="actions"><li><a href="paper.pdf">Download PDF</a></li><li><a href="https://github.com/thanatchon36/chipledger">Source code</a></li><li><a href="https://github.com/thanatchon36/chipledger/blob/main/PREREGISTRATION.md">Pre-registration</a></li><li><a href="https://github.com/thanatchon36/chipledger/blob/main/REPRODUCE.md">Reproduce</a></li></ul>
+</header>
+<section class="abstract" aria-label="Abstract">
+  <h2>Abstract</h2>
+  <div class="abstract-body"><p>The peak throughput that vendors publish for their data-centre AI accelerators has grown far faster than the transistor counts behind it, a pattern that has been called Huang’s law. We ask how much of that growth is Moore’s law. From vendor documents we build a dataset of 79 accelerators from 14 vendors, announced 2012–2026, with a source, an access date and a confidence level for each of its 1,152 values, and split headline peak throughput exactly into transistor density, die area, clock, operations per transistor per cycle at 16-bit precision (specialization) and the gain from narrower number formats (precision). The design was pre-registered before any value was collected. Over the 9 flagships for which every term is published, headline dense throughput doubled every 0.83 years (95% CI 0.62–1.13) and transistor density every 2.76 years. From NVIDIA’s K20X to its H100, headline throughput rose 501×; density accounts for 33% of that gain on a log scale, specialization for 34%, clock for 16%, precision for 11% and die area for 6%. Moore’s law in the density sense is therefore about a third of Huang’s law, a share that sits just under our pre-registered threshold. Our total agrees with NVIDIA’s own account of the same decade, but the split does not: transistors times clock grew 30.5×, against the 2.5× NVIDIA credits to process, because NVIDIA counts the extra transistors as architecture. In the cross-vendor regression we cannot tell the architectural and arithmetic terms apart from density, so one pre-registered hypothesis is falsified. Memory bandwidth doubled every 2.70 years, and per-accelerator MLPerf results grew more slowly than headline peaks on all four NVIDIA benchmarks we could follow. Since H100, no vendor in the sample has published both die area and clock for its flagship, so the full decomposition ends in 2022.</p></div>
+</section>
+<section class="results" aria-label="Results at a glance">
+  <h2>Results at a glance</h2>
+  <p class="note">Pre-registered hypotheses and their decisions at the frozen thresholds, generated from <code>results/numbers.json</code>. Rates are vendor-published peaks, not measured throughput.</p>
+  <ul class="result-list"><li class="r r-pos"><span class="r-id">H1</span><span class="r-text">Flagship headline dense throughput doubles in at most 1.5 years, CI upper bound below 2 years.<small>supported</small></span><span class="r-tag">supported</span></li>
+<li class="r r-pos"><span class="r-id">H2</span><span class="r-text">Density doubles in at least 2.5 years and is under a third of the NVIDIA chain&#x27;s gain.<small>supported</small></span><span class="r-tag">supported</span></li>
+<li class="r r-ref"><span class="r-id">H3</span><span class="r-text">Specialization and precision outweigh density, in the NVIDIA chain and in the regression.<small>falsified</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-ref"><span class="r-id">H4</span><span class="r-text">NVIDIA&#x27;s area and TDP grew faster per step after 2020 than before.<small>not supported</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-pos"><span class="r-id">H5</span><span class="r-text">Memory bandwidth grows more slowly than headline throughput.<small>supported</small></span><span class="r-tag">supported</span></li>
+<li class="r r-pos"><span class="r-id">H7</span><span class="r-text">From K20X to H100, transistors × clock grew at least 10×, four times NVIDIA&#x27;s 2.5× for process.<small>supported</small></span><span class="r-tag">supported</span></li>
+<li class="r r-nf"><span class="r-id">H6</span><span class="r-text">Per-accelerator MLPerf throughput grows more slowly than headline throughput (exploratory).<small>supported</small></span><span class="r-tag">exploratory</span></li></ul>
+</section>
+<nav class="toc" aria-label="Contents"><h2>Contents</h2>
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#background" id="toc-background"><span class="toc-section-number">2</span> Background</a></li>
+<li><a href="#sec:data" id="toc-sec:data"><span class="toc-section-number">3</span> Data</a></li>
+<li><a href="#sec:method" id="toc-sec:method"><span class="toc-section-number">4</span> Method</a></li>
+<li><a href="#results" id="toc-results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#sec:robust" id="toc-sec:robust"><span class="toc-section-number">6</span> Robustness</a></li>
+<li><a href="#discussion" id="toc-discussion"><span class="toc-section-number">7</span> Discussion</a></li>
+<li><a href="#limitations" id="toc-limitations"><span class="toc-section-number">8</span> Limitations</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span class="toc-section-number">9</span> Conclusion</a></li>
+<li><a href="#data-and-code-availability" id="toc-data-and-code-availability">Data and code availability</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<article class="paper">
+<h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p>In 1965 Gordon Moore predicted that the number of components on an integrated circuit would keep doubling every year <span class="citation" data-cites="moore1965"><a href="#ref-moore1965" role="doc-biblioref">[1]</a></span>, and in 1975 he forecast that the rate would slow to a doubling every two years <span class="citation" data-cites="moore1975"><a href="#ref-moore1975" role="doc-biblioref">[2]</a></span>. Fifty years later the fastest-growing number in computing is not a transistor count but the peak throughput printed on the datasheets of AI accelerators. NVIDIA’s chief scientist has described a thousand-fold gain in single-chip inference throughput over the decade from Kepler to Hopper <span class="citation" data-cites="dally2023hotchips"><a href="#ref-dally2023hotchips" role="doc-biblioref">[3]</a></span>, and the pattern has been called “Huang’s law” since 2018 <span class="citation" data-cites="perry2018spectrum mims2020"><a href="#ref-perry2018spectrum" role="doc-biblioref">[4]</a>, <a href="#ref-mims2020" role="doc-biblioref">[5]</a></span>. If peak throughput grows much faster than transistor counts, most of the growth must come from somewhere other than the process node, and it matters where. Process gains have been steady for half a century, whereas the alternatives (larger dies, higher clocks, more arithmetic per transistor, narrower number formats) each have a limit that a forecast of AI compute would need to know about.</p>
+<p>This paper asks a narrow, checkable version of the question: <em>how much of the growth in the vendor-published peak throughput of data-centre AI accelerators is Moore’s law?</em> We answer it with an accounting identity rather than a model. For every accelerator whose vendor publishes the transistor count, the die area, the clock and the peak rates, the logarithm of the headline peak rate splits exactly into five terms: transistor density, die area, clock, specialization (operations per transistor per cycle at a 16-bit reference precision) and a precision multiplier (the gain from formats narrower than 16-bit). Moore’s law in its scaling sense is the density term.</p>
+<p>Our answer is that density supplies about a third of the growth (Figure 2). From K20X to H100, the headline rate rose 501×, or 8.97 doublings in 9.4 years, of which density supplied 2.93 and specialization 3.04. Across vendors, the flagships’ headline rate doubled every 0.83 years and their density every 2.76 years (Figure 1). The precision multiplier, often named as the main driver, moved in single steps rather than along a trend. The decade’s largest architectural gains came from matrix units at 16-bit precision. The result agrees in total with NVIDIA’s own decomposition of the same decade and disagrees with it on where the transistors belong (Section 5.3).</p>
+<p>We make three contributions. The first is a dataset of 79 accelerators, each value with a source, an access date and a confidence level, released with the code under open licences. The second is a pre-registered decomposition, reported whatever the outcome; two of the seven hypotheses fail. The third is a quantitative reconciliation with the vendor’s own account, which shows that the two accountings differ in bookkeeping rather than in fact.</p>
+<h1 data-number="2" id="background"><span class="header-section-number">2</span> Background</h1>
+<p><strong>Moore, Dennard and Koomey.</strong> Moore’s 1965 paper projected the number of components per chip at minimum cost <span class="citation" data-cites="moore1965"><a href="#ref-moore1965" role="doc-biblioref">[1]</a></span>. In 1975 he split the growth of chip complexity into larger dies, finer dimensions and a residual of “circuit and device cleverness”, the first decomposition of this kind, and forecast the two-year cadence usually quoted <span class="citation" data-cites="moore1975"><a href="#ref-moore1975" role="doc-biblioref">[2]</a></span>. Dennard and colleagues showed that shrinking a MOSFET’s dimensions and voltage together keeps power density constant <span class="citation" data-cites="dennard1974"><a href="#ref-dennard1974" role="doc-biblioref">[6]</a></span>; when voltage scaling stalled in the mid-2000s, clock rates stopped rising and the gains from a new node had to be spent on more cores or more specialised logic <span class="citation" data-cites="esmaeilzadeh2011"><a href="#ref-esmaeilzadeh2011" role="doc-biblioref">[7]</a></span>. Koomey and colleagues measured the efficiency of computing, peak computations per kilowatt-hour, and found that it doubled every 1.57 years from 1946 to 2009 <span class="citation" data-cites="koomey2011"><a href="#ref-koomey2011" role="doc-biblioref">[8]</a></span>. Nagy and colleagues hindcast 62 technologies and found that an exponential trend in time forecasts nearly as well as Wright’s law, while warning that short, noisy series fit it only loosely <span class="citation" data-cites="nagy2013"><a href="#ref-nagy2013" role="doc-biblioref">[9]</a></span>.</p>
+<p><strong>Specialization as the successor to scaling.</strong> Leiserson and colleagues argued that after Moore’s law, performance must come from “the Top” of the computing stack, software, algorithms and hardware architecture, and that domain-specific hardware can run applications tens to hundreds of times faster by using fewer transistors <span class="citation" data-cites="leiserson2020"><a href="#ref-leiserson2020" role="doc-biblioref">[10]</a></span>. Thompson and colleagues showed that the computation used by deep learning grew far faster than per-chip hardware, mostly by running models longer on more machines <span class="citation" data-cites="thompson2020limits"><a href="#ref-thompson2020limits" role="doc-biblioref">[11]</a></span>. Jouppi and colleagues documented Google’s TPUs, the clearest case of a domain-specific accelerator built for machine learning <span class="citation" data-cites="jouppi2017 jouppi2023"><a href="#ref-jouppi2017" role="doc-biblioref">[12]</a>, <a href="#ref-jouppi2023" role="doc-biblioref">[13]</a></span>. Khan and Mann explained for a policy audience why such chips outperform general-purpose processors <span class="citation" data-cites="khan2020"><a href="#ref-khan2020" role="doc-biblioref">[14]</a></span>.</p>
+<p><strong>Huang’s law and the vendor’s decomposition.</strong> IEEE Spectrum named “Huang’s law” in 2018, reporting Jensen Huang’s claim that NVIDIA’s GPUs were 25 times faster than five years earlier, where Moore’s law would have given a factor of 10 <span class="citation" data-cites="perry2018spectrum"><a href="#ref-perry2018spectrum" role="doc-biblioref">[4]</a></span>; the Wall Street Journal put the term in a headline in 2020 <span class="citation" data-cites="mims2020"><a href="#ref-mims2020" role="doc-biblioref">[5]</a></span>. Dally, Keckler and Kirk reported a 317× gain in GPU inference performance from Kepler in 2012 to Ampere in 2020, “largely due to the addition of DL-specific data types and instructions”, and expected it to slow toward the 35% a year that technology alone provides <span class="citation" data-cites="dally2021micro"><a href="#ref-dally2021micro" role="doc-biblioref">[15]</a></span>. Dally’s Hot Chips 2023 keynote extended the chart to H100 and split its thousand-fold gain into number representation, complex instructions, process and sparsity <span class="citation" data-cites="dally2023hotchips merritt2023nvblog"><a href="#ref-dally2023hotchips" role="doc-biblioref">[3]</a>, <a href="#ref-merritt2023nvblog" role="doc-biblioref">[16]</a></span>. That decomposition is the vendor account we test in Section 5.3.</p>
+<p><strong>Trend studies.</strong> Sun and colleagues fitted design trends for more than four thousand CPUs and GPUs from product data and found clock frequency to be the main driver of GPU FLOPS growth, measured at FP32 and base clock <span class="citation" data-cites="sun2019"><a href="#ref-sun2019" role="doc-biblioref">[17]</a></span>. Epoch AI estimated that the FP32 price-performance of GPUs doubles about every 2.5 years <span class="citation" data-cites="hobbhahn2022gpu"><a href="#ref-hobbhahn2022gpu" role="doc-biblioref">[18]</a></span>, and that the FP32 peak of machine learning hardware doubles every 2.3 years and its memory bandwidth every 4 years, with tensor formats giving a further, roughly constant multiple at each precision <span class="citation" data-cites="epoch2023hardware rahman2024epochinsight"><a href="#ref-epoch2023hardware" role="doc-biblioref">[19]</a>, <a href="#ref-rahman2024epochinsight" role="doc-biblioref">[20]</a></span>. Epoch also maintains the hardware database we use as a cross-check <span class="citation" data-cites="epoch2026database"><a href="#ref-epoch2026database" role="doc-biblioref">[21]</a></span>. Sevilla and colleagues measured the growth of training compute <span class="citation" data-cites="sevilla2022"><a href="#ref-sevilla2022" role="doc-biblioref">[22]</a></span>, and Ho and colleagues the algorithmic progress that adds to it <span class="citation" data-cites="ho2024"><a href="#ref-ho2024" role="doc-biblioref">[23]</a></span>; both are demand-side counterparts of the supply side studied here. None of these studies splits a chip’s peak rate into an exact sum of physical and architectural terms with a source for every input, and none reconciles a vendor’s own account.</p>
+<p><strong>Memory wall and realized performance.</strong> Gholami and colleagues showed that the peak compute of server hardware has outgrown memory and interconnect bandwidth for two decades, at 3.0× every two years against 1.6× for DRAM bandwidth and 1.4× for interconnect bandwidth <span class="citation" data-cites="gholami2024"><a href="#ref-gholami2024" role="doc-biblioref">[24]</a></span>. Jouppi and colleagues reported that four of the six production workloads on the first TPU were memory-bound <span class="citation" data-cites="jouppi2017"><a href="#ref-jouppi2017" role="doc-biblioref">[12]</a></span>, and split one TPU generation’s peak gain into more matrix units and a higher clock while memory bandwidth rose much less <span class="citation" data-cites="jouppi2023"><a href="#ref-jouppi2023" role="doc-biblioref">[13]</a></span>. MLPerf provides measured training and inference throughput on fixed tasks <span class="citation" data-cites="mattson2020 reddi2020"><a href="#ref-mattson2020" role="doc-biblioref">[25]</a>, <a href="#ref-reddi2020" role="doc-biblioref">[26]</a></span>, which we use to check whether realized performance follows the headline peaks.</p>
+<h1 data-number="3" id="sec:data"><span class="header-section-number">3</span> Data</h1>
+<p><strong>Unit and population.</strong> The unit is a product: a distinct silicon configuration sold or deployed as a data-centre machine learning accelerator, announced between 2012 and 2026. Variants of the same silicon that differ in memory, power or form factor are separate rows linked to a primary variant, the highest-TDP module form; only primary variants enter the analyses. The dataset has 79 products from 14 vendors, 66 of them primary. Within each vendor and architecture generation, the <em>flagship</em> is the primary part with the highest headline dense rate among parts positioned for training; there are 44. One card whose rates are given for an unstated number of chips is excluded from every analysis.</p>
+<p><strong>Fields.</strong> For each product we record the announce and ship dates, process node and foundry, transistor count, compute and total die area, number of compute dies, boost clock, TDP, memory capacity and bandwidth, and every published peak rate: vector FP64, FP32, FP16, BF16 and INT8, and matrix-unit rates from FP64 down to FP4 and INT4, dense and, separately, with structured sparsity. Prices are recorded where a vendor publishes them; none does for the products in the sample, so no per-dollar analysis is possible.</p>
+<p><strong>Sources.</strong> Every value carries a URL, an access date and a confidence level in <code>data/sources.csv</code>. The order of preference is the vendor’s datasheet, whitepaper or product page, then a vendor-authored paper, then Epoch AI’s hardware database <span class="citation" data-cites="epoch2026database"><a href="#ref-epoch2026database" role="doc-biblioref">[21]</a></span> at medium confidence where the vendor is silent. Of the 1,152 source rows, 1,123 are high confidence, 24 medium and 5 low. Where sources disagree, the vendor’s document wins and the alternatives are listed in <code>data/conflicts.md</code>. Where a vendor publishes only a sparse rate and states that dense is half of it, the dense rate is derived and marked as such. A validator rejects any value without a source.</p>
+<p><strong>Coverage.</strong> The decomposition needs five fields (transistor count, compute die area, clock, TDP and a reference rate), and publication of these has declined. NVIDIA has not published die area or boost clock for Blackwell or Rubin, AMD has not published die area since MI100, and Google publishes neither transistor count nor die area for its TPUs. Only 9 flagships have all five fields; 15 have every field except die area and 11 every field except the clock. We use the last two groups with reduced identities (Section 4). <code>data/coverage.md</code> lists, for every product, the fields it lacks.</p>
+<h1 data-number="4" id="sec:method"><span class="header-section-number">4</span> Method</h1>
+<p><strong>Definitions.</strong> The headline dense rate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> is the largest dense peak rate over every supported format, INT8 and INT4 included, counting two operations per multiply–accumulate. The reference rate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math> is the dense matrix-unit FP16 or BF16 rate; if the product has no matrix unit, its vector FP16 or BF16 rate; if it has no 16-bit format, its FP32 rate. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> is the transistor count of the package, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> the total area of its compute dies, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math> the boost clock (the clock at which vendors state their peak rates, unlike the base clock used by Sun and colleagues <span class="citation" data-cites="sun2019"><a href="#ref-sun2019" role="doc-biblioref">[17]</a></span>) and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math> the TDP.</p>
+<p><strong>Identity A.</strong> For every product with all five fields, by construction, <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>P</mi><mo>=</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mfrac><mi>N</mi><mi>A</mi></mfrac><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>A</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>f</mi><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mfrac><mi>R</mi><mrow><mi>N</mi><mi>f</mi></mrow></mfrac><mo>+</mo><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mfrac><mi>P</mi><mi>R</mi></mfrac><mo>,</mo></mrow><annotation encoding="application/x-tex">\log_2 P = \log_2 \frac{N}{A} + \log_2 A + \log_2 f + \log_2 \frac{R}{N f} + \log_2 \frac{P}{R},</annotation></semantics></math> that is, density + area + clock + specialization + precision. Specialization is reference operations per transistor per cycle: it rises when more of the silicon does 16-bit arithmetic every cycle, and falls when transistors go to caches, I/O or features that do not raise <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>. Sparsity is outside <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>. Two reduced identities cover products with missing fields: identity A′ merges density and area into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>, for products without a published die area, and the clock-free identity merges the clock into specialization (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>/</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">R / N</annotation></semantics></math>), for products without a published clock. Identity B splits <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>/</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">P/W</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>, and identity C into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>/</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">P/A</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>.</p>
+<p><strong>Estimators.</strong> Estimator (a) chains NVIDIA’s first flagship of each architecture from K20X (Kepler) onward and reports, for each step and cumulatively, the change in each term’s <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><annotation encoding="application/x-tex">\log_2</annotation></semantics></math> and its share of the change in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>P</mi></mrow><annotation encoding="application/x-tex">\log_2 P</annotation></semantics></math>. Estimator (b) regresses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><annotation encoding="application/x-tex">\log_2</annotation></semantics></math> of each term and of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math> on decimal announce year over the flagships with all five fields; because the identity is additive, the slopes add up to the slope of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>. Doubling time is the inverse slope. Intervals are percentile intervals from a bootstrap over chips (2,000 draws), with HC3 standard errors and the Theil–Sen slope as checks. Estimator (c) computes identity A from K20X to H100 at the endpoint rates NVIDIA uses (FP32 for K20X, dense FP8 for H100) and compares its physical part, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">N f</annotation></semantics></math>, with NVIDIA’s “process” factor, and its architectural part, specialization × precision, with NVIDIA’s number representation × complex instructions <span class="citation" data-cites="dally2023hotchips"><a href="#ref-dally2023hotchips" role="doc-biblioref">[3]</a></span>.</p>
+<p><strong>Pre-registration.</strong> The question, the definitions, the sample rule, the estimators, seven hypotheses with their decision rules and the sensitivity analyses were frozen at the git tag <code>prereg-v1</code> before any value was collected. The thresholds were set after the author had worked the identity through from remembered headline figures, so the pre-registration is not blind. Every later change, including four decisions taken at review gates during data collection, is logged with its date and reason in <code>DEVIATIONS.md</code>; the main ones are described where they matter below.</p>
+<h1 data-number="5" id="results"><span class="header-section-number">5</span> Results</h1>
+<h2 data-number="5.1" id="sec:rate"><span class="header-section-number">5.1</span> How fast</h2>
+<p>Figure 1 shows the ladder. Over all 43 flagships with a headline rate, the headline doubled every 1.23 years (95% CI 1.08–1.49), the 16-bit reference rate every 1.61 years and the vector FP32 rate every 2.68 years, slower than Epoch AI’s 2.3 years for the FP32 peak of machine learning hardware in general <span class="citation" data-cites="epoch2023hardware"><a href="#ref-epoch2023hardware" role="doc-biblioref">[19]</a></span>. Transistors per package doubled every 1.87 years, close to Moore’s 1975 cadence, and transistor density every 3.06 years. On the 9 flagships with all five fields, the headline doubled every 0.83 years (CI 0.62–1.13), which meets H1. The headline rate has therefore doubled two to three times as fast as density, and the rest of this section asks where the difference comes from.</p>
+<figure id="fig:f1">
+<img src="figures/f1_ladder.svg" style="width:100.0%" alt="Figure 1. Flagships against announce year, log scale, with least-squares trends and 95% bootstrap intervals for the doubling time. (a) Peak rates: headline dense (largest dense rate over all formats), 16-bit reference and vector FP32. (b) Transistors per package, transistor density and compute die area. Hollow markers: wafer-scale parts, which are included in every fit. Each series is fitted on the flagships that publish it." />
+<figcaption aria-hidden="true">Figure 1. Flagships against announce year, log scale, with least-squares trends and 95% bootstrap intervals for the doubling time. (a) Peak rates: headline dense (largest dense rate over all formats), 16-bit reference and vector FP32. (b) Transistors per package, transistor density and compute die area. Hollow markers: wafer-scale parts, which are included in every fit. Each series is fitted on the flagships that publish it.</figcaption>
+</figure>
+<h2 data-number="5.2" id="sec:decomp"><span class="header-section-number">5.2</span> Where it comes from</h2>
+<p><strong>The NVIDIA chain.</strong> Figure 2 gives the chain decomposition. From K20X to H100, density contributed 0.327 of the change in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>P</mi></mrow><annotation encoding="application/x-tex">\log_2 P</annotation></semantics></math>, die area 0.063, clock 0.160, specialization 0.339 and precision 0.111. The steps differ in kind. The Kepler-to-Maxwell step came mostly from clock, on the same 28 nm node. Pascal to Volta added tensor cores and raised specialization by 2.05 doublings in one step. Volta to Ampere took the headline to INT4, a precision gain of 2.00 doublings, and Hopper’s headline format, FP8, is one step wider than Ampere’s INT4, so the precision term fell by −1.00 doublings in the last step. Die area barely moved because K20X was already a large die. AMD’s Instinct chain from MI60 to MI355X, with identity A′ because AMD does not publish die area, gives transistors 0.513, clock 0.056, specialization 0.294 and precision 0.137 of its 7.42 doublings.</p>
+<figure id="fig:f2">
+<img src="figures/f2_chain.svg" style="width:100.0%" alt="Figure 2. Chain-linked decomposition (estimator a). (a) Change in each term’s \log_2 for each step of the NVIDIA chain, identity A; dots: change in the headline rate, the sum of the bars. The steps from H100 onward cannot be decomposed because NVIDIA does not publish die area or boost clock for Blackwell or Rubin. (b) Each term’s share of the cumulative change in \log_2 P: NVIDIA K20X → H100 (identity A) and AMD MI60 → MI355X (identity A′, where transistors stand for density × area)." />
+<figcaption aria-hidden="true">Figure 2. Chain-linked decomposition (estimator a). (a) Change in each term’s <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><annotation encoding="application/x-tex">\log_2</annotation></semantics></math> for each step of the NVIDIA chain, identity A; dots: change in the headline rate, the sum of the bars. The steps from H100 onward cannot be decomposed because NVIDIA does not publish die area or boost clock for Blackwell or Rubin. (b) Each term’s share of the cumulative change in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>P</mi></mrow><annotation encoding="application/x-tex">\log_2 P</annotation></semantics></math>: NVIDIA K20X → H100 (identity A) and AMD MI60 → MI355X (identity A′, where transistors stand for density × area).</figcaption>
+</figure>
+<p><strong>H2: Moore’s law proper is the minority.</strong> Density’s share of the NVIDIA chain, 0.327, is below one third, and its doubling time across flagships, 2.76 years, is above 2.5 years, so H2 is supported. The margin is thin: a change of 4.1% in the transistor count or die area of either endpoint would move the share to one third.</p>
+<p><strong>H3: architecture and arithmetic outweigh density.</strong> In the chain, specialization and precision together account for 0.450 of the gain against density’s 0.327, so part (a) holds. In the regression (Table 1, Figure 3), the specialization and precision slopes sum to more than the density slope by 0.090 doublings per year, but its 95% interval runs from −0.103 to 0.307. Part (b) fails and H3 is falsified as pre-registered. With nine products, the regression cannot separate the architectural terms from density, even though the chain puts them ahead.</p>
+<table id="tbl:trend">
+<caption>Estimator (b): trends of identity A’s terms over the 9 flagships with all five fields (K40, M40, P100, V100, MI60, A100, GC200, WSE-2, H100). Slopes in doublings per year with 95% bootstrap intervals; the term slopes add up to the headline slope.</caption>
+<thead>
+<tr>
+<th>term</th>
+<th>slope (doublings/yr)</th>
+<th>95% CI</th>
+<th>doubling time (yr)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>headline rate <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td>1.208</td>
+<td>[0.888, 1.619]</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>density <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>/</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">N/A</annotation></semantics></math></td>
+<td>0.363</td>
+<td>[0.291, 0.454]</td>
+<td>2.76</td>
+</tr>
+<tr>
+<td>area <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></td>
+<td>0.321</td>
+<td>[0.005, 0.925]</td>
+<td>3.11</td>
+</tr>
+<tr>
+<td>clock <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>f</mi><annotation encoding="application/x-tex">f</annotation></semantics></math></td>
+<td>0.071</td>
+<td>[−0.048, 0.134]</td>
+<td>14.08</td>
+</tr>
+<tr>
+<td>specialization <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mi>f</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">R/(Nf)</annotation></semantics></math></td>
+<td>0.332</td>
+<td>[0.192, 0.475]</td>
+<td>3.01</td>
+</tr>
+<tr>
+<td>precision <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>/</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">P/R</annotation></semantics></math></td>
+<td>0.121</td>
+<td>[0.000, 0.295]</td>
+<td>8.27</td>
+</tr>
+</tbody>
+</table>
+<figure id="fig:f3">
+<img src="figures/f3_regression.svg" style="width:100.0%" alt="Figure 3. Regression decomposition (estimator b). (a) Trend of each term, in doublings per year, with 95% bootstrap intervals, for identity A and the two reduced identities on the flagships each covers. (b) The H3b contrast, specialization + precision − density, under each sensitivity analysis; orange intervals exclude zero." />
+<figcaption aria-hidden="true">Figure 3. Regression decomposition (estimator b). (a) Trend of each term, in doublings per year, with 95% bootstrap intervals, for identity A and the two reduced identities on the flagships each covers. (b) The H3b contrast, specialization + precision − density, under each sensitivity analysis; orange intervals exclude zero.</figcaption>
+</figure>
+<p><strong>H4: bigger silicon and more watts.</strong> After 2020 the chain has a single step that can be decomposed, A100 to H100. On it, TDP grew by 0.81 doublings against a mean of 0.19 on earlier steps, but die area shrank by −0.02 doublings against an earlier mean of 0.15, so H4 is not supported. Area growth after H100 has come from putting two dies in a package, which NVIDIA has not quantified. TDP alone, over the full chain to B300, grew by 0.60 doublings per step after 2020 against 0.19 before. In identity B over the same chain, the power budget accounts for 0.217 of the gain and efficiency for 0.783.</p>
+<h2 data-number="5.3" id="sec:recon"><span class="header-section-number">5.3</span> The vendor’s account</h2>
+<p>Dally’s chart of “single-chip inference performance” plots peak INT8-equivalent TOPS from K20X to H100, and his slide attributes the gain to number representation (16.0×), complex instructions (12.5×), process (2.5×) and sparsity (2.0×), which multiply to 1,000×, or 500× without sparsity <span class="citation" data-cites="dally2023hotchips"><a href="#ref-dally2023hotchips" role="doc-biblioref">[3]</a></span>. The H100 point on the chart, like the A100 point <span class="citation" data-cites="dally2021micro"><a href="#ref-dally2021micro" role="doc-biblioref">[15]</a></span>, is a sparse rate, and the slide adds that model efficiency raised the overall gain further; we compare dense rates and hardware only. Identity A, from K20X’s FP32 rate of 3.95 TFLOP/s to H100’s dense FP8 rate of 1,979 TFLOP/s, gives 501×: the totals agree (Figure 4, Table 2). The split does not. Transistors grew 11.3× and the clock 2.70×, so the physical factor <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">Nf</annotation></semantics></math> grew 30.5×, 12.2 times NVIDIA’s process factor. This meets H7. Correspondingly, specialization × precision is 16.4×, against NVIDIA’s 200×.</p>
+<p>The two accountings differ in bookkeeping. NVIDIA’s “process” is the gain per transistor from a newer node; the extra transistors that the node and a larger die make available are credited to the architecture that uses them. Identity A counts every transistor as a physical input and credits architecture only with what it does per transistor per cycle. Neither is wrong, but they answer different questions: NVIDIA’s says what the design team did with the transistors it was given; ours says how much of the gain would have arrived without any change in what a transistor does. Taking FP32 as the reference for every chip, which is closer to NVIDIA’s “number representation”, moves most of the architectural gain from specialization to precision (29.5× precision and 0.56× specialization) but leaves the physical factor where it was.</p>
+<figure id="fig:f7">
+<img src="figures/f7_dally.svg" style="width:100.0%" alt="Figure 4. NVIDIA’s account of K20X → H100 against identity A, as segments of \log_2 of the gain. Top: Dally’s four factors [3]; sparsity (hatched) is outside the dense comparison. Middle: identity A with the 16-bit reference. Bottom: identity A with FP32 as every chip’s reference, where specialization falls below one and is drawn left of zero. The dashed line marks the dense total. The physical factors (density, area, clock) multiply to 30.5×, against 2.5× for process." />
+<figcaption aria-hidden="true">Figure 4. NVIDIA’s account of K20X → H100 against identity A, as segments of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mrow><mi mathvariant="normal">log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><annotation encoding="application/x-tex">\log_2</annotation></semantics></math> of the gain. Top: Dally’s four factors <span class="citation" data-cites="dally2023hotchips"><a href="#ref-dally2023hotchips" role="doc-biblioref">[3]</a></span>; sparsity (hatched) is outside the dense comparison. Middle: identity A with the 16-bit reference. Bottom: identity A with FP32 as every chip’s reference, where specialization falls below one and is drawn left of zero. The dashed line marks the dense total. The physical factors (density, area, clock) multiply to 30.5×, against 2.5× for process.</figcaption>
+</figure>
+<table id="tbl:recon">
+<caption>Estimator (c): identity A from K20X to H100 SXM against NVIDIA’s account. The FP32-reference column applies the FP32 sensitivity of Section 6.</caption>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 31%" />
+<col style="width: 20%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr>
+<th>factor</th>
+<th>identity A, 16-bit reference</th>
+<th>identity A, FP32 reference</th>
+<th>NVIDIA (Dally 2023)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>headline rate</td>
+<td>3.95 (vector FP32) → 1979 (dense FP8) TFLOP/s</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total (dense)</td>
+<td>501.0×</td>
+<td>501.0×</td>
+<td>500× (1000× with 2× sparsity)</td>
+</tr>
+<tr>
+<td>density</td>
+<td>7.63×</td>
+<td>7.63×</td>
+<td></td>
+</tr>
+<tr>
+<td>area</td>
+<td>1.48×</td>
+<td>1.48×</td>
+<td></td>
+</tr>
+<tr>
+<td>clock</td>
+<td>2.70×</td>
+<td>2.70×</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>physical: N·f</strong></td>
+<td><strong>30.5×</strong></td>
+<td>30.5×</td>
+<td>process 2.5×</td>
+</tr>
+<tr>
+<td>specialization</td>
+<td>8.22×</td>
+<td>0.56×</td>
+<td>complex instructions 12.5×</td>
+</tr>
+<tr>
+<td>precision multiplier</td>
+<td>2.00×</td>
+<td>29.54×</td>
+<td>number representation 16.0×</td>
+</tr>
+<tr>
+<td><strong>non-physical: spec × precision</strong></td>
+<td><strong>16.4×</strong></td>
+<td>16.4×</td>
+<td>200×</td>
+</tr>
+</tbody>
+</table>
+<h2 data-number="5.4" id="sec:mem"><span class="header-section-number">5.4</span> Efficiency and memory</h2>
+<p>Figure 5 shows three efficiency ratios. Headline throughput per watt of TDP doubled every 1.63 years over 29 flagships, the 16-bit reference rate per watt every 2.22 years, throughput per mm² of compute die every 1.27 years and per billion transistors every 2.02 years. Koomey’s efficiency trend for general computing was a doubling every 1.57 years <span class="citation" data-cites="koomey2011"><a href="#ref-koomey2011" role="doc-biblioref">[8]</a></span>; peak AI throughput per watt has kept a similar pace, mostly through formats and matrix units rather than voltage.</p>
+<figure id="fig:f4">
+<img src="figures/f4_efficiency.svg" style="width:100.0%" alt="Figure 5. Efficiency of flagships: headline rate (a) per watt of TDP, (b) per mm² of compute die and (c) per billion transistors, log scale, with least-squares trends and 95% bootstrap intervals. No vendor publishes prices for these products, so no per-dollar series is shown." />
+<figcaption aria-hidden="true">Figure 5. Efficiency of flagships: headline rate (a) per watt of TDP, (b) per mm² of compute die and (c) per billion transistors, log scale, with least-squares trends and 95% bootstrap intervals. No vendor publishes prices for these products, so no per-dollar series is shown.</figcaption>
+</figure>
+<p>Memory has not kept up (Figure 6). Over 38 flagships, bandwidth doubled every 2.70 years and capacity every 2.61 years, while the headline rate doubled every 1.23 years, so the operations available per byte fetched doubled every 2.20 years (fitted directly to the ratio on the flagships that report bandwidth, so it is not exactly the difference of the two slopes). Flagship bandwidth grew faster than the four-year doubling Epoch AI found for machine learning hardware in general <span class="citation" data-cites="epoch2023hardware"><a href="#ref-epoch2023hardware" role="doc-biblioref">[19]</a></span>, but not as fast as compute. In the pre-registered test on the decomposition sample (n = 7), the headline slope exceeds the bandwidth slope by 0.709 doublings per year (CI 0.395–1.072), so H5 is supported; on all 38 flagships with both, the gap is 0.454 (0.349–0.530).</p>
+<figure id="fig:f5">
+<img src="figures/f5_memory.svg" style="width:100.0%" alt="Figure 6. Memory wall. (a) Headline dense rate against memory bandwidth for flagships, coloured by announce year; dashed lines: constant operations per byte. (b) Headline operations per byte of bandwidth against announce year, with the least-squares trend; the doubling times of the ratio and of its two parts are given with 95% bootstrap intervals." />
+<figcaption aria-hidden="true">Figure 6. Memory wall. (a) Headline dense rate against memory bandwidth for flagships, coloured by announce year; dashed lines: constant operations per byte. (b) Headline operations per byte of bandwidth against announce year, with the least-squares trend; the doubling times of the ratio and of its two parts are given with 95% bootstrap intervals.</figcaption>
+</figure>
+<h2 data-number="5.5" id="sec:mlperf"><span class="header-section-number">5.5</span> Peak against measured</h2>
+<p>H6 compares the headline trend with MLPerf results, per accelerator, from the first round in which each product appears. Four benchmarks have results for three NVIDIA flagship generations; no other vendor has three. On all four, the measured per-accelerator throughput grew more slowly than the headline rate of the same products (Figure 7): ResNet-50 training 0.45 against 0.85 doublings per year, BERT training 0.65 against 0.79, Llama 2 70B LoRA fine-tuning 0.58 against 1.01, and Llama 2 70B offline inference 0.83 against 1.01. H6 was pre-registered as exploratory. With three products per benchmark, results from systems of different sizes and software of different ages, and the BERT results of the first round excluded because that round’s accuracy target was lower, it is a consistency check and not an estimate of the gap. Software moves these results too: between the first two training rounds, the best 16-chip results improved 1.3× on unchanged hardware <span class="citation" data-cites="mattson2020"><a href="#ref-mattson2020" role="doc-biblioref">[25]</a></span>, so a first-round result understates what the same chip delivers later; Google measured larger compiler-only gains over 20 months on both GPUs and TPUs <span class="citation" data-cites="jouppi2021"><a href="#ref-jouppi2021" role="doc-biblioref">[27]</a></span>.</p>
+<figure id="fig:f6">
+<img src="figures/f6_mlperf.svg" style="width:100.0%" alt="Figure 7. Peak against measured, NVIDIA flagships. Doublings since the first product of each benchmark, by announce year, for the headline dense rate and for per-accelerator MLPerf throughput (the first result for each product; training: inverse time to train per accelerator). (a) BERT training, (b) Llama 2 70B LoRA fine-tuning, (c) ResNet-50 training, (d) Llama 2 70B inference, offline scenario." />
+<figcaption aria-hidden="true">Figure 7. Peak against measured, NVIDIA flagships. Doublings since the first product of each benchmark, by announce year, for the headline dense rate and for per-accelerator MLPerf throughput (the first result for each product; training: inverse time to train per accelerator). (a) BERT training, (b) Llama 2 70B LoRA fine-tuning, (c) ResNet-50 training, (d) Llama 2 70B inference, offline scenario.</figcaption>
+</figure>
+<h2 data-number="5.6" id="hypotheses"><span class="header-section-number">5.6</span> Hypotheses</h2>
+<p>Table 3 collects the seven decisions.</p>
+<p><strong>Table 1.</strong> Pre-registered hypotheses, decision rules and outcomes. CIs are 95% bootstrap intervals.</p>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 34%" />
+<col style="width: 34%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>rule (PREREGISTRATION §5)</th>
+<th>estimate</th>
+<th>verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1</td>
+<td>doubling of P ≤ 1.5 yr, CI upper bound &lt; 2.0 yr</td>
+<td>0.83 yr, CI [0.62, 1.13], n = 9</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>(a) density doubling ≥ 2.5 yr; (b) density share of the NVIDIA chain &lt; 1/3</td>
+<td>(a) 2.76 yr; (b) 0.327</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>(a) chain: spec + precision share &gt; density share; (b) spec + precision − density slope &gt; 0, CI excludes 0</td>
+<td>(a) 0.450 vs 0.327; (b) 0.090 doublings/yr, CI [−0.103, 0.307]</td>
+<td>falsified ((a) passes, (b) fails)</td>
+</tr>
+<tr>
+<td>H4</td>
+<td>NVIDIA chain: area and TDP grow more per step after 2020</td>
+<td>area −0.02 vs 0.15; TDP 0.81 vs 0.19 (1 late step)</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>H5</td>
+<td>slope of P − slope of bandwidth &gt; 0, CI excludes 0</td>
+<td>0.709 doublings/yr, CI [0.395, 1.072], n = 7</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H6</td>
+<td>MLPerf slope &lt; headline slope on every benchmark</td>
+<td>BERT 0.65 vs 0.79; Llama 2 70B inference 0.83 vs 1.01; Llama 2 70B LoRA 0.58 vs 1.01; ResNet-50 0.45 vs 0.85 (NVIDIA, n = 3 each)</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H7</td>
+<td>K20X → H100: N·f grows ≥ 10×</td>
+<td>30.5×</td>
+<td>supported</td>
+</tr>
+</tbody>
+</table>
+<h1 data-number="6" id="sec:robust"><span class="header-section-number">6</span> Robustness</h1>
+<p>The pre-registered sensitivity analyses are tabulated in the repository (<code>results/tables/t5_sensitivity.md</code>), and Figure 3 (b) shows the H3b contrast under each of them. H1 holds in every variant that can be computed: the headline doubling time ranges from 0.69 years with sparsity to 1.03 years with identity A′, and is 0.39 years without NVIDIA, on only 3 products. Density’s doubling time stays between 2.60 and 3.47 years, apart from the same three-product sample (3.94). The H3b contrast is positive in all but one variant, but its interval excludes zero only with FP32 as the reference, with sparsity in the headline, and with vendor fixed effects over all products in the sample; each of these changes either the definition or the sample, and none was the primary analysis.</p>
+<p>The ship-date variant cannot be computed, because only two of the nine products in the decomposition sample have a published ship date. On the 15 flagships that do, the headline doubling time is 1.67 years by ship date and 1.70 years by announce date. The frontier envelope, the products that set a new record when announced, doubles every 0.96 years, and all 65 primary products every 1.25 years.</p>
+<p><strong>Process nodes.</strong> We also recorded when each product’s node entered volume production. Over 28 products whose node maps onto that series, the median accelerator was announced 2.5 years after its node’s volume production began; NVIDIA’s median is 1.2 years. The lag shows no clear trend (0.20 years per year, CI −0.01–0.40). Density therefore reaches accelerators with a delay, but the delay has not grown.</p>
+<h1 data-number="7" id="discussion"><span class="header-section-number">7</span> Discussion</h1>
+<p><strong>What is left.</strong> The terms of identity A have different futures. Density is the slow, steady term. The clock has nearly stopped: its trend across flagships is 0.07 doublings per year. Precision moves in single steps, and they run out: 8-bit floating-point formats for deep learning <span class="citation" data-cites="micikevicius2022"><a href="#ref-micikevicius2022" role="doc-biblioref">[28]</a></span> reached the headline with Hopper, and four-bit formats with Blackwell. Each halving of the operand width at most doubles the peak rate, and the headline formats of current flagships are four bits wide, so at most one or two such steps remain before arithmetic reaches two bits or one. The area of a single die is bounded by the lithographic reticle, which H100 already approaches; growth since then has come from packages with more than one die, which raises the transistor count and, by identity B, power. Specialization has been the largest term after density, and it is the one with no obvious bound, though its decade was dominated by a single invention, the matrix unit at 16-bit precision.</p>
+<p><strong>What this means for forecasts.</strong> A forecast that extrapolates the headline doubling time of about a year assumes that the non-density terms keep contributing as they did. Two of them, precision and clock, cannot contribute at that rate for long, and a third, single-die area, is near its limit. If density keeps doubling every two to three years and specialization keeps its pace, the headline rate would double more slowly than in 2012–2022, unless packaging and power budgets keep growing. This is an argument about the composition of the trend, not a forecast; our data do not identify a break. They also show that the headline rate overstates the growth of measured throughput (Section 5.5), and that the memory system falls further behind every year (Section 5.4).</p>
+<p><strong>Disclosure.</strong> The most practical finding may be the coverage problem. In 2012–2020 NVIDIA published transistor count, die area and clock for every flagship. For Blackwell and Rubin it publishes transistor counts but neither die area nor boost clock, and other vendors publish less. An exact accounting of where AI hardware gains come from will soon be impossible from public documents unless vendors publish these five fields again.</p>
+<h1 data-number="8" id="limitations"><span class="header-section-number">8</span> Limitations</h1>
+<p>The rates are vendor-published peaks, not measured throughput; Section 5.5 shows that the two diverge. Large training runs report a model FLOPs utilization of about 21–46% of the same peaks <span class="citation" data-cites="chowdhery2023"><a href="#ref-chowdhery2023" role="doc-biblioref">[29]</a></span>, so a doubling of peak need not double delivered work. Vendors define peak rates in slightly different ways (boost or sustained clock, with or without the sparsity factor), and we took them as published, recording derived values as such. The decomposition sample is small, 9 flagships, and NVIDIA-heavy; the intervals reflect sampling over chips, not the measurement error in vendor figures. TPU and most post-2022 products enter only the throughput trends. No vendor publishes prices, so we could not compare performance per dollar with Epoch AI’s estimates <span class="citation" data-cites="hobbhahn2022gpu"><a href="#ref-hobbhahn2022gpu" role="doc-biblioref">[18]</a></span>. The pre-registration was not blind: the author knew the headline figures of NVIDIA’s flagships when setting the thresholds. Two decision rules were close (H2b and the ship-date variant), and the H3 result is a failure to detect rather than evidence of absence. The MLPerf comparison uses three products per benchmark and one vendor.</p>
+<h1 data-number="9" id="conclusion"><span class="header-section-number">9</span> Conclusion</h1>
+<p>From 2012 to 2022, the vendor-published peak throughput of AI accelerators doubled about every year, and transistor density, Moore’s law in its scaling sense, supplied about a third of that growth. The rest came mostly from specialization at 16-bit precision, then from clock and narrower formats, with die area contributing little. NVIDIA’s own account of the same decade agrees in total; it differs in counting the extra transistors as architecture. Huang’s law is therefore not Moore’s law, but neither is it independent of it: without density, the decade’s gain would have been about a third smaller on a log scale. Whether the next decade looks the same depends on terms that the vendors have stopped publishing.</p>
+<h1 class="unnumbered" id="data-and-code-availability">Data and code availability</h1>
+<p>The dataset (<code>data/accelerators.csv</code>, <code>data/sources.csv</code>), the pre-registration, the deviations log and the code that produces every number, table and figure in this paper are released under CC BY 4.0 (data) and MIT (code) at <code>https://github.com/thanatchon36/chipledger</code>. <code>make all</code> rebuilds the analysis from the committed dataset without network access.</p>
+<h1 class="unnumbered" id="references">References</h1>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-moore1965" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">G. E. Moore, <span>“Cramming more components onto integrated circuits,”</span> <em>Electronics</em>, vol. 38, no. 8, pp. 114–117, Apr. 1965, doi: <a href="https://doi.org/10.1109/JPROC.1998.658762">10.1109/JPROC.1998.658762</a>.</div>
+</div>
+<div id="ref-moore1975" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">G. E. Moore, <span>“Progress in digital integrated electronics,”</span> in <em>Technical digest, international electron devices meeting (IEDM)</em>, IEEE, 1975, pp. 11–13. doi: <a href="https://doi.org/10.1109/N-SSC.2006.4804410">10.1109/N-SSC.2006.4804410</a>.</div>
+</div>
+<div id="ref-dally2023hotchips" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">B. Dally, <span>“Hardware for deep learning,”</span> in <em>2023 IEEE hot chips 35 symposium (HCS)</em>, Palo Alto, CA, USA: IEEE, Aug. 2023, pp. 1–58. doi: <a href="https://doi.org/10.1109/HCS59251.2023.10254716">10.1109/HCS59251.2023.10254716</a>.</div>
+</div>
+<div id="ref-perry2018spectrum" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">T. S. Perry, <span>“Move over, <span class="nocase">Moore’s</span> law: Make way for <span class="nocase">Huang’s</span> law.”</span> IEEE Spectrum, Apr. 02, 2018. Available: <a href="https://spectrum.ieee.org/move-over-moores-law-make-way-for-huangs-law">https://spectrum.ieee.org/move-over-moores-law-make-way-for-huangs-law</a></div>
+</div>
+<div id="ref-mims2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">C. Mims, <span>“<span class="nocase">Huang’s</span> law is the new <span class="nocase">Moore’s</span> law, and explains why <span>Nvidia</span> wants <span>Arm</span>.”</span> The Wall Street Journal, Sep. 19, 2020. Available: <a href="https://www.wsj.com/articles/huangs-law-is-the-new-moores-law-and-explains-why-nvidia-wants-arm-11600488001">https://www.wsj.com/articles/huangs-law-is-the-new-moores-law-and-explains-why-nvidia-wants-arm-11600488001</a></div>
+</div>
+<div id="ref-dennard1974" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">R. H. Dennard, F. H. Gaensslen, H.-N. Yu, V. L. Rideout, E. Bassous, and A. R. LeBlanc, <span>“Design of ion-implanted <span>MOSFET</span>’s with very small physical dimensions,”</span> <em>IEEE Journal of Solid-State Circuits</em>, vol. 9, no. 5, pp. 256–268, Oct. 1974, doi: <a href="https://doi.org/10.1109/JSSC.1974.1050511">10.1109/JSSC.1974.1050511</a>.</div>
+</div>
+<div id="ref-esmaeilzadeh2011" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">H. Esmaeilzadeh, E. Blem, R. St. Amant, K. Sankaralingam, and D. Burger, <span>“Dark silicon and the end of multicore scaling,”</span> in <em>Proceedings of the 38th annual international symposium on computer architecture (ISCA ’11)</em>, ACM, 2011, pp. 365–376. doi: <a href="https://doi.org/10.1145/2000064.2000108">10.1145/2000064.2000108</a>.</div>
+</div>
+<div id="ref-koomey2011" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">J. G. Koomey, S. Berard, M. Sanchez, and H. Wong, <span>“Implications of historical trends in the electrical efficiency of computing,”</span> <em>IEEE Annals of the History of Computing</em>, vol. 33, no. 3, pp. 46–54, 2011, doi: <a href="https://doi.org/10.1109/MAHC.2010.28">10.1109/MAHC.2010.28</a>.</div>
+</div>
+<div id="ref-nagy2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">B. Nagy, J. D. Farmer, Q. M. Bui, and J. E. Trancik, <span>“Statistical basis for predicting technological progress,”</span> <em>PLoS ONE</em>, vol. 8, no. 2, p. e52669, 2013, doi: <a href="https://doi.org/10.1371/journal.pone.0052669">10.1371/journal.pone.0052669</a>.</div>
+</div>
+<div id="ref-leiserson2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">C. E. Leiserson <em>et al.</em>, <span>“There’s plenty of room at the top: What will drive computer performance after <span class="nocase">Moore’s</span> law?”</span> <em>Science</em>, vol. 368, no. 6495, p. eaam9744, Jun. 2020, doi: <a href="https://doi.org/10.1126/science.aam9744">10.1126/science.aam9744</a>.</div>
+</div>
+<div id="ref-thompson2020limits" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">N. C. Thompson, K. Greenewald, K. Lee, and G. F. Manso, <span>“The computational limits of deep learning.”</span> 2020. doi: <a href="https://doi.org/10.48550/arXiv.2007.05558">10.48550/arXiv.2007.05558</a>.</div>
+</div>
+<div id="ref-jouppi2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">N. P. Jouppi <em>et al.</em>, <span>“In-datacenter performance analysis of a tensor processing unit,”</span> in <em>Proceedings of the 44th annual international symposium on computer architecture (ISCA ’17)</em>, Toronto, ON, Canada: ACM, 2017, pp. 1–12. doi: <a href="https://doi.org/10.1145/3079856.3080246">10.1145/3079856.3080246</a>.</div>
+</div>
+<div id="ref-jouppi2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">N. P. Jouppi <em>et al.</em>, <span>“<span>TPU</span> v4: An optically reconfigurable supercomputer for machine learning with hardware support for embeddings,”</span> in <em>Proceedings of the 50th annual international symposium on computer architecture (ISCA ’23)</em>, Orlando, FL, USA: ACM, 2023, pp. 1–14. doi: <a href="https://doi.org/10.1145/3579371.3589350">10.1145/3579371.3589350</a>.</div>
+</div>
+<div id="ref-khan2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">S. M. Khan and A. Mann, <span>“<span>AI</span> chips: What they are and why they matter,”</span> Center for Security; Emerging Technology, Georgetown University, CSET Report, Apr. 2020. doi: <a href="https://doi.org/10.51593/20190014">10.51593/20190014</a>.</div>
+</div>
+<div id="ref-dally2021micro" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">W. J. Dally, S. W. Keckler, and D. B. Kirk, <span>“Evolution of the graphics processing unit (<span>GPU</span>),”</span> <em>IEEE Micro</em>, vol. 41, no. 6, pp. 42–51, 2021, doi: <a href="https://doi.org/10.1109/MM.2021.3113475">10.1109/MM.2021.3113475</a>.</div>
+</div>
+<div id="ref-merritt2023nvblog" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">R. Merritt, <span>“Heeding <span class="nocase">Huang’s</span> law: Video shows how engineers keep the speedups coming.”</span> NVIDIA Blog, Sep. 29, 2023. Available: <a href="https://blogs.nvidia.com/blog/huangs-law-dally-hot-chips/">https://blogs.nvidia.com/blog/huangs-law-dally-hot-chips/</a></div>
+</div>
+<div id="ref-sun2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">Y. Sun, N. B. Agostini, S. Dong, and D. Kaeli, <span>“Summarizing <span>CPU</span> and <span>GPU</span> design trends with product data.”</span> 2019. doi: <a href="https://doi.org/10.48550/arXiv.1911.11313">10.48550/arXiv.1911.11313</a>.</div>
+</div>
+<div id="ref-hobbhahn2022gpu" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">M. Hobbhahn and T. Besiroglu, <span>“Trends in <span>GPU</span> price-performance.”</span> Epoch AI, Jun. 27, 2022. Available: <a href="https://epoch.ai/publications/trends-in-gpu-price-performance">https://epoch.ai/publications/trends-in-gpu-price-performance</a></div>
+</div>
+<div id="ref-epoch2023hardware" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">M. Hobbhahn, L. Heim, and G. Aydos, <span>“Trends in machine learning hardware.”</span> Epoch AI, Nov. 09, 2023. Available: <a href="https://epoch.ai/publications/trends-in-machine-learning-hardware">https://epoch.ai/publications/trends-in-machine-learning-hardware</a></div>
+</div>
+<div id="ref-rahman2024epochinsight" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">R. Rahman, <span>“The computational performance of machine learning hardware has doubled every 2.3 years.”</span> Epoch AI Data Insight, Oct. 23, 2024. Available: <a href="https://epoch.ai/data-insights/peak-performance-hardware-on-different-precisions">https://epoch.ai/data-insights/peak-performance-hardware-on-different-precisions</a></div>
+</div>
+<div id="ref-epoch2026database" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">Epoch AI, <span>“Data on machine learning hardware.”</span> Published online at epoch.ai, Oct. 2026. Available: <a href="https://epoch.ai/data/machine-learning-hardware">https://epoch.ai/data/machine-learning-hardware</a></div>
+</div>
+<div id="ref-sevilla2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">J. Sevilla, L. Heim, A. Ho, T. Besiroglu, M. Hobbhahn, and P. Villalobos, <span>“Compute trends across three eras of machine learning,”</span> in <em>2022 international joint conference on neural networks (IJCNN)</em>, Padua, Italy: IEEE, 2022, pp. 1–8. doi: <a href="https://doi.org/10.1109/IJCNN55064.2022.9891914">10.1109/IJCNN55064.2022.9891914</a>.</div>
+</div>
+<div id="ref-ho2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">A. Ho <em>et al.</em>, <span>“Algorithmic progress in language models,”</span> in <em>Advances in neural information processing systems 37 (NeurIPS 2024)</em>, Neural Information Processing Systems Foundation, 2024, pp. 58245–58283. doi: <a href="https://doi.org/10.52202/079017-1856">10.52202/079017-1856</a>.</div>
+</div>
+<div id="ref-gholami2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">A. Gholami, Z. Yao, S. Kim, C. Hooper, M. W. Mahoney, and K. Keutzer, <span>“<span>AI</span> and memory wall,”</span> <em>IEEE Micro</em>, vol. 44, no. 3, pp. 33–39, May 2024, doi: <a href="https://doi.org/10.1109/MM.2024.3373763">10.1109/MM.2024.3373763</a>.</div>
+</div>
+<div id="ref-mattson2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">P. Mattson <em>et al.</em>, <span>“<span>MLPerf</span> training benchmark,”</span> in <em>Proceedings of machine learning and systems (MLSys 2020)</em>, I. Dhillon, D. Papailiopoulos, and V. Sze, Eds., 2020, pp. 336–349. Available: <a href="https://proceedings.mlsys.org/paper_files/paper/2020/hash/411e39b117e885341f25efb8912945f7-Abstract.html">https://proceedings.mlsys.org/paper_files/paper/2020/hash/411e39b117e885341f25efb8912945f7-Abstract.html</a></div>
+</div>
+<div id="ref-reddi2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">V. Janapa Reddi <em>et al.</em>, <span>“<span>MLPerf</span> inference benchmark,”</span> in <em>2020 ACM/IEEE 47th annual international symposium on computer architecture (ISCA)</em>, Valencia, Spain: IEEE, 2020, pp. 446–459. doi: <a href="https://doi.org/10.1109/ISCA45697.2020.00045">10.1109/ISCA45697.2020.00045</a>.</div>
+</div>
+<div id="ref-jouppi2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">N. P. Jouppi <em>et al.</em>, <span>“Ten lessons from three generations shaped <span class="nocase">Google’s</span> <span>TPUv4i</span>: Industrial product,”</span> in <em>2021 ACM/IEEE 48th annual international symposium on computer architecture (ISCA)</em>, Valencia, Spain: IEEE, 2021, pp. 1–14. doi: <a href="https://doi.org/10.1109/ISCA52012.2021.00010">10.1109/ISCA52012.2021.00010</a>.</div>
+</div>
+<div id="ref-micikevicius2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">P. Micikevicius <em>et al.</em>, <span>“<span>FP8</span> formats for deep learning.”</span> 2022. doi: <a href="https://doi.org/10.48550/arXiv.2209.05433">10.48550/arXiv.2209.05433</a>.</div>
+</div>
+<div id="ref-chowdhery2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">A. Chowdhery <em>et al.</em>, <span>“<span>PaLM</span>: Scaling language modeling with pathways,”</span> <em>Journal of Machine Learning Research</em>, vol. 24, no. 240, pp. 1–113, 2023, Available: <a href="https://jmlr.org/papers/v24/22-1144.html">https://jmlr.org/papers/v24/22-1144.html</a></div>
+</div>
+</div>
+</article>
+<section class="cite" aria-label="How to cite"><h2>How to cite</h2><pre><code>@misc{chongmankhong2026chipledger,
+  author = {Chongmankhong, Thanatchon},
+  title  = {Is Huang&#x27;s Law Moore&#x27;s Law? Decomposing a Decade of AI Accelerator
+            Performance Growth, 2012--2026},
+  year   = {2026},
+  url    = {https://github.com/thanatchon36/chipledger}
+}</code></pre></section>
+<footer class="colophon"><p>Independent personal research. Public data only. Does not represent the views of any employer or institution.</p><p>Rendered from <code>paper/paper.md</code> by <code>chipledger paper</code>. Every number is filled from <code>results/numbers.json</code>; <code>chipledger analyze</code> regenerates it from the committed dataset.</p></footer>
+</div>
+</body>
+</html>

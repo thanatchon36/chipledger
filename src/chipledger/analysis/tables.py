@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 TERM_LABEL = {
@@ -26,6 +27,16 @@ TERM_LABEL = {
 }
 
 
+BENCHMARK_LABEL = {
+    "bert": "BERT",
+    "resnet": "ResNet-50",
+    "llama2_70b_lora": "Llama 2 70B LoRA",
+    "llama2-70b-99.9": "Llama 2 70B inference",
+}
+MINUS = re.compile(r"(?<![\w])-(?=\d)")
+FORMAT_LABEL = {"fp32": "vector FP32", "fp8_tensor": "dense FP8"}
+
+
 def _f(x: Any, nd: int = 3) -> str:
     if x is None:
         return "—"
@@ -44,7 +55,9 @@ def _ci(ci: list[Any] | None, nd: int = 3) -> str:
 
 
 def _table(head: list[str], rows: list[list[str]]) -> str:
-    out = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
+    # Dash counts set pandoc's relative column widths when a row is wider than its line limit.
+    widths = [max(3, min(40, max(len(x) for x in col))) for col in zip(head, *rows, strict=True)]
+    out = ["| " + " | ".join(head) + " |", "|" + "".join("-" * w + "|" for w in widths)]
     out += ["| " + " | ".join(r) + " |" for r in rows]
     return "\n".join(out) + "\n"
 
@@ -127,20 +140,20 @@ def hypotheses_table(n: dict[str, Any]) -> str:
     rows = [
         [
             "H1",
-            "doubling of P ≤ 1.5 yr and 95% CI upper bound < 2.0 yr",
+            "doubling of P ≤ 1.5 yr, CI upper bound < 2.0 yr",
             f"{_f(h1['doubling'], 2)} yr, CI {_ci(h1['doubling_ci'], 2)}, n = {h1['n']}",
             h1["verdict"],
         ],
         [
             "H2",
-            "(a) density doubling ≥ 2.5 yr; (b) density share of NVIDIA chain < 1/3",
-            f"(a) {_f(h2['a_density_doubling'], 2)} yr; (b) {_f(h2['b_density_share'])} ({h2['b_chain']})",
+            "(a) density doubling ≥ 2.5 yr; (b) density share of the NVIDIA chain < 1/3",
+            f"(a) {_f(h2['a_density_doubling'], 2)} yr; (b) {_f(h2['b_density_share'])}",
             h2["verdict"],
         ],
         [
             "H3",
-            "(a) chain: spec + precision share > density share; (b) regression: spec + precision − density "
-            "slope > 0, CI excludes 0",
+            "(a) chain: spec + precision share > density share; (b) spec + precision − density slope > 0, "
+            "CI excludes 0",
             f"(a) {_f(h3['a_arch_share'])} vs {_f(h3['a_density_share'])}; "
             f"(b) {_f(c['estimate'])} doublings/yr, CI {_ci(c['ci'])}",
             h3["verdict"] + f" ((a) {'passes' if h3['a_pass'] else 'fails'}, (b) "
@@ -148,42 +161,52 @@ def hypotheses_table(n: dict[str, Any]) -> str:
         ],
         [
             "H4",
-            "NVIDIA chain: mean Δlog2 area and TDP larger on steps ending after 2020",
+            "NVIDIA chain: area and TDP grow more per step after 2020",
             (
                 f"area {_f(h4.get('mean_dlog2_area_mm2_late'), 2)} vs "
                 f"{_f(h4.get('mean_dlog2_area_mm2_early'), 2)}; "
                 f"TDP {_f(h4.get('mean_dlog2_tdp_w_late'), 2)} vs {_f(h4.get('mean_dlog2_tdp_w_early'), 2)} "
-                f"(late steps: {', '.join(h4['late_steps'])})"
+                f"({len(h4['late_steps'])} late step{'s' * (len(h4['late_steps']) != 1)})"
             ),
             h4["verdict"],
         ],
         [
             "H5",
-            "slope of P − slope of bandwidth > 0, CI excludes 0 (flagship decomposition sample)",
+            "slope of P − slope of bandwidth > 0, CI excludes 0",
             f"{_f(h5['contrast']['estimate'])} doublings/yr, CI {_ci(h5['contrast']['ci'])}, n = {h5['n']}",
             h5["verdict"],
         ],
-        ["H6", "MLPerf per-accelerator slope < headline slope on every benchmark", *_h6(h)],
+        ["H6", "MLPerf slope < headline slope on every benchmark", *_h6(h)],
         [
             "H7",
-            "K20X → H100: growth of N·f ≥ 10×",
+            "K20X → H100: N·f grows ≥ 10×",
             f"{_f(h7['nf_growth'], 1)}×",
             h7["verdict"],
         ],
     ]
-    return _table(["", "rule (PREREGISTRATION §5)", "estimate", "verdict"], rows)
+    return _table(
+        ["", "rule (PREREGISTRATION §5)", "estimate", "verdict"],
+        [[MINUS.sub("−", c) for c in r] for r in rows],
+    )
 
 
 def _h6(h: dict[str, Any]) -> list[str]:
     h6 = h.get("H6")
     if not h6:
         return ["—", "not assessed"]
+    bs = h6.get("benchmarks", [])
     parts = [
-        f"{b['benchmark']} ({b['vendor']}, n = {b['n']}): "
-        f"{_f(b['slope_realized'])} vs {_f(b['slope_headline'])}"
-        for b in h6.get("benchmarks", [])
+        f"{BENCHMARK_LABEL.get(b['benchmark'], b['benchmark'])} {_f(b['slope_realized'], 2)} vs "
+        f"{_f(b['slope_headline'], 2)}"
+        for b in bs
     ]
-    return ["; ".join(parts) or h6.get("reason", "no benchmark qualifies"), h6["verdict"]]
+    who = sorted({f"{b['vendor']}, n = {b['n']}" for b in bs})
+    text = "; ".join(parts) + (f" ({'; '.join(who)} each)" if parts else "")
+    return [text or h6.get("reason", "no benchmark qualifies"), h6["verdict"]]
+
+
+def _rate(r: dict[str, Any], nd: int) -> str:
+    return f"{_f(r['tflops'], nd)} ({FORMAT_LABEL.get(r['format'], r['format'])})"
 
 
 def reconciliation_table(c: dict[str, Any], c32: dict[str, Any]) -> str:
@@ -192,8 +215,7 @@ def reconciliation_table(c: dict[str, Any], c32: dict[str, Any]) -> str:
     rows = [
         [
             "headline rate",
-            f"{_f(c['start_rate']['tflops'], 2)} {c['start_rate']['format']} → "
-            f"{_f(c['end_rate']['tflops'], 1)} {c['end_rate']['format']}",
+            f"{_rate(c['start_rate'], 2)} → {_rate(c['end_rate'], 0)} TFLOP/s",
             "",
             "",
         ],
@@ -232,7 +254,7 @@ def reconciliation_table(c: dict[str, Any], c32: dict[str, Any]) -> str:
         ],
     ]
     return _table(
-        ["factor", "identity A (primary reference)", "identity A (FP32 reference)", "NVIDIA (Dally 2023)"],
+        ["factor", "identity A, 16-bit reference", "identity A, FP32 reference", "NVIDIA (Dally 2023)"],
         rows,
     )
 

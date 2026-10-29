@@ -1,7 +1,7 @@
 # Node adoption lag
 
 | product | process (as published) | node row | volume production | announced | lag (yr) |
-|---|---|---|---|---|---|
+|------------------------|---------------------------|----------|-----------------|---------|--------|
 | P100 SXM2 | 16 nm FinFET | TSMC 16FF+ | 2015 | 2016.26 | 0.76 |
 | V100 SXM2 16GB | 12 nm FFN | TSMC 12FFC | 2017 | 2017.35 | -0.15 |
 | T4 | 12 nm FFN | TSMC 12FFC | 2017 | 2018.70 | 1.20 |

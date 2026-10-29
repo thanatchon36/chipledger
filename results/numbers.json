@@ -6,6 +6,13 @@
    "Cloud AI 100 Ultra"
   ],
   "flagships": 44,
+  "vendors": 14,
+  "source_rows": 1152,
+  "source_confidence": {
+   "high": 1123,
+   "medium": 24,
+   "low": 5
+  },
   "flagships_with_headline": 43,
   "A_flagships": 9,
   "A_prime_flagships": 15,
@@ -1948,6 +1955,7 @@
    "b_chain": "K20X → H100 SXM5 80GB",
    "b_density_share": 0.3268178815722357,
    "b_pass": true,
+   "b_margin_endpoint_change": 0.04133564350980179,
    "verdict": "supported"
   },
   "H3": {

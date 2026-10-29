@@ -1,11 +1,11 @@
 # Hypotheses H1–H7
 
 |  | rule (PREREGISTRATION §5) | estimate | verdict |
-|---|---|---|---|
-| H1 | doubling of P ≤ 1.5 yr and 95% CI upper bound < 2.0 yr | 0.83 yr, CI [0.62, 1.13], n = 9 | supported |
-| H2 | (a) density doubling ≥ 2.5 yr; (b) density share of NVIDIA chain < 1/3 | (a) 2.76 yr; (b) 0.327 (K20X → H100 SXM5 80GB) | supported |
-| H3 | (a) chain: spec + precision share > density share; (b) regression: spec + precision − density slope > 0, CI excludes 0 | (a) 0.450 vs 0.327; (b) 0.090 doublings/yr, CI [-0.103, 0.307] | falsified ((a) passes, (b) fails) |
-| H4 | NVIDIA chain: mean Δlog2 area and TDP larger on steps ending after 2020 | area -0.02 vs 0.15; TDP 0.81 vs 0.19 (late steps: A100 SXM4 40GB → H100 SXM5 80GB) | not supported |
-| H5 | slope of P − slope of bandwidth > 0, CI excludes 0 (flagship decomposition sample) | 0.709 doublings/yr, CI [0.395, 1.072], n = 7 | supported |
-| H6 | MLPerf per-accelerator slope < headline slope on every benchmark | bert (NVIDIA, n = 3): 0.651 vs 0.786; llama2-70b-99.9 (NVIDIA, n = 3): 0.827 vs 1.006; llama2_70b_lora (NVIDIA, n = 3): 0.577 vs 1.006; resnet (NVIDIA, n = 3): 0.450 vs 0.846 | supported |
-| H7 | K20X → H100: growth of N·f ≥ 10× | 30.5× | supported |
+|---|----------------------------------------|----------------------------------------|---------------------------------|
+| H1 | doubling of P ≤ 1.5 yr, CI upper bound < 2.0 yr | 0.83 yr, CI [0.62, 1.13], n = 9 | supported |
+| H2 | (a) density doubling ≥ 2.5 yr; (b) density share of the NVIDIA chain < 1/3 | (a) 2.76 yr; (b) 0.327 | supported |
+| H3 | (a) chain: spec + precision share > density share; (b) spec + precision − density slope > 0, CI excludes 0 | (a) 0.450 vs 0.327; (b) 0.090 doublings/yr, CI [−0.103, 0.307] | falsified ((a) passes, (b) fails) |
+| H4 | NVIDIA chain: area and TDP grow more per step after 2020 | area −0.02 vs 0.15; TDP 0.81 vs 0.19 (1 late step) | not supported |
+| H5 | slope of P − slope of bandwidth > 0, CI excludes 0 | 0.709 doublings/yr, CI [0.395, 1.072], n = 7 | supported |
+| H6 | MLPerf slope < headline slope on every benchmark | BERT 0.65 vs 0.79; Llama 2 70B inference 0.83 vs 1.01; Llama 2 70B LoRA 0.58 vs 1.01; ResNet-50 0.45 vs 0.85 (NVIDIA, n = 3 each) | supported |
+| H7 | K20X → H100: N·f grows ≥ 10× | 30.5× | supported |

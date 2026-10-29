@@ -1,8 +1,8 @@
 # Status
 
-**Phase 3 — analysis, done; waiting at Gate 3 (2026-10-29).** H1, H2, H5 and H7 supported, H3 falsified, H4
-not supported, H6 (exploratory) supported. Report: `docs/phase-3-report.md`; numbers: `results/numbers.json`; tables:
-`results/tables/`.
+**Phase 4 — paper, figures and literature, done; waiting at Gate 4 (2026-10-29).** Draft:
+`paper/chipledger.pdf` (12 pages) and `docs/site/paper/index.html`; figures: `results/figures/`; literature:
+`docs/literature/REVIEW.md`. Report: `docs/phase-4-report.md`.
 
 ## Done
 
@@ -21,17 +21,20 @@ not supported, H6 (exploratory) supported. Report: `docs/phase-3-report.md`; num
 - Phase 3 — analysis (2026-10-29): `chipledger analyze` runs estimators (a)–(c), H1–H7, the §6 sensitivities
   and the §7 secondary analyses. Report: `docs/phase-3-report.md`.
 
+- Gate 3 (2026-10-29): verdicts accepted as reported; Phase 4 scope as proposed.
+- Phase 4 — paper, figures, literature (2026-10-29): figures F1–F7, the paper built with pandoc → Typst, 31
+  sources opened and reviewed, Dally's four factors checked against the Hot Chips 2023 slides (they match).
+  Report: `docs/phase-4-report.md`.
+
 ## Next
 
-- Gate 3: the author accepts the verdicts as reported and the Phase 4 scope (`docs/phase-3-report.md`, last
-  section).
-- Phase 4 — paper, figures F1–F7, literature review with every cited document opened. Phase 5 — release
-  packaging. Publishing steps are the author's.
+- Gate 4: the author reviews the full draft (`docs/phase-4-report.md`, last section).
+- Phase 5 — release packaging, local only. Publishing steps are the author's.
 
 ## Open issues
 
 - TechPowerUp returns HTTP 403 to every fetcher available here; WikiChip refuses connections.
 - Die area is unpublished for Blackwell, Rubin, MI100 onward, every TPU after v3, and every AWS, Huawei and Meta
   part after MTIA v2; boost clock is unpublished for Blackwell and Rubin, so every NVIDIA chain ends at H100.
-- NVIDIA's four factors in estimator (c) are as written in the pre-registration; they are checked against
-  Dally's Hot Chips 2023 talk in Phase 4.
+- Three requested references could not be opened and are not cited (Hennessy & Patterson 2019, Thompson &
+  Spanuth 2021, Wulf & McKee 1995).

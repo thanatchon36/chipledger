@@ -508,6 +508,9 @@ def run(
             "primary": len(prim),
             "excluded_not_per_package": sorted(NOT_PER_PACKAGE),
             "flagships": len(flag),
+            "vendors": int(d["vendor"].nunique()),
+            "source_rows": len(sources),
+            "source_confidence": {str(k): int(v) for k, v in sources["confidence"].value_counts().items()},
             "flagships_with_headline": int(flag["headline_tflops"].notna().sum()),
             **{f"{k}_flagships": int(flag[v].sum()) for k, (_, v) in IDENTITIES.items()},
             **{f"{k}_primary": int(prim[v].sum()) for k, (_, v) in IDENTITIES.items()},
@@ -575,6 +578,9 @@ def run(
             "b_chain": f"{nv['members'][0]} → {nv['members'][-1]}",
             "b_density_share": nv["shares"]["density_mtr_mm2"],
             "b_pass": nv["shares"]["density_mtr_mm2"] < 1 / 3,
+            # the change in an endpoint's transistor count or die area that would move the share to 1/3
+            # (P is unchanged: a different N moves density and specialization in opposite directions)
+            "b_margin_endpoint_change": 2 ** (nv["dlog2_headline"] / 3 - nv["dlog2"]["density_mtr_mm2"]) - 1,
         },
         "H3": {
             "a_arch_share": arch_share,

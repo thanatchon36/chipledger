@@ -32,4 +32,4 @@ paper/*.aux
 paper/*.log
 
 # site build output
-site/
+/site/
