@@ -30,6 +30,10 @@
   Phase 5 proceeds.
 - Phase 5 — release packaging (2026-10-29): README with results, Hugging Face card and build script, citation
   metadata at 0.1.0, byte-identical rebuild from a clean clone, history check. Report: `docs/phase-5-report.md`.
+- Revision (2026-10-29, after release): at the author's request the seven figures were redrawn in the house
+  style at text width and the paper was expanded from 12 to 18 pages (background on matrix instructions and
+  number formats, a worked example of the identity, the hypotheses listed in the method, three more tables,
+  a fuller discussion); figures and tables now float in the Typst template. No number changed.
 
 ## Next
 

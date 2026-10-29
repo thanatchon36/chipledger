@@ -133,6 +133,84 @@ def chain_table(c: dict[str, Any]) -> str:
     return _table(head, rows)
 
 
+def _short(product: str) -> str:
+    return product.split()[0]
+
+
+def _format_name(code: str) -> str:
+    """``fp16_tensor`` → ``FP16 matrix``, ``int8`` → ``INT8 vector``."""
+    base, _, unit = code.partition("_")
+    return f"{base.upper()} {'matrix' if unit == 'tensor' else 'vector'}"
+
+
+def chain_paper(c: dict[str, Any]) -> str:
+    """The paper's version of the NVIDIA identity-A chain: short names, one column per term."""
+    terms = list(c["cumulative"]["shares"])
+    short = {
+        "density_mtr_mm2": "density",
+        "area_mm2": "area",
+        "boost_clock_mhz": "clock",
+        "spec_ops_per_transistor_cycle": "specialization",
+        "precision_multiplier": "precision",
+    }
+    head = ["step", "years", "Δlog2 P", *[short.get(t, _label(t)) for t in terms]]
+    rows = [
+        [
+            f"{_short(s['from'])} → {_short(s['to'])}",
+            _f(s["year_to"] - s["year_from"], 2),
+            _f(s["dlog2_headline"], 2),
+            *[_f(s[f"dlog2_{t}"], 2) for t in terms],
+        ]
+        for s in c["steps"]
+    ]
+    cu = c["cumulative"]
+    rows.append(
+        [
+            f"**{_short(cu['members'][0])} → {_short(cu['members'][-1])}**",
+            _f(cu["years"], 2),
+            _f(cu["dlog2_headline"], 2),
+            *[_f(cu["dlog2"][t], 2) for t in terms],
+        ]
+    )
+    rows.append(["**share**", "", "1.000", *[_f(cu["shares"][t]) for t in terms]])
+    return _table(head, [[r[0], *(MINUS.sub("−", c) for c in r[1:])] for r in rows])
+
+
+def _rate_value(v: float) -> str:
+    return f"{v:,.1f}" if v < 100 else f"{v:,.0f}"
+
+
+def sample_table(rows_in: list[dict[str, Any]]) -> str:
+    """The flagship decomposition sample: the five published inputs and the rates behind every term."""
+    rows = []
+    for r in rows_in:
+        rows.append(
+            [
+                _short(r["product"]) + (" (wafer-scale)" if r["wafer_scale"] else ""),
+                r["vendor"],
+                _f(r["year"], 1),
+                f"{r['transistors_b']:,.1f}",
+                f"{r['area_mm2']:,.0f}",
+                f"{r['boost_clock_mhz']:,.0f}",
+                f"{r['tdp_w']:,.0f}",
+                f"{_rate_value(r['ref_tflops'])} ({_format_name(r['ref_format'])})",
+                f"{_rate_value(r['headline_tflops'])} ({_format_name(r['headline_format'])})",
+            ]
+        )
+    head = [
+        "product",
+        "vendor",
+        "announced",
+        "N (10⁹)",
+        "A (mm²)",
+        "f (MHz)",
+        "W (W)",
+        "R (TFLOP/s)",
+        "P (TFLOP/s or TOPS)",
+    ]
+    return _table(head, rows)
+
+
 def hypotheses_table(n: dict[str, Any]) -> str:
     h = n["hypotheses"]
     h1, h2, h3, h4, h5, h7 = h["H1"], h["H2"], h["H3"], h["H4"], h["H5"], h["H7"]
@@ -368,6 +446,9 @@ def all_tables(n: dict[str, Any]) -> dict[str, str]:
             ("nvidia_c", "NVIDIA, identity C (P = P/A · A)"),
         ]
     )
+    t["t3_chain_paper.md"] = "# Estimator (a): NVIDIA chain, identity A, short form\n\n" + chain_paper(
+        a["nvidia_a"]
+    )
     t["t4_reconciliation.md"] = (
         "# Estimator (c): K20X → H100 SXM against NVIDIA's account\n\n"
         + reconciliation_table(n["estimator_c"], n["estimator_c_fp32_reference"])
@@ -398,4 +479,5 @@ def all_tables(n: dict[str, Any]) -> dict[str, str]:
         + single_table(n["rq4_memory"])
     )
     t["t8_nodes.md"] = "# Node adoption lag\n\n" + nodes_table(n["nodes"])
+    t["t9_sample.md"] = "# The flagship decomposition sample (identity A)\n\n" + sample_table(n["sample"])
     return t

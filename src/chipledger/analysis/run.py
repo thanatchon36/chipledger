@@ -132,6 +132,36 @@ def _series(terms: list[str]) -> list[str]:
     return ["log2_headline", *[f"log2_{t}" for t in terms]]
 
 
+SAMPLE_FIELDS = [  # the paper's table of the decomposition sample: the five inputs and the derived terms
+    "vendor",
+    "product",
+    "year",
+    "process_node",
+    "transistors_b",
+    "area_mm2",
+    "boost_clock_mhz",
+    "tdp_w",
+    "ref_tflops",
+    "ref_format",
+    "headline_tflops",
+    "headline_format",
+    "density_mtr_mm2",
+    "spec_ops_per_transistor_cycle",
+    "precision_multiplier",
+    "mem_bandwidth_gbs",
+    "wafer_scale",
+]
+
+
+def sample_rows(frame: pd.DataFrame) -> list[dict[str, Any]]:
+    """The products of a decomposition sample, oldest first, with their inputs and terms."""
+    rows = frame.sort_values("year")[SAMPLE_FIELDS].to_dict("records")
+    out = [{str(k): (bool(v) if k == "wafer_scale" else v) for k, v in r.items()} for r in rows]
+    for r in out:  # the paper's worked example quotes specialization per million transistors
+        r["spec_ops_per_mtransistor_cycle"] = r["spec_ops_per_transistor_cycle"] * 1e6
+    return out
+
+
 def _products(frame: pd.DataFrame, cols: list[str]) -> list[str]:
     sub = frame.dropna(subset=["year", *cols])
     return [str(p) for p in sub.sort_values("year")["product"]]
@@ -519,6 +549,7 @@ def run(
 
     # estimator (b), primary sample
     decomp = flag[flag["sample_a"]]
+    out["sample"] = sample_rows(decomp)
     est_b = decomposition_trend(decomp, TERMS)
     out["estimator_b"] = est_b
     out["estimator_b_a_prime"] = decomposition_trend(flag[flag["sample_an"]], TERMS_N)
@@ -643,6 +674,10 @@ def run(
     out["rq4_memory"] = single_trends(
         flag, ["log2_mem_bandwidth_gbs", "log2_mem_capacity_gb", "log2_ops_per_byte", "log2_headline"]
     )
+    # the same trends as growth factors per two years, the unit Gholami et al. (2024) report in
+    out["per_two_years"] = {
+        k: 2 ** (2 * v["fit"]["slope"]) for k, v in out["rq4_memory"].items() if v.get("fit")
+    }
     out["nodes"] = node_lag(d, nodes)
     out["sensitivity"] = sensitivities(raw, sources, seed)
     return _clean(out)  # type: ignore[no-any-return]

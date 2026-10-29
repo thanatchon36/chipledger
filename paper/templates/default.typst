@@ -20,8 +20,12 @@
   kind: table
 ): set figure.caption(position: $if(table-caption-position)$$table-caption-position$$else$top$endif$)
 
-// long tables (the appendix repository list) continue on the next page instead of leaving a blank one
-#show figure.where(kind: table): set block(breakable: true)
+// figures and tables float to the top or bottom of a page so that text fills the gap they would leave,
+// and a table is never split across a page break; table cells are set small, ragged and unhyphenated
+#show figure.where(kind: image): set figure(placement: auto)
+#show figure.where(kind: table): set figure(placement: auto)
+#show figure.where(kind: table): set text(size: 9pt, hyphenate: false)
+#show figure.where(kind: table): set par(justify: false)
 
 #show figure.where(
   kind: image

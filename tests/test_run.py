@@ -182,9 +182,20 @@ def test_numbers_are_json_safe(numbers: dict) -> None:
 
 def test_tables_render(numbers: dict) -> None:
     t = tables.all_tables(numbers)
-    assert len(t) == 9
+    assert len(t) == 11
     assert all(re.search(r"\|-{3,}\|", md) for md in t.values())
     assert "H7" in t["t1_hypotheses.md"]
+    assert "FP16 matrix" in t["t9_sample.md"]
+
+
+def test_sample_rows_satisfy_identity_a(numbers: dict) -> None:
+    rows = numbers["sample"]
+    assert rows == sorted(rows, key=lambda r: r["year"]) and len(rows) == 9
+    for r in rows:
+        n, f = r["transistors_b"] * 1e9, r["boost_clock_mhz"] * 1e6
+        spec = r["ref_tflops"] * 1e12 / (n * f)
+        assert abs(spec / r["spec_ops_per_transistor_cycle"] - 1) < 1e-9
+        assert abs(r["headline_tflops"] / r["ref_tflops"] - r["precision_multiplier"]) < 1e-9
 
 
 def test_options_change_the_definitions() -> None:
