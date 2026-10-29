@@ -39,7 +39,8 @@ note, with the arithmetic.
 The dataset was built for the paper *Is Huang's Law Moore's Law? Decomposing a Decade of AI Accelerator
 Performance Growth, 2012–2026* ([PDF](https://github.com/thanatchon36/chipledger/blob/main/paper/chipledger.pdf)),
 which splits the growth of headline throughput into transistor density, die area, clock, operations per
-transistor per cycle and the gain from narrower formats. Code: <https://github.com/thanatchon36/chipledger>.
+transistor per cycle and the gain from narrower formats. Code: <https://github.com/thanatchon36/chipledger>;
+archived on Zenodo: [10.5281/zenodo.23763729](https://doi.org/10.5281/zenodo.23763729).
 
 *Independent personal research. Public data only. Does not represent the views of any employer or institution.*
 
