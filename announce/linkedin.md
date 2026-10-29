@@ -4,7 +4,8 @@ Numbers match `results/numbers.json` at the commit that adds this file. Keep "he
 peak"; never "performance" without that qualifier, because the paper's rates are datasheet peaks, not measured
 throughput. Variant D is the launch post; it goes with `poster.png` (1200×1500, built by `scripts/poster.py`
 from the same `numbers.json`). LinkedIn shows about the first 210 characters before "…more", so the hook is the
-first three lines; links go in the first comment, where they do not cost reach.
+first three lines, and a post may not exceed 3,000 characters (both launch posts are under 2,900 without the
+first comment); links go in the first comment, where they do not cost reach.
 
 Links: paper <https://thanatchon36.github.io/chipledger/paper/> · code and data
 <https://github.com/thanatchon36/chipledger> · dataset <https://huggingface.co/datasets/thanatchon36/chipledger>
@@ -21,7 +22,7 @@ Its transistor count grew 11×. Its clock, 2.7×.
 Where did the rest come from? I pre-registered a study and did the arithmetic.
 
 "Huang's law" is the claim that AI chips outrun Moore's law. I wanted to know how much of it is Moore's law in
-disguise. So I built a dataset of 79 data-centre AI accelerators from 14 vendors (2012–2026): 1,152 values,
+disguise? I built a dataset of 79 data-centre AI accelerators from 14 vendors (2012–2026): 1,152 values,
 each with a source URL, an access date and a confidence level. Then I split every vendor's published peak
 into five factors that multiply exactly:
 
@@ -37,39 +38,37 @@ years over all 43 flagships to 2026. Moore's 1975 forecast for transistor counts
 
 → On NVIDIA's chain K20X → H100, the 501× splits into transistor density 33%, die area 6%, clock 16%,
 specialization 34% and precision 11% of the log gain. Moore's law in the density sense is about a third of
-Huang's law. The largest single term is the matrix units.
+Huang's law.
 
 → NVIDIA's own account (Dally, Hot Chips 2023) credits process with 2.5× and architecture with 200×. Same
 total, different bookkeeping: transistors × clock grew 30.5×, 12 times NVIDIA's process factor, because NVIDIA
-counts the extra transistors a new node gives as architecture. Where the gain "comes from" depends on who gets
-credit for a transistor.
+counts the extra transistors a new node gives as architecture.
 
 → The memory wall is real and widening: memory bandwidth doubled every 2.70 years against 1.23 for compute, so
-the operations a chip can do per byte it fetches double every 2.20 years.
+operations per byte fetched double every 2.20 years.
 
-→ A peak is not delivered work: on all four MLPerf benchmarks I could follow across NVIDIA generations, measured
-per-accelerator throughput grew more slowly than the headline (ResNet-50 training: 0.45 vs 0.85 doublings per
+→ A peak is not delivered work: on all four MLPerf benchmarks I could follow, measured per-accelerator
+throughput grew more slowly than the headline (ResNet-50 training: 0.45 vs 0.85 doublings per
 year).
 
 → Disclosure ended in 2022. Since H100, no vendor in the sample publishes both die area and clock for its
 flagship. From public documents, this decomposition cannot be done for Blackwell, Rubin, MI355X or any TPU.
 
-Two caveats that belong on every chart:
-1. Every rate is a vendor-published peak, dense, without sparsity. Peaks are what Huang's law is about, but they
-are not what a training job gets.
+Two caveats:
+1. Every rate is a vendor-published peak, dense, without sparsity.
 2. The decomposition sample is 9 flagships, 6 of them NVIDIA's. Across vendors, the regression cannot separate
 the architectural terms from density; that pre-registered hypothesis was falsified.
 
 Of 7 pre-registered hypotheses: 5 supported, 1 not supported, 1 falsified. The ones that failed are in the
-paper, with the same weight as the ones that passed.
+paper.
 
-Everything is open: the dataset with per-value provenance (CC BY 4.0), the code (MIT), the pre-registration
-frozen in git before any value was collected, the deviations log and the paper. One command rebuilds every
-number, figure and the PDF from the committed data, with no network.
+Everything is open: dataset with per-value provenance (CC BY 4.0), code (MIT), the pre-registration frozen in
+git before any value was collected, the deviations log and the paper. One command rebuilds every number, figure
+and the PDF.
 
 Independent personal research. Public data only. Does not represent the views of any employer or institution.
 
-#AI #Semiconductors #MooresLaw #GPU #HardwareEngineering #OpenData #Research
+#AI #Semiconductors #MooresLaw #GPU #OpenData #Research
 
 First comment:
 📄 Paper: https://thanatchon36.github.io/chipledger/paper/
@@ -87,8 +86,8 @@ First comment:
 
 แล้วที่เหลือมาจากไหน? ผมลงทะเบียนแบบวิจัยไว้ล่วงหน้า แล้วนั่งทำเลขคณิต
 
-"กฎของ Huang" คือคำกล่าวว่าชิป AI โตเร็วกว่ากฎของ Moore ผมอยากรู้ว่ามันคือกฎของ Moore ที่แปลงร่างมามากแค่ไหน
-จึงสร้างชุดข้อมูลของตัวเร่ง AI สำหรับศูนย์ข้อมูล 79 รุ่นจาก 14 ผู้ผลิต (2012–2026) รวม 1,152 ค่า ทุกค่ามี URL
+"กฎของ Huang" คือคำกล่าวว่าชิป AI โตเร็วกว่ากฎของ Moore มันคือกฎของ Moore แปลงร่างมามากแค่ไหน?
+ผมสร้างชุดข้อมูลของตัวเร่ง AI สำหรับศูนย์ข้อมูล 79 รุ่นจาก 14 ผู้ผลิต (2012–2026) รวม 1,152 ค่า ทุกค่ามี URL
 ของแหล่งที่มา วันที่เข้าถึง และระดับความเชื่อมั่น แล้วแยกค่า peak ที่ผู้ผลิตประกาศออกเป็นห้าปัจจัยที่คูณกันพอดี:
 
 ความหนาแน่นทรานซิสเตอร์ × พื้นที่ die × สัญญาณนาฬิกา × จำนวน operation ต่อทรานซิสเตอร์ต่อรอบ (specialization)
@@ -103,12 +102,11 @@ First comment:
 
 → บนสาย K20X → H100 ของ NVIDIA ตัวเลข 501 เท่าแยกได้เป็น ความหนาแน่นทรานซิสเตอร์ 33%, พื้นที่ die 6%,
 สัญญาณนาฬิกา 16%, specialization 34% และ precision 11% ของกำไรในสเกล log กฎของ Moore ในความหมายของ
-ความหนาแน่นคือราวหนึ่งในสามของกฎของ Huang พจน์เดี่ยวที่ใหญ่ที่สุดคือ matrix unit
+ความหนาแน่นคือราวหนึ่งในสามของกฎของ Huang
 
 → บัญชีของ NVIDIA เอง (Dally, Hot Chips 2023) ให้เครดิต process 2.5 เท่า และสถาปัตยกรรม 200 เท่า ผลรวมเท่ากัน
 แต่ลงบัญชีคนละแบบ: ทรานซิสเตอร์ × สัญญาณนาฬิกา โต 30.5 เท่า หรือ 12 เท่าของตัวคูณ process ของ NVIDIA เพราะ
-NVIDIA นับทรานซิสเตอร์ส่วนเกินที่ node ใหม่ให้มาว่าเป็นสถาปัตยกรรม กำไร "มาจากไหน" จึงขึ้นกับว่าใครได้เครดิต
-ทรานซิสเตอร์
+NVIDIA นับทรานซิสเตอร์ส่วนเกินที่ node ใหม่ให้มาว่าเป็นสถาปัตยกรรม
 
 → กำแพงหน่วยความจำมีจริงและกว้างขึ้น: แบนด์วิดท์หน่วยความจำเพิ่มสองเท่าทุก 2.70 ปี เทียบกับ 1.23 ปีของการคำนวณ
 ดังนั้น operation ต่อไบต์ที่ชิปดึงมาได้เพิ่มสองเท่าทุก 2.20 ปี
@@ -119,22 +117,19 @@ NVIDIA นับทรานซิสเตอร์ส่วนเกินท�
 → การเปิดเผยข้อมูลจบลงในปี 2022 ตั้งแต่ H100 เป็นต้นมา ไม่มีผู้ผลิตรายใดในกลุ่มตัวอย่างเผยทั้งพื้นที่ die และ
 สัญญาณนาฬิกาของชิปเรือธง จากเอกสารสาธารณะ การแยกแบบนี้ทำกับ Blackwell, Rubin, MI355X หรือ TPU ไม่ได้
 
-ข้อควรระวังสองข้อที่ควรติดไว้กับทุกกราฟ:
-1. ทุกอัตราคือค่า peak ที่ผู้ผลิตประกาศ แบบ dense ไม่รวม sparsity กฎของ Huang พูดถึง peak แต่ peak ไม่ใช่สิ่งที่งาน
-training ได้รับ
+ข้อควรระวังสองข้อ:
+1. ทุกอัตราคือค่า peak ที่ผู้ผลิตประกาศ แบบ dense ไม่รวม sparsity
 2. กลุ่มตัวอย่างที่แยกได้ครบมี 9 รุ่น เป็นของ NVIDIA 6 รุ่น เมื่อถดถอยข้ามผู้ผลิต แยกพจน์สถาปัตยกรรมออกจาก
 ความหนาแน่นไม่ได้ สมมติฐานที่ลงทะเบียนไว้ข้อนั้นถูกหักล้าง
 
-จากสมมติฐานที่ลงทะเบียนล่วงหน้า 7 ข้อ: สนับสนุน 5 ไม่สนับสนุน 1 หักล้าง 1 ข้อที่ไม่ผ่านอยู่ใน paper ด้วยน้ำหนัก
-เท่ากับข้อที่ผ่าน
+จากสมมติฐานที่ลงทะเบียนล่วงหน้า 7 ข้อ: สนับสนุน 5 ไม่สนับสนุน 1 หักล้าง 1 ข้อที่ไม่ผ่านก็อยู่ใน paper
 
 ทุกอย่างเปิดเผย: ชุดข้อมูลพร้อมที่มาระดับรายค่า (CC BY 4.0) โค้ด (MIT) การลงทะเบียนล่วงหน้าที่แช่แข็งใน git
-ก่อนเก็บค่าใด ๆ บันทึกความเบี่ยงเบน และ paper คำสั่งเดียวสร้างทุกตัวเลข ทุกรูป และ PDF ขึ้นใหม่จากข้อมูลที่
-commit ไว้ โดยไม่ต้องต่อเน็ต
+ก่อนเก็บค่าใด ๆ บันทึกความเบี่ยงเบน และ paper คำสั่งเดียวสร้างทุกตัวเลข ทุกรูป และ PDF ขึ้นใหม่
 
 Independent personal research. Public data only. Does not represent the views of any employer or institution.
 
-#AI #Semiconductors #MooresLaw #GPU #HardwareEngineering #OpenData #Research
+#AI #Semiconductors #MooresLaw #GPU #OpenData #Research
 
 คอมเมนต์แรก:
 📄 Paper: https://thanatchon36.github.io/chipledger/paper/
