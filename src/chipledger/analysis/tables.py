@@ -271,6 +271,33 @@ def sensitivity_table(rows_in: list[dict[str, Any]]) -> str:
     return _table(head, rows)
 
 
+def sensitivity_short(rows_in: list[dict[str, Any]]) -> str:
+    """The paper's version of the §6 table: rates and the H3b contrast, typographic minus signs."""
+    rows = []
+    for r in rows_in:
+        if "error" in r:
+            rows.append([r["label"], str(r["n"]), "not computable", "—", "—"])
+            continue
+        h3 = r.get("h3b")
+        rows.append(
+            [
+                r["label"],
+                str(r["n"]),
+                f"{_f(r['headline_doubling'], 2)} {_ci(r['headline_doubling_ci'], 2)}",
+                _f(r.get("density_doubling"), 2),
+                f"{_f(h3['estimate'])} {_ci(h3['ci'])}" if h3 else "—",
+            ]
+        )
+    head = [
+        "variant",
+        "n",
+        "P doubling, yr [95% CI]",
+        "density doubling, yr",
+        "H3b contrast, dbl/yr [95% CI]",
+    ]
+    return _table(head, [[*r[:2], *(c.replace("-", "−") for c in r[2:])] for r in rows])
+
+
 def nodes_table(n: dict[str, Any]) -> str:
     rows = [
         [
@@ -324,6 +351,9 @@ def all_tables(n: dict[str, Any]) -> dict[str, str]:
         + reconciliation_table(n["estimator_c"], n["estimator_c_fp32_reference"])
     )
     t["t5_sensitivity.md"] = "# Sensitivity analyses (PREREGISTRATION §6)\n\n" + sensitivity_table(
+        n["sensitivity"]
+    )
+    t["t5_sensitivity_paper.md"] = "# Sensitivity analyses, short form\n\n" + sensitivity_short(
         n["sensitivity"]
     )
     t["t6_throughput.md"] = "# RQ1: throughput-trend sample and Moore's law\n\n" + "\n".join(

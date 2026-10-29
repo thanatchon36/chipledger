@@ -78,10 +78,6 @@ def coverage(products: Path = PRODUCTS, out: Path = Path("data/coverage.md")) ->
     typer.echo(f"{n} of {len(df)} products outside the decomposition sample; wrote {out}")
 
 
-def _not_yet(phase: str) -> None:
-    typer.echo(f"not built yet: planned for {phase} (see STATUS.md)")
-
-
 @app.command()
 def analyze(
     products: Path = PRODUCTS,
@@ -114,12 +110,23 @@ def analyze(
 
 
 @app.command()
-def figures() -> None:
-    """Figures F1–F7 as SVG and PNG. Phase 4."""
-    _not_yet("Phase 4")
+def figures(
+    products: Path = PRODUCTS,
+    numbers: Path = RESULTS / "numbers.json",
+    mlperf: Path = Path("data/mlperf.csv"),
+    out: Path = RESULTS / "figures",
+) -> None:
+    """Figures F1–F7 as SVG and 300-dpi PNG in results/figures/, from the dataset and results/numbers.json."""
+    from chipledger.analysis import figures as fig
+
+    ml = pd.read_csv(mlperf) if mlperf.exists() else None
+    drawn = fig.draw_all(schema.read_raw(products), json.loads(numbers.read_text()), ml, out)
+    typer.echo(f"wrote {len(drawn)} figures to {out}/: {', '.join(drawn)}")
 
 
 @app.command()
 def paper() -> None:
-    """Fill paper/paper.md from results/numbers.json and build the PDF and the web page. Phase 4."""
-    _not_yet("Phase 4")
+    """Fill paper/paper.md from results/numbers.json and build paper/chipledger.pdf and the web page."""
+    from chipledger.paper import build
+
+    typer.echo(f"wrote {build()}")

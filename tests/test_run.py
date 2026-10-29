@@ -181,7 +181,7 @@ def test_numbers_are_json_safe(numbers: dict) -> None:
 
 def test_tables_render(numbers: dict) -> None:
     t = tables.all_tables(numbers)
-    assert len(t) == 8
+    assert len(t) == 9
     assert all("|---|" in md for md in t.values())
     assert "H7" in t["t1_hypotheses.md"]
 
@@ -247,3 +247,13 @@ def test_h6_skips_excluded_rows() -> None:
     out = run.h6(ml, d)
     assert out["verdict"] == "supported" and out["benchmarks"][0]["n"] == 3
     assert run.h6(None, d)["verdict"] == "not assessed"
+
+
+def test_figures_draw(numbers: dict, tmp_path: Path) -> None:
+    from chipledger.analysis import figures
+
+    raw, _ = dataset()
+    drawn = figures.draw_all(raw, numbers, MLPERF.assign(excluded="", rule="first"), tmp_path)
+    assert drawn == figures.NAMES
+    for name in drawn:
+        assert (tmp_path / f"{name}.svg").stat().st_size > 1000 and (tmp_path / f"{name}.png").exists()

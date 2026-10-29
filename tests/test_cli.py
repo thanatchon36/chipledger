@@ -100,9 +100,3 @@ def test_empty_dataset_is_valid(tmp_path: Path) -> None:
     assert r.exit_code == 0 and "0 products, 0 errors" in r.output
     r = runner.invoke(app, ["derive", "--products", str(a), "--out", str(tmp_path / "d.csv")])
     assert r.exit_code == 0, r.output
-
-
-def test_stubs_say_so() -> None:
-    for cmd in ("figures", "paper"):
-        r = runner.invoke(app, [cmd])
-        assert r.exit_code == 0 and "not built yet" in r.output

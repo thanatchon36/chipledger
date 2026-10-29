@@ -34,6 +34,7 @@ IDENTITIES: dict[str, tuple[list[str], str]] = {
 }
 LOG_EXTRA = [  # series used by the secondary analyses and identities B and C
     "ref_tflops",
+    "fp32",
     "transistors_b",
     "tdp_w",
     "tflops_per_w",
@@ -612,6 +613,8 @@ def run(
     rq1 = {
         "flagships": single_trends(flag, ["log2_headline", "log2_ref_tflops", "log2_transistors_b"]),
         "flagships_density": single_trends(flag, ["log2_density_mtr_mm2"]),
+        # descriptive lines of the ladder figure (F1)
+        "flagships_ladder": single_trends(flag, ["log2_fp32", "log2_area_mm2"]),
         "all_primary": single_trends(prim, ["log2_headline", "log2_ref_tflops", "log2_transistors_b"]),
         "frontier": single_trends(frontier(prim), ["log2_headline"]),
         "frontier_products": [str(p) for p in frontier(prim)["product"]],

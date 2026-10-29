@@ -129,19 +129,6 @@ def test_doubling_of_nonpositive_slope_is_infinite() -> None:
     assert trend._doubling(-0.1) == float("inf")
 
 
-def test_figures_render(tmp_path) -> None:  # type: ignore[no-untyped-def]
-    from chipledger.analysis import figures
-
-    d = ladder(noise=0.05)
-    st = chain.steps(d, [f"chip{i}" for i in range(8)])
-    fits, _ = trend.fit_all(d, draws=20)
-    figures.f2_chain(st, tmp_path)
-    figures.f1_ladder(d, fits, tmp_path)
-    for name in ["f1_ladder", "f2_chain"]:
-        assert (tmp_path / f"{name}.svg").stat().st_size > 1000
-        assert (tmp_path / f"{name}.png").stat().st_size > 1000
-
-
 def test_chain_on_identity_a_prime() -> None:
     from chipledger.identity import TERMS_N
 
