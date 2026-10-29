@@ -1,8 +1,8 @@
 # Status
 
-**Phase 4 — paper, figures and literature, done; waiting at Gate 4 (2026-10-29).** Draft:
-`paper/chipledger.pdf` (12 pages) and `docs/site/paper/index.html`; figures: `results/figures/`; literature:
-`docs/literature/REVIEW.md`. Report: `docs/phase-4-report.md`.
+**Phase 5 — release packaging, done locally (2026-10-29).** Ready to publish; the steps are the author's
+(`docs/phase-5-report.md`, release checklist). Paper: `paper/chipledger.pdf`; dataset: `data/`; web paper:
+`docs/site/paper/`.
 
 ## Done
 
@@ -26,10 +26,14 @@
   sources opened and reviewed, Dally's four factors checked against the Hot Chips 2023 slides (they match).
   Report: `docs/phase-4-report.md`.
 
+- Gate 4 (2026-10-29): the author asked for every recommendation to be carried out: the paper keeps 12 pages,
+  Phase 5 proceeds.
+- Phase 5 — release packaging (2026-10-29): README with results, Hugging Face card and build script, citation
+  metadata at 0.1.0, byte-identical rebuild from a clean clone, history check. Report: `docs/phase-5-report.md`.
+
 ## Next
 
-- Gate 4: the author reviews the full draft (`docs/phase-4-report.md`, last section).
-- Phase 5 — release packaging, local only. Publishing steps are the author's.
+- The author's publishing steps: GitHub repository, Zenodo release and DOI, Hugging Face dataset, Pages.
 
 ## Open issues
 
@@ -37,4 +41,4 @@
 - Die area is unpublished for Blackwell, Rubin, MI100 onward, every TPU after v3, and every AWS, Huawei and Meta
   part after MTIA v2; boost clock is unpublished for Blackwell and Rubin, so every NVIDIA chain ends at H100.
 - Three requested references could not be opened and are not cited (Hennessy & Patterson 2019, Thompson &
-  Spanuth 2021, Wulf & McKee 1995).
+  Spanuth 2021, Wulf & McKee 1995); Thompson & Spanuth is open access and worth one more try after release.
