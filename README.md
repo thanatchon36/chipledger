@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Data](https://img.shields.io/badge/data-CC--BY--4.0-blue)](LICENSE-DATA)
 [![Status](https://img.shields.io/badge/status-phase%200-lightgrey)](STATUS.md)
-[![Pre-registered](https://img.shields.io/badge/pre--registered-draft-lightgrey)](PREREGISTRATION.md)
+[![Pre-registered](https://img.shields.io/badge/pre--registered-prereg--v1-blue)](PREREGISTRATION.md)
 
 🧾 **[Pre-registration](PREREGISTRATION.md)** · 🔀 **[Deviations](DEVIATIONS.md)** · 🔁 **[Reproduce](REPRODUCE.md)** ·
 📋 **[Status](STATUS.md)** · 🗒️ **[Decisions](docs/decisions.md)**

@@ -1,6 +1,7 @@
 # Status
 
-**Gate 0 — waiting for the author (2026-10-29).**
+**Phase 1 — feasibility, in progress (2026-10-29).** Gate 0 passed: `PREREGISTRATION.md` approved and frozen at
+tag `prereg-v1`.
 
 ## Done
 
@@ -11,7 +12,7 @@
 
 ## Next
 
-- Gate 0: the author approves `PREREGISTRATION.md`; it is then tagged `prereg-v1`.
+- Gate 0 done 2026-10-29: `PREREGISTRATION.md` frozen at tag `prereg-v1`.
 - Phase 1 — feasibility: 12–15 products with full provenance, the identity, one rough stacked-bar figure and the
   regression table. Gate 1: go/no-go on the full sample.
 - Phase 2 — full dataset and coverage report. Phase 3 — analysis. Phase 4 — paper and figures. Phase 5 — release

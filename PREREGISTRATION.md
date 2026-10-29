@@ -2,7 +2,7 @@
 
 - **Author:** Thanatchon Chongmankhong (independent research; public data only; does not represent the views of
   any employer or institution)
-- **Frozen at:** git tag `prereg-v1` (to be set when the author approves this file; until then it is a draft)
+- **Frozen at:** git tag `prereg-v1`, approved by the author on 2026-10-29
 - **Status at freezing:** no specification has been entered into `data/accelerators.csv` and no source has been
   fetched. This is not a blind pre-registration: the headline figures of NVIDIA's flagship parts and the published
   trend estimates (Epoch AI's hardware trends; NVIDIA's own account of a thousand-fold gain in ten years) are widely
