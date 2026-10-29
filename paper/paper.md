@@ -480,8 +480,9 @@ depends on terms that the vendors have stopped publishing.
 
 The dataset (`data/accelerators.csv`, `data/sources.csv`), the pre-registration, the deviations log and the code
 that produces every number, table and figure in this paper are released under CC BY 4.0 (data) and MIT (code)
-at `https://github.com/thanatchon36/chipledger`. `make all` rebuilds the analysis from the committed dataset
-without network access.
+at `https://github.com/thanatchon36/chipledger`, archived on Zenodo (doi:10.5281/zenodo.23763729, concept DOI) <!-- numbers-ok: DOI -->
+and mirrored as a Hugging Face dataset (`thanatchon36/chipledger`). `make all` rebuilds the analysis from the
+committed dataset without network access.
 
 # References {-}
 

@@ -3,6 +3,7 @@
 <h1 align="center">chipledger</h1>
 
 [![CI](https://github.com/thanatchon36/chipledger/actions/workflows/ci.yml/badge.svg)](https://github.com/thanatchon36/chipledger/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23763729.svg)](https://doi.org/10.5281/zenodo.23763729)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Data](https://img.shields.io/badge/data-CC--BY--4.0-blue)](LICENSE-DATA)
 [![Status](https://img.shields.io/badge/status-preprint-orange)](STATUS.md)
@@ -84,7 +85,8 @@ pandoc and Typst and fills every number from `numbers.json`. See [`REPRODUCE.md`
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff).
+See [`CITATION.cff`](CITATION.cff). Archived on Zenodo: [10.5281/zenodo.23763729](https://doi.org/10.5281/zenodo.23763729)
+(concept DOI; it always resolves to the latest release).
 
 ## License
 

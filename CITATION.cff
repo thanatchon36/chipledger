@@ -10,10 +10,11 @@ type: software
 authors:
   - family-names: Chongmankhong
     given-names: Thanatchon
-version: 0.1.0
+version: 0.1.1
 date-released: 2026-10-29
 license: MIT
 repository-code: "https://github.com/thanatchon36/chipledger"
+doi: "10.5281/zenodo.23763729"
 keywords:
   - Moore's law
   - AI accelerators
