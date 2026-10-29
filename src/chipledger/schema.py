@@ -40,7 +40,7 @@ SILICON = [
     "reticle_limited",
 ]
 CLOCK_POWER = ["boost_clock_mhz", "tdp_w", "flops_convention"]
-VECTOR = ["fp64", "fp32", "fp16", "bf16"]  # SIMT / vector-unit dense rates
+VECTOR = ["fp64", "fp32", "fp16", "bf16", "int8"]  # SIMT / vector-unit dense rates (int8 in TOPS)
 TENSOR = [  # matrix-unit dense rates: tensor cores, matrix cores, MXUs, systolic arrays
     "fp64_tensor",
     "tf32_tensor",
