@@ -1,7 +1,7 @@
 # Status
 
-**Phase 1 — feasibility, done; waiting at Gate 1 (2026-10-29).** 16 products collected with provenance; the
-full decomposition reaches only K20X → A100. Report: `docs/phase-1-report.md`.
+**Phase 2 — full dataset, done; waiting at Gate 2 (2026-10-29).** 79 products from 14 vendors, 1,150 source
+rows; the five-term chain reaches K20X → H100, the A′ chain MI60 → MI355X. Report: `docs/phase-2-report.md`.
 
 ## Done
 
@@ -11,16 +11,20 @@ full decomposition reaches only K20X → A100. Report: `docs/phase-1-report.md`.
   no external service used.
 - Phase 1 — feasibility (2026-10-29): 16 products (NVIDIA 8, AMD 4, Google 4), 288 source rows, all from vendor
   documents; chain and trend estimators with tests; rough F1 and F2. Report: `docs/phase-1-report.md`.
+- Gate 1 (2026-10-29): dense from sparse where the vendor states the rule, Epoch AI as a medium-confidence
+  fallback, identity A′ for products without die area (`DEVIATIONS.md` #1–3).
+- Phase 2 — full dataset (2026-10-29): 79 products, 1,150 source rows, 56 conflicts, 22 process nodes; Epoch AI
+  cross-check 138/158 within 2 %. Report: `docs/phase-2-report.md`.
 
 ## Next
 
-- Gate 1: the author decides on dense-from-sparse values, sources for clock and area beyond vendor documents,
-  and products without a published die area (`docs/phase-1-report.md`, last section).
-- Phase 2 — full dataset and coverage report. Phase 3 — analysis. Phase 4 — paper and figures. Phase 5 — release
+- Gate 2: the author decides on the Kepler flagship and per-package accounting, the highest-TDP primary
+  variant, a vector INT8 column, and the use of the node series (`docs/phase-2-report.md`, last section).
+- Phase 3 — analysis. Phase 4 — paper and figures. Phase 5 — release
   packaging. Publishing steps are the author's.
 
 ## Open issues
 
 - TechPowerUp returns HTTP 403 to every fetcher available here; WikiChip refuses connections.
-- Die area is unpublished for Blackwell, all four AMD parts and every TPU (v4 gives only "< 600 mm²").
-- H100, B200, B300 lack dense tensor rates in the dataset, so their headline/reference fall back to FP32.
+- Die area is unpublished for Blackwell, Rubin, MI100 onward, every TPU after v3, and every AWS, Huawei and Meta
+  part after MTIA v2.
