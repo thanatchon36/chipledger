@@ -1,5 +1,5 @@
-# chipledger pipeline. `make all` rebuilds everything from the committed dataset; stages not built yet say so.
-.PHONY: all validate derive coverage analyze figures paper check lint test
+# chipledger pipeline. `make all` rebuilds every result, figure and the paper from the committed dataset.
+.PHONY: all validate derive coverage analyze figures paper hf check lint test
 
 all: validate derive coverage analyze figures paper check
 
@@ -24,6 +24,10 @@ figures:
 # fill paper/paper.md from results/numbers.json, build the PDF and the web page (needs pandoc and typst)
 paper:
 	uv run chipledger paper
+
+# the Hugging Face dataset folder dist/hf/ (uploaded by the author)
+hf:
+	uv run python scripts/build_hf_dataset.py
 
 check: lint test
 
